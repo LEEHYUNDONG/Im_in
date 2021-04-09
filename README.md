@@ -2,7 +2,6 @@
 rn w/ django rest framework
 
 ## 0313/second_commit/LeeHyunDong
-112244
  - navigator
  - bottom tab navigator
  - navigation stack 작성 및 로딩화면 작성
