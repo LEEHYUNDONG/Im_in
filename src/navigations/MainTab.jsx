@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home, Check, Mode, List, Settings } from "../screens/index";
 import { MaterialIcons } from "@expo/vector-icons";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import Navigation, { navigation } from "./index";
 
 
 
@@ -24,6 +25,7 @@ const MainTab = ({ navigation, route }) => {
             name="login"
             size={26}
             style={{ margin: 10 }}
+            onPress={Navigation}
           />
         )
     });

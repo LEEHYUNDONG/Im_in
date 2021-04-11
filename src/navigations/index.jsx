@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import MainStack from "./MainStack";
@@ -8,10 +8,14 @@ import { ProgressContext}  from "../contexts";
 
 const Navigation=() => {
   const {inProgress}=useContext(ProgressContext);
+  const [login,setLogin]=useState(0);
+  const _handlesetLogin = () => {
+    setLogin(1)
+  }
   
   return (
     <NavigationContainer>
-      <MainStack />
+      {login ?  <AuthStack /> : <MainStack />}
       {inProgress && <Spinner />}
     </NavigationContainer>
   );
