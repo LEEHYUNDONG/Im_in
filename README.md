@@ -33,4 +33,9 @@ rn w/ django rest framework
 - 파일 저장 위치 log 확인
 
 ## 0410/KangJeonHo
-- Login 및 Signup 화면 추가
+- Login 화면 학번 비밀번호 입력 생성
+- signup 버튼 생성 및 singup 화면 연결
+- 회원가입 정보 입력 생성
+- 얼굴 등록 버튼 생성
+- 얼굴 등록 기능 x
+- 메인 화면 연결 x
