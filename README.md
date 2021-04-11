@@ -12,6 +12,10 @@ rn w/ django rest framework
 - 아래 버튼 클릭시 헤더 타이틀 변경 수정해보기
 - 헤더 아이콘 삽입
 
+## 0319/LeeDoKyung
+- Camera 사용 권한 요청
+- 카메라 실행
+- 카메라 전환 기능
 
 ## 0407/4th_commit/LeeHyunDong
 - edit header title 탭 아이콘이 눌렸을 때 헤더 타이틀보이기
@@ -22,9 +26,11 @@ rn w/ django rest framework
 ## 0408/LeeHyunDong
 - require cycle이라는 오류 제거
 
-## zzho
-
-## /LeeHyunDong
+## 0409/LeeDoKyung
+- Audio 사용 권한 요청
+- 카메라 촬영 버튼 만들기
+- 촬영된 사진 및 동영상 미리보기 화면
+- 파일 저장 위치 log 확인
 
 ## 0410/KangJeonHo
 - Login 및 Signup 화면 추가
