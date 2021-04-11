@@ -31,7 +31,7 @@ const Signup = () => {
                 <View style={{flex:1}}>
                 <TouchableOpacity style={{flex:0.7}}>
                     <Container>
-                    <Image style={{width:100,height:100}} source={require("../../assets/icon/req.png")} />
+                    <Image style={{width:100,height:100}} source={require("../../assets/req.png")} />
                     </Container>
                 </TouchableOpacity>    
                 <TouchableOpacity style={styles.btn}>
