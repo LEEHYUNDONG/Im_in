@@ -25,7 +25,9 @@ const MainTab = ({ navigation, route }) => {
             name="login"
             size={26}
             style={{ margin: 10 }}
-            onPress={Navigation}
+            onPress={() => {
+              navigation.navigate("Login");
+            }}
           />
         )
     });
