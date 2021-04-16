@@ -24,6 +24,7 @@ const App = () => {
   );
 };
 export default App;
+// edit app.jsx file for checking master and branches
 
 
 //<StatusBar barStyle="black-content"/>
