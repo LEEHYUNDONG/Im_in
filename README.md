@@ -39,3 +39,15 @@ rn w/ django rest framework
 - 얼굴 등록 버튼 생성
 - 얼굴 등록 기능 x
 - 메인 화면 연결 x
+## 04/17/KangJeonHo
+- Input 컴포넌트 components 안에 top,middle,bottom으로 나누어 구현
+- firebase x root에 firebase.json 추가 utils/firebase.jsx 추가
+- Maintab onPress 제거
+- Signup, Login Screen 화면 입력중 화면터치시 포커스 해제 추가
+- Login Screen 텍스트 입력간 네비게이션 추가
+- face-recognition 이미지 변경
+- signup 스크린 각 텍스트 입력란 라벨 추가
+- signup 스크린 텍스트 입력간 네비게이션 x
+- AuthStack BackTintColor 수정
+- Signup, Login Screen 입력패드 활성화시 스크롤 생성 x
+- navigation/index.jsx AuthStack으로 잠시 변경(수정가능)

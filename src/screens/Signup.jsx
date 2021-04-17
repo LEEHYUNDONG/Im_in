@@ -1,6 +1,9 @@
-import React ,{useState} from 'react';
+import React ,{useState,useRef,useEffect} from 'react';
 import styled from 'styled-components/native';
-import {Image,Text,Button,TextInput,TouchableOpacity,View,StyleSheet} from 'react-native';
+import {Image,Text,Button,TextInput,TouchableOpacity,View,StyleSheet,TouchableWithoutFeedback} from 'react-native';
+import {TextFormTop,TextFormMiddle} from '../components'
+import { Keyboard } from 'react-native';
+import { MaterialIcons } from "@expo/vector-icons";
 
 
 const Container = styled.View`
@@ -11,27 +14,106 @@ const Container = styled.View`
 `;
 
 const Signup = () => {
+    const [name, setName] = useState('');
+    const [snum, setSnum] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [disabled, setDisabled] = useState(true);
+
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const passwordConfirmRef = useRef();
+    
+    /*useEffect(() => {
+      if (didMountRef.current) {
+          let _errorMessage = '';
+          if (!name) {
+              _errorMessage = 'Please enter your name.';
+          } else if (!validateEmail(snum)) {
+              _errorMessage = 'Please verify your email.';
+          } else if (password.length < 6) {
+              _errorMessage = 'The password must contain 6 characters at least.';
+          } else if (password !== passwordConfirm) {
+              _errorMessage = 'Passwords need to match'
+          } else {
+              _errorMessage = '';
+          }
+          setErrorMessage(_errorMessage);
+      } else {
+          didMountRef.current = true;
+      }
+    }, [name, email, password, passwordConfirm]);
+
+    useEffect(() => {
+        setDisabled(
+            !(name && email && password && passwordConfirm && !errorMessage)
+        );
+    }, [name, email. password, passwordConfirm, errorMessage]);
+    const _handleSignupButtonPress = async () => {
+        try {
+            spinner.start();
+            const user = await signup({ email, password, name, photoUrl });
+            dispatch(user);
+            console.log(user);
+            Alert.alert('Signup Success', user.email);
+        } catch (e) {
+            Alert.alert('Signup Error', e.message);
+        } finally {
+            spinner.stop();
+        }
+    }; 나중에 수정*/
+
     return(
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
-                <View style={{flex:0.5}}>
-                    <View style={{flex:1}}></View>
-                    <View style={{flex:1,alignItems: 'center'}}>
-                        <Text style={{fontSize:30}}>Sign up</Text>
-                </View>
-            </View>
+                
             <View style={{flex:2}}>
                 <View style={{flex: 1}}>
-                <TextInput style={styles.textFormTop} placeholder="student number(ex:B000000)"/>
-                <TextInput style={styles.textFormMiddle}placeholder="Email"></TextInput>
-                <TextInput style={styles.textFormMiddle}placeholder="Password"></TextInput>
-                <TextInput style={styles.textFormBottom}placeholder="confirm password"></TextInput>
+                <TextFormMiddle
+                  label="Name"
+                  value={snum}
+                  onChangeText={text => setSnum(text)}
+                  onSubmitEditing={() => passwordRef.current.focus()}
+                  placeholder="Enter your name"
+                  returnKeyType="next"
+                />
+                <TextFormMiddle
+                  label="Student Number"
+                  value={snum}
+                  onChangeText={text => setSnum(text)}
+                  onSubmitEditing={() => passwordRef.current.focus()}
+                  placeholder="Enter your student number"
+                  returnKeyType="next"
+                />
+                <TextFormMiddle
+                  label="Password"
+                  value={password}
+                  onChangeText={text => setPassword(text)}
+                  onSubmitEditing={() => passwordRef.current.focus()}
+                  placeholder="Enter your student number"
+                  returnKeyType="next"
+                />
+                <TextFormMiddle
+                  label="Confirm password"
+                  value={passwordConfirm}
+                  onChangeText={text => setPasswordConfirm(text)}
+                  onSubmitEditing={() => passwordRef.current.focus()}
+                  placeholder="Enter your student number"
+                  returnKeyType="next"
+                />
                 
                 </View>
                 
-                <View style={{flex:1}}>
-                <TouchableOpacity style={{flex:0.7}}>
+                <View style={{flex:0.7}}>
+                <TouchableOpacity style={{flex:0.6}}>
                     <Container>
-                    <Image style={{width:100,height:100}} source={require("../../assets/req.png")} />
+                    <MaterialIcons
+                      name="face"
+                      size={100}
+                      style={{ margin: 10 }}
+                      onPress={() => {}}
+                    />
                     </Container>
                 </TouchableOpacity>    
                 <TouchableOpacity style={styles.btn}>
@@ -40,6 +122,7 @@ const Signup = () => {
             </View>
             </View>
         </View>
+        </TouchableWithoutFeedback>
     );
 
 };

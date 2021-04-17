@@ -8,14 +8,10 @@ import { ProgressContext}  from "../contexts";
 
 const Navigation=() => {
   const {inProgress}=useContext(ProgressContext);
-  const [login,setLogin]=useState(0);
-  const _handlesetLogin = () => {
-    setLogin(1)
-  }
   
   return (
     <NavigationContainer>
-      {login ?  <AuthStack /> : <MainStack />}
+      <AuthStack />
       {inProgress && <Spinner />}
     </NavigationContainer>
   );

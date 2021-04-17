@@ -13,5 +13,7 @@ export const theme = {
   imageBackground: colors.grey_0,
   headerTintColor: colors.black,
   tabActiveColor: colors.blue,
-  tabInactiveColor: colors.grey_1
+  tabInactiveColor: colors.grey_1,
+
+  label: colors.grey_1,
 };

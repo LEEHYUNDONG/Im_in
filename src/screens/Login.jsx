@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState,useRef} from 'react';
 import styled from 'styled-components/native';
-import {Text,TextInput,TouchableOpacity,View,StyleSheet} from 'react-native';
+import {Text,TouchableOpacity,View,StyleSheet,TouchableWithoutFeedback} from 'react-native';
+import {TextFormBottom,TextFormTop} from '../components'
+import { Keyboard } from 'react-native';
 
 
 const Container = styled.View`
@@ -11,7 +13,14 @@ const Container = styled.View`
 `;
 
 const Login = ({navigation}) => {
+  const [snum, setSnum] = useState('');
+  const [password, setPassword] = useState('');
+  const passwordRef = useRef();
+  const [isFocused, setIsFocused] = useState(false);
+
+
     return (
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
             <View style={{flex:1}}>
                 <View style={{flex:2}}></View>
@@ -19,8 +28,22 @@ const Login = ({navigation}) => {
             
             </View>
             <View style={{flex:1.5}}>
-            <TextInput style={styles.textFormTop} placeholder="Enter your student number"/>
-            <TextInput style={styles.textFormBottom} placeholder="Enter password"/>
+            <TextFormTop
+              value={snum}
+              onChangeText={text => setSnum(text)}
+              onSubmitEditing={() => passwordRef.current.focus()}
+              placeholder="Enter your student number"
+              returnKeyType="next"
+            />
+            <TextFormBottom
+              ref={passwordRef}
+              value={password}
+              onChangeText={text => setPassword(text)}
+              onSubmitEditing={() => {}}
+              placeholder="Enter password"
+              returnKeyType="done"
+              isPassword
+            />
             <Text>  </Text>
             <TouchableOpacity style={styles.btn}>
                 <Text style={(styles.Text, {color: 'white'})}>Sign in</Text>
@@ -30,8 +53,10 @@ const Login = ({navigation}) => {
             </TouchableOpacity>
             </View>
         </Container>
+        </TouchableWithoutFeedback>
     )
 }
+
 
 const styles = StyleSheet.create({
     container: {
