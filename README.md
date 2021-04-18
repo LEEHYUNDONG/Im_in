@@ -1,6 +1,8 @@
 # Im_In-
 rn w/ django rest framework
 
+# 04월 2주차 까지
+
 ## 0313/second_commit/LeeHyunDong
  - navigator
  - bottom tab navigator
@@ -16,12 +18,6 @@ rn w/ django rest framework
 - Camera 사용 권한 요청
 - 카메라 실행
 - 카메라 전환 기능
-
-## 0407/4th_commit/LeeHyunDong
-- edit header title 탭 아이콘이 눌렸을 때 헤더 타이틀보이기
-- 헤더에 로그인 버튼 만들기
-- 전체 배경화면 만들기x
-- 로그인 버튼눌러서 화면 넘어가기 x
 
 ## 0408/LeeHyunDong
 - require cycle이라는 오류 제거
@@ -40,9 +36,17 @@ rn w/ django rest framework
 - 얼굴 등록 기능 x
 - 메인 화면 연결 x
 
+***
+# 04월 3주차
+
+## 0412/4th_commit/LeeHyunDong
+- edit header title 탭 아이콘이 눌렸을 때 헤더 타이틀보이기
+- 헤더에 로그인 버튼 만들기
+- 전체 배경화면 만들기x
+- 로그인 버튼눌러서 화면 넘어가기 x
+
 ## 0413/LeeHyunDong
 - Deep learning CNN, DNN등등 여러 face detection에 사용되는 type 자료조사
-
 
 ## 0416/KangJeonHo, LeeDoKyung, LeeHyunDong
 - 요구사항 분석서, 요구사항 정의서, 제안서 수정
