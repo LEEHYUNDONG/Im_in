@@ -39,6 +39,15 @@ rn w/ django rest framework
 - 얼굴 등록 버튼 생성
 - 얼굴 등록 기능 x
 - 메인 화면 연결 x
+
+## 0413/LeeHyunDong
+- Deep learning CNN, DNN등등 여러 face detection에 사용되는 type 자료조사
+
+
+## 0416/KangJeonHo, LeeDoKyung, LeeHyunDong
+- 요구사항 분석서, 요구사항 정의서, 제안서 수정
+- Deep Learning 학습 부분 회의및 방향성 제시
+
 ## 04/17/KangJeonHo
 - Input 컴포넌트 components 안에 top,middle,bottom으로 나누어 구현
 - firebase x root에 firebase.json 추가 utils/firebase.jsx 추가
