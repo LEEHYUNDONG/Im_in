@@ -45,8 +45,16 @@ rn w/ django rest framework
 - 전체 배경화면 만들기x
 - 로그인 버튼눌러서 화면 넘어가기 x
 
+## 0412/LeeDoKyung
+- 얼굴등록 화면 만들기
+- 얼굴인식시 카메라화면에 얼굴위치 표현기능
+- 얼굴인식시 자동 동영상 녹화 시작 기능
+
 ## 0413/LeeHyunDong
 - Deep learning CNN, DNN등등 여러 face detection에 사용되는 type 자료조사
+
+## 0415/LeeDoKyung
+- 설정시간동안 촬영 후 자동 녹화중지 기능
 
 ## 0416/KangJeonHo, LeeDoKyung, LeeHyunDong
 - 요구사항 분석서, 요구사항 정의서, 제안서 수정
