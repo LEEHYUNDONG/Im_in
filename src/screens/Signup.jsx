@@ -1,10 +1,19 @@
-import React ,{useState,useRef,useEffect} from 'react';
+import React ,{useState,useRef,useEffect,useContext} from 'react';
 import styled from 'styled-components/native';
 import {Image,Text,Button,TextInput,TouchableOpacity,View,StyleSheet,TouchableWithoutFeedback} from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {TextFormTop,TextFormMiddle} from '../components'
 import { Keyboard } from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
 
+const ErrorText = styled.Text`
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 10px;
+    line-height: 20px;
+    color: red;
+    margin-bottom: 6px;
+`;
 
 const Container = styled.View`
     flex: 1;
@@ -14,6 +23,7 @@ const Container = styled.View`
 `;
 
 const Signup = () => {
+    
     const [name, setName] = useState('');
     const [snum, setSnum] = useState('');
     const [password, setPassword] = useState('');
@@ -21,17 +31,19 @@ const Signup = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [disabled, setDisabled] = useState(true);
 
-    const emailRef = useRef();
+    const snumRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
+    const didMountRef = useRef();
     
-    /*useEffect(() => {
+    
+    useEffect(() => {
       if (didMountRef.current) {
           let _errorMessage = '';
           if (!name) {
               _errorMessage = 'Please enter your name.';
-          } else if (!validateEmail(snum)) {
-              _errorMessage = 'Please verify your email.';
+          } else if (!snum) {
+              _errorMessage = 'Please verify your student number.';
           } else if (password.length < 6) {
               _errorMessage = 'The password must contain 6 characters at least.';
           } else if (password !== passwordConfirm) {
@@ -43,17 +55,17 @@ const Signup = () => {
       } else {
           didMountRef.current = true;
       }
-    }, [name, email, password, passwordConfirm]);
+    }, [name, snum, password, passwordConfirm]);
 
     useEffect(() => {
         setDisabled(
-            !(name && email && password && passwordConfirm && !errorMessage)
+            !(name && snum && password && passwordConfirm && !errorMessage)
         );
-    }, [name, email. password, passwordConfirm, errorMessage]);
+    }, [name, snum. password, passwordConfirm, errorMessage]);
     const _handleSignupButtonPress = async () => {
         try {
             spinner.start();
-            const user = await signup({ email, password, name, photoUrl });
+            const user = await signup({ snum, password, name });
             dispatch(user);
             console.log(user);
             Alert.alert('Signup Success', user.email);
@@ -62,71 +74,88 @@ const Signup = () => {
         } finally {
             spinner.stop();
         }
-    }; 나중에 수정*/
+    };
 
     return(
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAwareScrollView
+          extraHeight={20}
+        >
             <View style={styles.container}>
                 
             <View style={{flex:2}}>
-                <View style={{flex: 1}}>
+                <View style={{}}>
                 <TextFormMiddle
                   label="Name"
-                  value={snum}
-                  onChangeText={text => setSnum(text)}
-                  onSubmitEditing={() => passwordRef.current.focus()}
+                  value={name}
+                  onChangeText={text => setName(text)}
+                  onSubmitEditing={() => {
+                      setName(name.trim());
+                      snumRef.current.focus();
+                  }}
+                  onBlur={() => setName(name.trim())}
                   placeholder="Enter your name"
                   returnKeyType="next"
                 />
                 <TextFormMiddle
+                  ref={snumRef}
                   label="Student Number"
                   value={snum}
-                  onChangeText={text => setSnum(text)}
+                  onChangeText={text => setSnum()}
                   onSubmitEditing={() => passwordRef.current.focus()}
                   placeholder="Enter your student number"
                   returnKeyType="next"
                 />
                 <TextFormMiddle
+                  ref={passwordRef}
                   label="Password"
                   value={password}
-                  onChangeText={text => setPassword(text)}
-                  onSubmitEditing={() => passwordRef.current.focus()}
-                  placeholder="Enter your student number"
-                  returnKeyType="next"
+                  onChangeText={text => setPassword(removeWhitespace(text))}
+                  onSubmitEditing={() => passwordConfirmRef.current.focus()}
+                  placeholder="password"
+                  returnKeyType="done"
+                  isPassword
                 />
                 <TextFormMiddle
-                  label="Confirm password"
+                  ref={passwordConfirmRef}
+                  label="Password Confirm"
                   value={passwordConfirm}
-                  onChangeText={text => setPasswordConfirm(text)}
-                  onSubmitEditing={() => passwordRef.current.focus()}
-                  placeholder="Enter your student number"
-                  returnKeyType="next"
+                  onChangeText={text => setPasswordConfirm(removeWhitespace(text))}
+                  placeholder="Password Confirm"
+                  returnKeyType="done"
+                  isPassword
                 />
-                
                 </View>
-                
-                <View style={{flex:0.7}}>
+                <View style={{flex:0.8}}>
                 <TouchableOpacity style={{flex:0.6}}>
                     <Container>
+                    <Label>Pressing image, register your face</Label>
                     <MaterialIcons
+                      style={{flex:1}}
                       name="face"
                       size={100}
                       style={{ margin: 10 }}
                       onPress={() => {}}
                     />
                     </Container>
-                </TouchableOpacity>    
-                <TouchableOpacity style={styles.btn}>
+                </TouchableOpacity>
+                <ErrorText>{errorMessage}</ErrorText>
+                <TouchableOpacity  style={styles.btn}>
                     <Text style={(styles.Text, {color: 'white'})}>Sign up</Text>
                 </TouchableOpacity>
+                
             </View>
             </View>
         </View>
-        </TouchableWithoutFeedback>
+        </KeyboardAwareScrollView>
     );
 
 };
-
+const Label = styled.Text`
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: ${({ theme, isFocused }) => (isFocused ? theme.text : theme.label)};
+`;
 const styles = StyleSheet.create({
     container: {
         flex: 1,

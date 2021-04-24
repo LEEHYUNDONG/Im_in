@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import {Text,TouchableOpacity,View,StyleSheet,TouchableWithoutFeedback} from 'react-native';
 import {TextFormBottom,TextFormTop} from '../components'
 import { Keyboard } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 
 const Container = styled.View`
@@ -20,7 +21,10 @@ const Login = ({navigation}) => {
 
 
     return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAwareScrollView
+            contentContainerStyle={{ flex: 1 }}
+            extraScrollHeight={20}
+        >
         <Container>
             <View style={{flex:1}}>
                 <View style={{flex:2}}></View>
@@ -53,7 +57,7 @@ const Login = ({navigation}) => {
             </TouchableOpacity>
             </View>
         </Container>
-        </TouchableWithoutFeedback>
+        </KeyboardAwareScrollView>
     )
 }
 

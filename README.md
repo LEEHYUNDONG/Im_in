@@ -72,3 +72,9 @@ rn w/ django rest framework
 - AuthStack BackTintColor 수정
 - Signup, Login Screen 입력패드 활성화시 스크롤 생성 x
 - navigation/index.jsx AuthStack으로 잠시 변경(수정가능)
+
+## 0422/Kang Jeon Ho
+- 회원가입화면 비율조정
+- firebase 연동
+- signup 네비게이션
+- 입력패드 활성화시 스크롤바 구현
