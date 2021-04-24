@@ -15,5 +15,8 @@ export const theme = {
   tabActiveColor: colors.blue,
   tabInactiveColor: colors.grey_1,
 
+  spinnerBackground: colors.black,
+  spinnerIndicator: colors.white,
+
   label: colors.grey_1,
 };

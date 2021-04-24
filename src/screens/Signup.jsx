@@ -5,6 +5,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import {TextFormTop,TextFormMiddle} from '../components'
 import { Keyboard } from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
+import Check from './Check';
+import * as detector from '../screens/FaceRecognition.jsx';
 
 const ErrorText = styled.Text`
     align-items: flex-start;
@@ -22,27 +24,27 @@ const Container = styled.View`
     background-color: ${({theme}) => theme.background};
 `;
 
-const Signup = () => {
+const Signup = ({navigation}) => {
     
     const [name, setName] = useState('');
-    const [snum, setSnum] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [disabled, setDisabled] = useState(true);
 
-    const snumRef = useRef();
+    const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
     const didMountRef = useRef();
-    
+    const a = detector;
     
     useEffect(() => {
       if (didMountRef.current) {
           let _errorMessage = '';
           if (!name) {
               _errorMessage = 'Please enter your name.';
-          } else if (!snum) {
+          } else if (!email) {
               _errorMessage = 'Please verify your student number.';
           } else if (password.length < 6) {
               _errorMessage = 'The password must contain 6 characters at least.';
@@ -55,17 +57,17 @@ const Signup = () => {
       } else {
           didMountRef.current = true;
       }
-    }, [name, snum, password, passwordConfirm]);
+    }, [name, email, password, passwordConfirm]);
 
     useEffect(() => {
         setDisabled(
-            !(name && snum && password && passwordConfirm && !errorMessage)
+            !(name && email && password && passwordConfirm && !errorMessage)
         );
-    }, [name, snum. password, passwordConfirm, errorMessage]);
+    }, [name, email. password, passwordConfirm, errorMessage]);
     const _handleSignupButtonPress = async () => {
         try {
             spinner.start();
-            const user = await signup({ snum, password, name });
+            const user = await signup({ email, password, name });
             dispatch(user);
             console.log(user);
             Alert.alert('Signup Success', user.email);
@@ -90,17 +92,17 @@ const Signup = () => {
                   onChangeText={text => setName(text)}
                   onSubmitEditing={() => {
                       setName(name.trim());
-                      snumRef.current.focus();
+                      emailRef.current.focus();
                   }}
                   onBlur={() => setName(name.trim())}
                   placeholder="Enter your name"
                   returnKeyType="next"
                 />
                 <TextFormMiddle
-                  ref={snumRef}
+                  ref={emailRef}
                   label="Student Number"
-                  value={snum}
-                  onChangeText={text => setSnum()}
+                  value={email}
+                  onChangeText={text => setEmail()}
                   onSubmitEditing={() => passwordRef.current.focus()}
                   placeholder="Enter your student number"
                   returnKeyType="next"
@@ -134,7 +136,7 @@ const Signup = () => {
                       name="face"
                       size={100}
                       style={{ margin: 10 }}
-                      onPress={() => {}}
+                      onPress={() => navigation.navigate('FaceRecognition')}
                     />
                     </Container>
                 </TouchableOpacity>

@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import { theme } from "./theme";
 import { ThemeProvider } from "styled-components/native";
 import Navigation from "../src/navigations";
-
+import {ProgressProvider,UserProvider} from './contexts';
 
 const Container = styled.View`
   flex-direction: row;
@@ -18,8 +18,12 @@ const Container = styled.View`
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
+      <UserProvider>
+      <ProgressProvider>
       <StatusBar barStyle="dark-content" />
       <Navigation />
+      </ProgressProvider>
+      </UserProvider>
     </ThemeProvider>
   );
 };

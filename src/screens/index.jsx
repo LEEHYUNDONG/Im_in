@@ -5,5 +5,6 @@ import Mode from "./Mode";
 import Settings from "./Settings";
 import Login from "./Login";
 import Signup from "./Signup";
+import FaceRecognition from './FaceRecognition'
 
-export { Check, Home, List, Mode, Settings, Login, Signup };
+export { Check, Home, List, Mode, Settings, Login, Signup,FaceRecognition };

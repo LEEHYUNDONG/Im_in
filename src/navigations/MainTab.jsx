@@ -3,6 +3,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home, Check, Mode, List, Settings } from "../screens/index";
 import { MaterialIcons } from "@expo/vector-icons";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { logout } from '../utils/firebase';
+import { UserContext,ProgressContext } from '../contexts';
 
 
 
@@ -13,6 +15,21 @@ const TabIcon = ({ name, size, color }) => {
 };
 
 const MainTab = ({ navigation, route }) => {
+  const { dispatch } = useContext(UserContext); 
+  const { spinner } = useContext(ProgressContext);
+
+  const _handleLogoutButtonPress = async () => {
+        try {
+            spinner.start();
+            await logout();
+        } catch (e) {
+            console.log('[Profile] logout: ', e.message);
+        } finally {
+            dispatch({});
+            spinner.stop();
+        }
+    };
+
   useEffect(() => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
     const index = 0; // 수정 요망
@@ -24,12 +41,12 @@ const MainTab = ({ navigation, route }) => {
             name="login"
             size={26}
             style={{ margin: 10 }}
-            onPress={() => {}}
+            onPress={_handleLogoutButtonPress}
           />
         )
     });
   }, [route]);
-//onPress={() => navigation.navigate("Login", { screen: "Login" })} //login 버튼
+
   return (
     <Tab.Navigator
       initialRouteName="Home"

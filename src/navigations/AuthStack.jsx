@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "styled-components/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Login, Signup } from "../screens";
+import { Login, Signup,Check,FaceRecognition} from "../screens";
 
 const Stack = createStackNavigator();
 
@@ -41,6 +41,8 @@ const AuthStack = () => {
         }}
       />
       <Stack.Screen name="Signup" component={Signup} options={{headerBackTitleVisible: false}} />
+      <Stack.Screen name="Check" component={Check} options={{headerBackTitleVisible: false}} />
+      <Stack.Screen name="FaceRecognition" component={FaceRecognition} options={{headerBackTitleVisible: false}} />
     </Stack.Navigator>
   );
 };
