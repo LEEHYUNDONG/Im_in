@@ -60,7 +60,7 @@ rn w/ django rest framework
 - 요구사항 분석서, 요구사항 정의서, 제안서 수정
 - Deep Learning 학습 부분 회의및 방향성 제시
 
-## 04/17/KangJeonHo
+## 0417/KangJeonHo
 - Input 컴포넌트 components 안에 top,middle,bottom으로 나누어 구현
 - firebase x root에 firebase.json 추가 utils/firebase.jsx 추가
 - Maintab onPress 제거
@@ -73,8 +73,26 @@ rn w/ django rest framework
 - Signup, Login Screen 입력패드 활성화시 스크롤 생성 x
 - navigation/index.jsx AuthStack으로 잠시 변경(수정가능)
 
+***
+# 04월 4주차
+
+## 0420/Lee Hyun Dong
+- Django에서 React native로 데이터 송수신 관련 자료조사
+
+## 0420/Lee Do Kyung
+- React native에서 Django로 데이터 송수신 관련 자료조사
+
 ## 0422/Kang Jeon Ho
 - 회원가입화면 비율조정
 - firebase 연동
 - signup 네비게이션
 - 입력패드 활성화시 스크롤바 구현
+
+## 0423/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
+- 설계보고서 작성
+- 진행사항 조별 발표 슬라이드
+- React native - Django 통신 부분 회의
+
+## 0424/Lee Do Kyung, Lee Hyun Dong
+- Django -> React native 데이터 송수신 테스트 환경 세팅
+- React native -> Django 데이터 송수신 테스트 환경 세팅
