@@ -1,16 +1,19 @@
 import React, { useState, forwardRef } from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
-import {StyleSheet} from 'react-native';
 
-
+const Container = styled.View`
+    flex-direction: column;
+    width: 100%;
+    margin: 10px 0;
+`;
 const Label = styled.Text`
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 6px;
     color: ${({ theme, isFocused }) => (isFocused ? theme.text : theme.label)};
 `;
-/*const StyledTextInput = styled.TextInput.attrs(({ theme }) =>({
+const StyledTextInput = styled.TextInput.attrs(({ theme }) =>({
     placeholderTextColor: theme.inputPlaceholder,
 }))`
     background-color: ${({ theme, editable }) =>
@@ -20,7 +23,7 @@ const Label = styled.Text`
     font-size: 16px;
     border: 1px solid ${({ theme, isFocused }) => (isFocused ? theme.text : theme.inputBorder)};
     border-radius: 4px;
-`;*/
+`;
 
 const Input = forwardRef(
     ({
@@ -41,7 +44,6 @@ const Input = forwardRef(
 
     return (
         <Container>
-            
             <Label isFocused={isFocused}>{label}</Label>
             <StyledTextInput
                 ref={ref}
@@ -86,69 +88,5 @@ Input.propTypes = {
     maxLength: PropTypes.number,
     disabled: PropTypes.bool,
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        alignItems: 'center',
-      },
-      textFormIndependence: {
-        borderWidth: 2,
-        borderBottomWidth: 1,
-        borderColor: 'black',
-        borderTopLeftRadius: 7,
-        borderTopRightRadius: 7,
-        borderBottomRightRadius: 7,
-        borderBottomLeftRadius: 7,
-        width: 300,
-        height: 65,
-        paddingLeft: 10,
-        paddingRight: 10,
-        alignItems: 'center'
-      },
-      textFormTop: {
-        borderWidth: 2,
-        borderBottomWidth: 1,
-        borderColor: 'black',
-        borderTopLeftRadius: 7,
-        borderTopRightRadius: 7,
-        width: 300,
-        height: 65,
-        paddingLeft: 10,
-        paddingRight: 10,
-        alignItems: 'center'
-      },
-      textFormBottom: {
-        borderWidth: 2,
-        borderTopWidth: 1,
-        borderColor: 'black',
-        borderBottomRightRadius: 7,
-        borderBottomLeftRadius: 7,
-        width: 300,
-        height: 65,
-        paddingLeft: 10,
-        paddingRight: 10,
-      },
-      textFormMiddle: {
-        borderWidth: 2,
-        borderTopWidth: 2,
-        borderColor: 'black',
-        width: 300,
-        height: 65,
-        paddingLeft: 10,
-        paddingRight: 10,
-      },
-      btn: {
-        width: 300,
-        height: 65,
-        borderRadius: 7,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'black',
-      },
-      /*added*/
-
-})
 
 export default Input;

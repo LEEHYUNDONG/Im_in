@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ThemeContext } from "styled-components/native";
 import MainTab from "./MainTab";
+import {ListDetail} from '../screens'
 
 
 const Stack = createStackNavigator();
@@ -18,6 +19,7 @@ const MainStack = ({ navigation }) => {
         headerBackTitleVisible: false
       }}>
       <Stack.Screen name="Home" component={MainTab} />
+      <Stack.Screen name="ListDetail" component={ListDetail} />
     </Stack.Navigator>
   );
 };

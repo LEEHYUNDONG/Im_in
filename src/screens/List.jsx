@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import { Text, Button } from "react-native";
+import IconButton from '../components/IconButton'
 
 const Container = styled.SafeAreaView`
   flex: 1;

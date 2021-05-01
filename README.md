@@ -96,3 +96,9 @@ rn w/ django rest framework
 ## 0424/Lee Do Kyung, Lee Hyun Dong
 - Django -> React native 데이터 송수신 테스트 환경 세팅
 - React native -> Django 데이터 송수신 테스트 환경 세팅
+
+## 0501/Kang Jeon Ho
+- 출석 리스트 화면 구현
+- 학생 출결 관리 화면 구현
+- 분반 생성 화면 구현
+- 셋 다 미완성 및 파이어베이스 연동x

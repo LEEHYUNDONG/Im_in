@@ -30,13 +30,24 @@ const MainTab = ({ navigation, route }) => {
         }
     };
 
+    function getHeaderTitle(route) {
+      const routeName = getFocusedRouteNameFromRoute(route) ?? 'Channels';
+      return routeName;
+  };
+
   useEffect(() => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
-    const index = 0; // 수정 요망
     navigation.setOptions({
       headerTitle: routeName,
       headerRight: () =>
-        index === 0 && (
+      getHeaderTitle(route) === 'List' && (
+        <MaterialIcons
+            name="add"
+            size={26}
+            style={{ margin: 10 }}
+            onPress={() => navigation.navigate('ListDetail')}
+        />
+    )|| (
           <MaterialIcons
             name="login"
             size={26}
