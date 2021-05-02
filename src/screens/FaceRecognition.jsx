@@ -222,7 +222,7 @@ export default function FaceRegistration() {
         {isVideoRecording && renderVideoRecordIndicator()}
         {videoSource && renderVideoPlayer()}
         {isPreview && renderCancelPreviewButton()}
-        {!videoSource && !isPreview && renderCaptureControl()}
+        {/*!videoSource && !isPreview && renderCaptureControl()*/}
       </View>
       {len > 0
         ?
@@ -255,7 +255,7 @@ export default function FaceRegistration() {
 
 const styles = StyleSheet.create({
   cameracontainer: {
-    flex: 0.7,
+    flex: 1.0,
   },
   camera: {
     flex: 0.7,
