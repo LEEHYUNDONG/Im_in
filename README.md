@@ -97,6 +97,17 @@ rn w/ django rest framework
 - Django -> React native 데이터 송수신 테스트 환경 세팅
 - React native -> Django 데이터 송수신 테스트 환경 세팅
 
+***
+# 04월 5주차 & 05월 1주차
+
+## 0428/Lee Do Kyung
+- 얼굴등록 화면 스크린 에러 수정
+- 얼굴등록 화면 카메라 비율 조정
+
+## 0430/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
+- 오프라인 회의
+- Deep Learning 스터디
+
 ## 0501/Kang Jeon Ho
 - 출석 리스트 화면 구현
 - 학생 출결 관리 화면 구현
