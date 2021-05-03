@@ -104,6 +104,10 @@ rn w/ django rest framework
 - 얼굴등록 화면 스크린 에러 수정
 - 얼굴등록 화면 카메라 비율 조정
 
+## 0429/Lee Hyun Dong
+- django RESTAPI 로 HTTP로 통신 코드 만들기
+- DJANGO SETTING 및 오류 디버깅
+
 ## 0430/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
 - 오프라인 회의
 - Deep Learning 스터디
