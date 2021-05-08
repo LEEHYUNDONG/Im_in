@@ -45,7 +45,7 @@ const MainTab = ({ navigation, route }) => {
             name="add"
             size={26}
             style={{ margin: 10 }}
-            onPress={() => navigation.navigate('ListDetail')}
+            onPress={() => navigation.navigate('ListCreation')}
         />
     )|| (
           <MaterialIcons
