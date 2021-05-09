@@ -118,6 +118,17 @@ rn w/ django rest framework
 - 분반 생성 화면 구현
 - 셋 다 미완성 및 파이어베이스 연동x
 
+***
+# 05월 2주차
+
+## 0504/Lee Do Kyung
+- AWS EC2 이용하여 Django 외부 접속 테스트
+- React native에서 Django와 REST-API로 json 데이터 통신하기
+
+## 0507/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
+- 오프라인 회의
+- Deep Learning 스터디
+
 ## 0508/Kang Jeon Ho
 - 리스트, 출석, 분반 화면 완성
 - 파이어베이스 리스트만 연동
