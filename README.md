@@ -121,6 +121,10 @@ rn w/ django rest framework
 ***
 # 05월 2주차
 
+## 0503/Lee Hyun Dong
+- Django RestApi를 내보내는 Code
+- RN쪽 오류 발생 서버연결이 안됨
+
 ## 0504/Lee Do Kyung
 - AWS EC2 이용하여 Django 외부 접속 테스트
 - React native에서 Django와 REST-API로 json 데이터 통신하기
