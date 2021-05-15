@@ -33,20 +33,8 @@ const ItemTime = styled.Text`
     color: ${({ theme }) => theme.listTime};
 `;
 
-const channels = [];
- for (let idx = 0; idx < 200; idx++) {
-     channels.push({
-         id: idx,
-         title: `title ${idx}`,
-         numOfst: `numOfst ${idx}`,
-         createdAt: idx,
-     });
- }
-
-
-
-const Item = React.memo(
-    ({ item: { id, title, numOfst, createdAt }, onPress }) => {
+ const Item = React.memo(
+    ({ item: { id, title, snum, createdAt }, onPress }) => {
         const theme = useContext(ThemeContext);
         console.log(`Item: ${id}`);
 
@@ -54,9 +42,9 @@ const Item = React.memo(
             <ItemContainer onPress={() => onPress({ id, title })}>
                 <ItemTextContainer>
                     <ItemTitle>{title}</ItemTitle>
-                    <ItemDescription>{numOfst}</ItemDescription>
+                    <ItemDescription>{}</ItemDescription>
                 </ItemTextContainer>
-                <ItemTime>{createdAt}</ItemTime>
+                <ItemTime>{snum}</ItemTime>
                 <MaterialIcons
                     name="keyboard-arrow-right"
                     size={24}
@@ -70,8 +58,22 @@ const Item = React.memo(
 const List = ({ navigation }) => {
     const [channels, setChannels] = useState([]);
 
+    useEffect(() => {
+        const unsubscribe = DB.collection('channels')
+            .orderBy('createdAt', 'desc')
+            .onSnapshot(snapshot => {
+                const list = [];
+                snapshot.forEach(doc => {
+                    list.push(doc.data());
+                });
+                setChannels(list);
+            });
+
+        return () => unsubscribe();
+    }, []);
+
     const _handleItemPress = params => {
-        navigation.navigate('ListDetail', params);
+        navigation.navigate('Class', params);
     };
 
     return (

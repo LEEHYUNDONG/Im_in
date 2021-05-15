@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Home, Check, Mode, List, Settings } from "../screens/index";
+import { Home, Check, Mode, List, Settings} from "../screens/index";
 import { MaterialIcons } from "@expo/vector-icons";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { logout } from '../utils/firebase';

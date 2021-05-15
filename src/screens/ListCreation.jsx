@@ -6,6 +6,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Alert } from 'react-native';
 import { login } from '../utils/firebase';
 import {ProgressContext,UserContext} from '../contexts';
+import {createList} from '../utils/firebase';
 
 const Btn = styled.TouchableOpacity`
     width: 300px;
@@ -27,25 +28,27 @@ const Container = styled.View`
 const ListCreation = ({navigation}) => {
   const { dispatch } = useContext(UserContext);
   const { spinner } = useContext(ProgressContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const passwordRef = useRef();
+  const [title, setTitle] = useState('');
+  const [snum, setSnum] = useState('');
+  const snumRef = useRef();
   const [errorMessage, setErrorMessage] = useState('');
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
-    setDisabled(!(email && password));
-}, [email, password, errorMessage]);
+    setDisabled(!(title && snum));
+}, [title, snum, errorMessage]);
 
-const _handleEmailChange = email => {
-    const changedEmail = removeWhitespace(email);
-    setEmail(changedEmail);
-    setErrorMessage(validateEmail(changedEmail) ? '' : 'Please verify your email.');
+const _handleCreateButtonPress = async () => {
+  try {
+      spinner.start();
+      const id = await createList({ title, snum });
+      navigation.replace('Class', { id, title });
+  } catch (e) {
+      Alert.alert('Creation Error', e.message);
+  } finally {
+      spinner.stop();
+  }
 };
-const _handlePasswordChange = password => {
-    setPassword(removeWhitespace(password));
-};
-
     return (
       <KeyboardAwareScrollView
             contentContainerStyle={{ flex: 1 }}
@@ -58,25 +61,28 @@ const _handlePasswordChange = password => {
             <View style={{flex:2.5}}>
             <TextFormMiddle
               label="title"
-              value={email}
-              onChangeText={text => setEmail(text)}
-              onSubmitEditing={() => passwordRef.current.focus()}
+              value={title}
+              onChangeText={text => setTitle(text)}
+              onSubmitEditing={() => snumRef.current.focus()}
               placeholder="Enter title"
               returnKeyType="next"
             />
             <TextFormMiddle
               label="total number of student"
-              ref={passwordRef}
-              value={password}
-              onChangeText={text => setPassword(text)}
+              ref={snumRef}
+              value={snum}
+              onChangeText={text => setSnum(text)}
               onSubmitEditing={() => {}}
               placeholder="total number of student"
               returnKeyType="done"
             />
             <Text>  </Text>
-            <Btn disabled={disabled}>
+            <Btn 
+              disabled={disabled}
+              onPress={_handleCreateButtonPress}
+            >
                 <Text style={(styles.Text, {color: 'white'})} >creation</Text>
-              </Btn>
+            </Btn>
             </View>
         </Container>
         </KeyboardAwareScrollView>

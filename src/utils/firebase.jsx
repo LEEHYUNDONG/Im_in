@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
 import config from '../../firebase.json';
+import 'firebase/firestore';
 
 const app = firebase.initializeApp(config);
 
@@ -18,3 +19,16 @@ export const logout = async () => {
 };
 
 export const DB = firebase.firestore();
+
+export const createList = async ({ title, snum }) => {
+    const newListRef = DB.collection('channels').doc();
+    const id = newListRef.id;
+    const newList = {
+        id,
+        title,
+        description,
+        createdAt: Date.now(),
+    };
+    await newChannelRef.set(newList);
+    return id;
+};

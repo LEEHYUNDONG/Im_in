@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import {Text} from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
@@ -7,7 +7,9 @@ import { theme } from '../theme';
 const Container = styled.View`
     flex-direction: row;
     align-items: center;
-    background-color: #ffffff;
+    background-color: ${props =>
+      props.num !== '0' ? '#ffffff' : '#000000'
+    };
     border-color: #000000;
     border-width: 3px;
     border-radius: 10px;
@@ -15,8 +17,13 @@ const Container = styled.View`
     margin: 3px 0px;
 `;
 
+
+
 //<Contents>{text}</Contents>
 const Student = ({text}) => {
+    const [num,setNum] = useState('0');
+
+
     return (
         <Container>
             <Text style={{flex:1}}>B811217 강전호</Text>
