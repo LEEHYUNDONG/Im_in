@@ -138,8 +138,26 @@ rn w/ django rest framework
 - 파이어베이스 리스트만 연동
 - 분반 생성 x
 
-# 0515/Kang Jeon Ho
+***
+# 05월 3주차
+
+## 0513/Lee Hyun Dong
+- django restAPI 이용하여 serializer로 이미지 get
+- back-end에서 front연결부
+- media 폴더내에 지정한 곳에 이미지 파일 저장
+
+## 0513/Lee Do Kyung
+- React Native에서 django API로 이미지 전송
+- 도경씨가 더 추가하시면 될 것 같습니당
+
+## 0514/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
+- 딥러닝 backpropagation, gradient descent, neural network 이론 스터디
+- detection model 관련 회의
+
+## 0515/Kang Jeon Ho
 - 리스트 분반 생성
 - 파이어베이스 구현 및 연동
 - 리스트 생성 구현
 - 학생 출석 처리 구현 완성x
+
+
