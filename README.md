@@ -147,8 +147,8 @@ rn w/ django rest framework
 - media 폴더내에 지정한 곳에 이미지 파일 저장
 
 ## 0513/Lee Do Kyung
-- React Native에서 django API로 이미지 전송
-- ___도경씨가 더 추가하시면 될 것 같습니당___
+- React native에서 django로 json 전송 성공
+- React native에서 django로 얼굴등록에 사용할 이미지 전송 시도
 
 ## 0514/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
 - 딥러닝 backpropagation, gradient descent, neural network 이론 스터디
