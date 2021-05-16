@@ -148,7 +148,7 @@ rn w/ django rest framework
 
 ## 0513/Lee Do Kyung
 - React Native에서 django API로 이미지 전송
-- 도경씨가 더 추가하시면 될 것 같습니당
+- ___도경씨가 더 추가하시면 될 것 같습니당___
 
 ## 0514/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
 - 딥러닝 backpropagation, gradient descent, neural network 이론 스터디
