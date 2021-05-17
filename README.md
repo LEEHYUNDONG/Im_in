@@ -160,4 +160,9 @@ rn w/ django rest framework
 - 리스트 생성 구현
 - 학생 출석 처리 구현 완성x
 
+***
+# 05월 4주차
 
+## 0517/Lee Hyun Dong
+- djangoRestful API back 폴더에 구성 
+- django setting 및 Im_in 프론트와 직접 연결
