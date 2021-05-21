@@ -19,8 +19,6 @@ const Class = ({route}) => {
         >
         <Container>
                 <Student />
-                <Text style={{fontSize:24}}>ID: {route.params?.id}</Text>
-                <Text style={{fontSize:24}}>Title: {route.params?.title}</Text>
         </Container>
         </KeyboardAwareScrollView>
     )

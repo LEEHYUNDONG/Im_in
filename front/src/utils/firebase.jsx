@@ -26,9 +26,9 @@ export const createList = async ({ title, snum }) => {
     const newList = {
         id,
         title,
-        description,
+        snum,
         createdAt: Date.now(),
     };
-    await newChannelRef.set(newList);
+    await newListRef.set(newList);
     return id;
 };
