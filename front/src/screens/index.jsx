@@ -8,5 +8,6 @@ import Signup from "./Signup";
 import FaceRecognition from './FaceRecognition'
 import Class from './Class'
 import ListCreation from './ListCreation'
+import FaceMode from './FaceMode'
 
-export { Check, Home, List, Mode, Settings, Login, Signup,FaceRecognition,Class,ListCreation};
+export { Check, Home, List, Mode, Settings, Login, Signup,FaceRecognition,Class,ListCreation, FaceMode};
