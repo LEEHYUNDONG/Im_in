@@ -166,3 +166,10 @@ rn w/ django rest framework
 ## 0517/Lee Hyun Dong
 - djangoRestful API back 폴더에 구성 
 - django setting 및 Im_in 프론트와 직접 연결
+
+## 0519/Lee Do Kyung
+- 출석체크에 사용할 screen 생성
+
+## 0521/Lee Do Kyung, Lee Hyun Dong
+- FaceNet 이용하여 모델 구현
+- 구현한 모델 사용하여 테스트
