@@ -173,3 +173,7 @@ rn w/ django rest framework
 ## 0521/Lee Do Kyung, Lee Hyun Dong
 - FaceNet 이용하여 모델 구현
 - 구현한 모델 사용하여 테스트
+
+## 0522/Kang Jeon Ho
+- class 내 student 출결 상태 생성
+- class header 전체 현황 버튼 및 스크린 구현
