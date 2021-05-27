@@ -35,7 +35,7 @@ const Login = ({navigation}) => {
 const _handleEmailChange = email => {
     const changedEmail = removeWhitespace(email);
     setEmail(changedEmail);
-    setErrorMessage(validateEmail(changedEmail) ? '' : 'Please verify your email.');
+    setErrorMessage(validateEmail(changedEmail) ? '' : 'Please verify your student number.');
 };
 const _handlePasswordChange = password => {
     setPassword(removeWhitespace(password));

@@ -4,17 +4,6 @@ import PropTypes from 'prop-types';
 import {StyleSheet,TextInput} from 'react-native';
 
 
-/*const StyledTextInput = styled.TextInput.attrs(({ theme }) =>({
-    placeholderTextColor: theme.inputPlaceholder,
-}))`
-    background-color: ${({ theme, editable }) =>
-        editable ? theme.background : theme.inputDisabledBackground};
-    color: ${({ theme }) => theme.text};
-    padding: 20px 10px;
-    font-size: 16px;
-    border: 1px solid ${({ theme, isFocused }) => (isFocused ? theme.text : theme.inputBorder)};
-    border-radius: 4px;
-`;*/
 const Container = styled.View`
 `;
 

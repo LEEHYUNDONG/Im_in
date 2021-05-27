@@ -3,9 +3,7 @@ import styled from 'styled-components/native';
 import {Image,Text,Button,TextInput,TouchableOpacity,View,StyleSheet,TouchableWithoutFeedback} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {TextFormTop,TextFormMiddle} from '../components'
-import { Keyboard } from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
-import Check from './Check';
 import * as detector from '../screens/FaceRecognition.jsx';
 
 const ErrorText = styled.Text`
@@ -37,7 +35,6 @@ const Signup = ({navigation}) => {
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
     const didMountRef = useRef();
-    const a = detector;
     
     useEffect(() => {
       if (didMountRef.current) {
