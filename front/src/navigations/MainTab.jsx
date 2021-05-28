@@ -7,47 +7,50 @@ import { logout } from '../utils/firebase';
 import { UserContext,ProgressContext } from '../contexts';
 
 
-
+// Tab 변수에 BOTTOMTAB NAVIGATOR를 불러온다.
 const Tab = createBottomTabNavigator();
 
+// ICON을 IMPORT 시킨 값을 각각의 이름과 SIZE와 색상으로 매핑한다
 const TabIcon = ({ name, size, color }) => {
   return <MaterialIcons name={name} size={size} color={color} />;
 };
 
+// 하단의 MAINTAB 함수
 const MainTab = ({ navigation, route }) => {
-  const { dispatch } = useContext(UserContext); 
-  const { spinner } = useContext(ProgressContext);
+  const { dispatch } = useContext(UserContext); //CONTEXT를 통해 전역적으로 DISPATCH 시킨다
+  const { spinner } = useContext(ProgressContext); // 로딩시 SPINNER 이용하기 위해 CONTEXT
 
   const _handleLogoutButtonPress = async () => {
-        try {
-            spinner.start();
-            await logout();
-        } catch (e) {
-            console.log('[Profile] logout: ', e.message);
-        } finally {
-            dispatch({});
-            spinner.stop();
-        }
-    };
-
-    function getHeaderTitle(route) {
-      const routeName = getFocusedRouteNameFromRoute(route) ?? 'Channels';
-      return routeName;
+    try {
+      spinner.start();
+      await logout();
+    } catch (e) {
+      console.log("[Profile] logout: ", e.message);
+    } finally {
+      dispatch({});
+      spinner.stop();
+    }
   };
+
+  // 상단에 HEADER를 띄워 주기 위한 함수
+  function getHeaderTitle(route) {
+    const routeName = getFocusedRouteNameFromRoute(route) ?? "Channels";
+    return routeName;
+  }
 
   useEffect(() => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
     navigation.setOptions({
       headerTitle: routeName,
       headerRight: () =>
-      getHeaderTitle(route) === 'List' && (
-        <MaterialIcons
+        (getHeaderTitle(route) === "List" && (
+          <MaterialIcons
             name="add"
             size={26}
             style={{ margin: 10 }}
-            onPress={() => navigation.navigate('ListCreation')}
-        />
-    )|| (
+            onPress={() => navigation.navigate("ListCreation")}
+          />
+        )) || (
           <MaterialIcons
             name="login"
             size={26}
@@ -58,6 +61,7 @@ const MainTab = ({ navigation, route }) => {
     });
   }, [route]);
 
+  // 리턴 값으로  화면에 RENDERING 해준다.
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -87,7 +91,7 @@ const MainTab = ({ navigation, route }) => {
         name="Home"
         component={Home}
         options={{
-          tabBarLabel: "Home",
+          tabBarLabel: "Home", //TAB에 라벨값을 달아준다.
           headerTitle: "Home"
         }}
       />
