@@ -29,7 +29,7 @@ const Student = ({text}) => {
                 name="check"
                 size={26}
                 style={{ margin: 10 }}
-                onPress={}
+                
             />
             <MaterialIcons
                 name="alarm"
