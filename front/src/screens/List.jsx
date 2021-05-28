@@ -55,6 +55,8 @@ const ItemTime = styled.Text`
     }
 );
 
+//모든 Class들을 모아둔 목록
+
 const List = ({ navigation }) => {
     const [channels, setChannels] = useState([]);
 

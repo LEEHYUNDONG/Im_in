@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
 import {StyleSheet,TextInput} from 'react-native';
 
-
+//아래쪽이 뭉뚝한 TextInput
 const Container = styled.View`
 `;
 const TextFormTop = (

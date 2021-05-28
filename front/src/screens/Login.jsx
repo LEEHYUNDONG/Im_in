@@ -18,6 +18,8 @@ const Container = styled.View`
     background-color: ${({theme}) => theme.background};
 `;
 
+//로그인 인증 화면
+
 const Login = ({navigation}) => {
   const { dispatch } = useContext(UserContext);
   const { spinner } = useContext(ProgressContext);
@@ -28,26 +30,18 @@ const Login = ({navigation}) => {
   const [disabled, setDisabled] = useState(true);
   
 
-  useEffect(() => {
+  useEffect(() => { // 학번과 비밀번호 미입력 시 로그인 버튼 비활성화
     setDisabled(!(email && password && !errorMessage));
 }, [email, password, errorMessage]);
 
-const _handleEmailChange = email => {
-    const changedEmail = removeWhitespace(email);
-    setEmail(changedEmail);
-    setErrorMessage(validateEmail(changedEmail) ? '' : 'Please verify your student number.');
-};
-const _handlePasswordChange = password => {
-    setPassword(removeWhitespace(password));
-};
-const _handleLoginButtonPress = async () => {
+const _handleLoginButtonPress = async () => { //로그인 버튼 클릭 함수
     try {
-        spinner.start();
-        const user = await login({ email, password });
-        Alert.alert('Login Success', user.email);
+        spinner.start(); // 로그인 진행중에 다른 버튼 못 누르도록 spinner 실행
+        const user = await login({ email, password }); //firebase의 login함수로 email password전달
+        Alert.alert('Login Success', user.email); //정상적으로 로그인할 시 알림창
         dispatch(user);
     } catch (e) {
-        Alert.alert('Login Error', e.message);
+        Alert.alert('Login Error', e.message); //해당 이메일과 패스워드 계정이 없을시에 에러 알림창
     } finally {
         spinner.stop();
     }

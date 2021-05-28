@@ -15,7 +15,7 @@ const Container = styled.View`
     margin: 3px 0px;
 `;
 
-
+// 학생별의 출석 상태를 보여주는 컴포넌트
 
 const Student = ({text}) => {
     const _handlePressBotton = () => {

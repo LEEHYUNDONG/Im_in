@@ -25,16 +25,16 @@ const Container = styled.View`
     background-color: ${({theme}) => theme.background};
 `;
 
+// 리스트 생성 화면
+
 const ListCreation = ({navigation}) => {
-  const { dispatch } = useContext(UserContext);
   const { spinner } = useContext(ProgressContext);
   const [title, setTitle] = useState('');
   const [snum, setSnum] = useState('');
   const snumRef = useRef();
-  const [errorMessage, setErrorMessage] = useState('');
   const [disabled, setDisabled] = useState(true);
 
-  useEffect(() => {
+  useEffect(() => { // 타이틀과 총원수가 없으면 creation버튼 비활성화
     setDisabled(!(title && snum));
 }, [title, snum, errorMessage]);
 

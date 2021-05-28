@@ -4,7 +4,6 @@ import {Image,Text,Button,TextInput,TouchableOpacity,View,StyleSheet,TouchableWi
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {TextFormTop,TextFormMiddle} from '../components'
 import { MaterialIcons } from "@expo/vector-icons";
-import * as detector from '../screens/FaceRecognition.jsx';
 
 const ErrorText = styled.Text`
     align-items: flex-start;
@@ -36,8 +35,8 @@ const Signup = ({navigation}) => {
     const passwordConfirmRef = useRef();
     const didMountRef = useRef();
     
-    useEffect(() => {
-      if (didMountRef.current) {
+    useEffect(() => { //변수들 바뀔때마다 if문 실행
+      if (didMountRef.current) { //마운트가 되면 각 변수들 검사 후 잘못된 값 문자열 출력
           let _errorMessage = '';
           if (!name) {
               _errorMessage = 'Please enter your name.';
@@ -56,12 +55,12 @@ const Signup = ({navigation}) => {
       }
     }, [name, email, password, passwordConfirm]);
 
-    useEffect(() => {
+    useEffect(() => { //네개의 변수들을 변경할 때마다 조건에 맞게 버튼 활성화
         setDisabled(
             !(name && email && password && passwordConfirm && !errorMessage)
         );
     }, [name, email. password, passwordConfirm, errorMessage]);
-    const _handleSignupButtonPress = async () => {
+    const _handleSignupButtonPress = async () => { //sign up 시도 미구현
         try {
             spinner.start();
             const user = await signup({ email, password, name });
@@ -87,7 +86,7 @@ const Signup = ({navigation}) => {
                   label="Name"
                   value={name}
                   onChangeText={text => setName(text)}
-                  onSubmitEditing={() => {
+                  onSubmitEditing={() => { //키패드의 return 입력 시 다음 폼으로 focus 이동
                       setName(name.trim());
                       emailRef.current.focus();
                   }}
@@ -99,7 +98,7 @@ const Signup = ({navigation}) => {
                   ref={emailRef}
                   label="Student Number"
                   value={email}
-                  onChangeText={text => setEmail()}
+                  onChangeText={text => setEmail(text)}
                   onSubmitEditing={() => passwordRef.current.focus()}
                   placeholder="Enter your student number"
                   returnKeyType="next"

@@ -3,6 +3,8 @@ import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
 import {StyleSheet,TextInput} from 'react-native';
 
+// border처리를 하지 않은 기본 TextInput
+
 const Label = styled.Text`
     font-size: 14px;
     font-weight: 600;
