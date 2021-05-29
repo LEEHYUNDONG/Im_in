@@ -6,6 +6,7 @@ import {StyleSheet,TextInput} from 'react-native';
 //아래쪽이 뭉뚝한 TextInput
 const Container = styled.View`
 `;
+// 각 요소들을 받아 그에 맞는 입력창 렌더링
 const TextFormTop = (
     ({
         value,

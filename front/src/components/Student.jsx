@@ -23,10 +23,10 @@ const Student = ({text}) => {
     } 
 
     return (
-        <Container>
+        <Container> 
             <Text style={{flex:1}}>B811217 강전호</Text>
             <MaterialIcons
-                name="check"
+                name="check"//구성 = 학번,체크버튼,지각버튼,결성버튼
                 size={26}
                 style={{ margin: 10 }}
                 

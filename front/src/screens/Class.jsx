@@ -11,7 +11,7 @@ const Container = styled.View`
     align-items: center;
     background-color: ${({theme}) => theme.background};
 `;
-
+//학생 컴포넌트 삽입 firebase 미연동
 const Class = ({route}) => {
 
     return (
@@ -20,7 +20,7 @@ const Class = ({route}) => {
             extraScrollHeight={20}
         >
         <Container>
-                <Student />
+                <Student /> 
         </Container>
         </KeyboardAwareScrollView>
     )

@@ -17,7 +17,7 @@ const Container = styled.View`
     width: 100%;
     margin: 10px 0;
 `;
-
+// 각 요소들을 받아 그에 맞는 입력창 렌더링
 const TextFormMiddle = forwardRef(
     ({
         label,
