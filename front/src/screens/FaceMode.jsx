@@ -6,28 +6,27 @@ import * as FaceDetector from 'expo-face-detector';
 
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 
-const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.032);
-const captureSize = Math.floor(WINDOW_HEIGHT * 0.09);
-
 export default function FaceRegistration() {
   const [hasVideoPermission, setHasVideoPermission] = useState(null);
   const [hasAudioPermission, setHasAudioPermission] = useState(null);
   //facedetector
   const [faces, setFaces] = useState([]);
   const [len, setLen] = useState(0);
-  const [b, setB] = useState(null);
-  const [f, setF] = useState(null);
-  const [r, setR] = useState(null);
-  const [y, setY] = useState(null);
+  // const [b, setB] = useState(null);
+  // const [f, setF] = useState(null);
+  // const [r, setR] = useState(null);
+  // const [y, setY] = useState(null);
   //video
   const [cameraType, setCameraType] = useState(Camera.Constants.Type.front);
-  const [isPreview, setIsPreview] = useState(false);
-  const [isCameraReady, setIsCameraReady] = useState(false);
-  const [isVideoRecording, setIsVideoRecording] = useState(false);
+  const [preview, setPreview] = useState(false);
+  const [cameraReady, setCameraReady] = useState(false);
+  const [videoRecording, setVideoRecording] = useState(false);
+  const [cameraSource, setCameraSource] = useState(null);
   const [videoSource, setVideoSource] = useState(null);
   const cameraRef = useRef();
   const [detectFace, setDetectFace] = useState(true);
 
+  //얼굴인식하면 정보 저장
   const faceDetected = ({ faces }) => {
     if(faces.length > 0){
       if(detectFace){
@@ -35,10 +34,10 @@ export default function FaceRegistration() {
       }
       setFaces({faces});
       setLen(faces.length);
-      setB(faces[0].bounds);
-      setF(faces[0].faceID);
-      setR(faces[0].rollAngle);
-      setY(faces[0].yawAngle);
+      // setB(faces[0].bounds);
+      // setF(faces[0].faceID);
+      // setR(faces[0].rollAngle);
+      // setY(faces[0].yawAngle);
       console.log({faces});
     }else{
       setFaces({faces});
@@ -49,9 +48,9 @@ export default function FaceRegistration() {
 
   //첫얼굴 인식시 자동동영상촬영시작
   useEffect(() => {
-    // if(!detectFace){
-    //   videotimer();
-    // }
+    if(!detectFace){
+      videotimer();
+    }
   }, [detectFace]);
 
   //카메라권한
@@ -85,8 +84,8 @@ export default function FaceRegistration() {
 
   //viedo
   //카메라가 사진이나 비디오를 캡쳐할 준비가되었는지 구분
-  const onCameraReady = () => {
-    setIsCameraReady(true);
+  const CameraReady = () => {
+    setCameraReady(true);
   };
   //사진찍기
   const takePicture = async () => {
@@ -96,8 +95,9 @@ export default function FaceRegistration() {
       const source = data.uri;
       if (source) {
         await cameraRef.current.pausePreview();
-        setIsPreview(true);
-        console.log("picture source", source);
+        setPreview(true);
+        console.log("picture source :", source);
+        setCameraSource(source);
       }
     }
   };
@@ -105,14 +105,14 @@ export default function FaceRegistration() {
   const recordVideo = async () => {
     if (cameraRef.current) {
       try {
-        const videoRecordPromise = cameraRef.current.recordAsync();
-        if (videoRecordPromise) {
-          setIsVideoRecording(true);
-          const data = await videoRecordPromise;
+        const videoPromise = cameraRef.current.recordAsync();
+        if (videoPromise) {
+          setVideoRecording(true);
+          const data = await videoPromise;
           const source = data.uri;
           if (source) {
-            setIsPreview(true);
-            console.log("video source", source);
+            setPreview(true);
+            console.log("video source :", source);
             setVideoSource(source);
           }
         }
@@ -124,39 +124,28 @@ export default function FaceRegistration() {
   //비디오녹화중지
   const stopVideoRecording = () => {
     if (cameraRef.current) {
-      setIsPreview(false);
-      setIsVideoRecording(false);
+      setPreview(false);
+      setVideoRecording(false);
       cameraRef.current.stopRecording();
     }
   };
-  //카메라 변경
-  const switchCamera = () => {
-    if (isPreview) {
-      return;
-    }
-    setCameraType((prevCameraType) =>
-      prevCameraType === Camera.Constants.Type.back
-        ? Camera.Constants.Type.front
-        : Camera.Constants.Type.back
-    );
-  };
+  
   //사진 또는 비디오 미리보기 취소
   const cancelPreview = async () => {
     await cameraRef.current.resumePreview();
-    setIsPreview(false);
+    setPreview(false);
+    setCameraSource(null);
     setVideoSource(null);
   };
   //미리보기 취소버튼
-  const renderCancelPreviewButton = () => (
+  const cancelPreviewButton = () => (
     <TouchableOpacity onPress={cancelPreview} style={styles.closeButton}>
-      <View style={[styles.closeCross, { transform: [{ rotate: "45deg" }] }]} />
-      <View
-        style={[styles.closeCross, { transform: [{ rotate: "-45deg" }] }]}
-      />
+      <View style={[styles.closeX, { transform: [{ rotate: "50deg" }] }]} />
+      <View style={[styles.closeX, { transform: [{ rotate: "-50deg" }] }]} />
     </TouchableOpacity>
   );
   //녹화된비디오재생
-  const renderVideoPlayer = () => (
+  const playVideo = () => (
     <Video
       source={{ uri: videoSource }}
       shouldPlay={true}
@@ -164,29 +153,38 @@ export default function FaceRegistration() {
     />
   );
   //녹화중표시
-  const renderVideoRecordIndicator = () => (
-    <View style={styles.recordIndicatorContainer}>
-      <View style={styles.recordDot} />
-      <Text style={styles.recordTitle}>{"Recording..."}</Text>
+  const videoRecordingDisplay = () => (
+    <View style={styles.recordingContainer}>
+      <View style={styles.recordCircle} />
+      <Text style={styles.recordingPhrase}>{"Recording.."}</Text>
     </View>
   );
+  //카메라 변경
+  // const switchCamera = () => {
+  //   if (preview) {
+  //     return;
+  //   }
+  //   setCameraType((type) =>
+  //     type === Camera.Constants.Type.back ? Camera.Constants.Type.front : Camera.Constants.Type.back
+  //   );
+  // };
   //카메라 전후면전환버튼, 촬영버튼
-  const renderCaptureControl = () => (
-    <View style={styles.control}>
-      <TouchableOpacity disabled={!isCameraReady} onPress={switchCamera}>
-        <Text style={styles.text}>{"Flip"}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={0.7}
-        disabled={!isCameraReady}
-        onLongPress={recordVideo}
-        onPressOut={stopVideoRecording}
-        //onPress={takePicture}
-        onPress={videotimer}
-        style={styles.capture}
-      />
-    </View>
-  );
+  // const captureControl = () => (
+  //   <View style={styles.control}>
+  //     <TouchableOpacity disabled={!cameraReady} onPress={switchCamera}>
+  //       <Text style={styles.text}>{"Flip"}</Text>
+  //     </TouchableOpacity>
+  //     <TouchableOpacity
+  //       activeOpacity={0.7}
+  //       disabled={!cameraReady}
+  //       onLongPress={recordVideo}
+  //       onPressOut={stopVideoRecording}
+  //       onPress={takePicture}
+  //       //onPress={videotimer}
+  //       style={styles.capture}
+  //     />
+  //   </View>
+  // );
 
   //자동 녹화시작,중지
   const videotimer = async () => {
@@ -205,7 +203,7 @@ export default function FaceRegistration() {
         style={styles.cameracontainer}
         type={cameraType}
         flashMode={Camera.Constants.FlashMode.on}
-        onCameraReady={onCameraReady}
+        onCameraReady={CameraReady}
         onMountError={(error) => {
           console.log("cammera error", error);
         }}
@@ -219,16 +217,13 @@ export default function FaceRegistration() {
         }}
       />
       <View style={styles.container}>
-        {isVideoRecording && renderVideoRecordIndicator()}
-        {videoSource && renderVideoPlayer()}
-        {isPreview && renderCancelPreviewButton()}
-        {/*!videoSource && !isPreview && renderCaptureControl()*/}
+        {videoRecording && videoRecordingDisplay()}
+        {videoSource && playVideo()}
+        {preview && cancelPreviewButton()}
       </View>
       {len > 0
         ?
-        <View>
-          
-        </View>    
+        <View></View>    
         :
         <View style={styles.container}>
           <Text style={styles.faceText}>얼굴이 인식되지 않았습니다.</Text>
@@ -238,28 +233,29 @@ export default function FaceRegistration() {
   );
 }
 
+//style
 const styles = StyleSheet.create({
+  //카메라 컨테이너
   cameracontainer: {
     flex: 1.0,
   },
-  camera: {
-    flex: 0.7,
-  },
+  //단순 텍스트
   text: {
-    fontSize: 18,
+    fontSize: 15,
     color: 'black',
   },
-  face: {
-    padding: 10,
-    borderWidth: 1,
-    borderRadius: 1,
-    position: 'absolute',
-    borderColor: '#808000',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-  },
+  // face: {
+  //   justifyContent: 'center',
+  //   backgroundColor: 'transparent',
+  //   position: 'absolute',
+  //   borderColor: '#808000',
+  //   padding: 10,
+  //   borderWidth: 1,
+  //   borderRadius: 1, 
+  // },
+  //얼굴인식유무 텍스트
   faceText: {
-    color: '#32CD32',
+    color: '#11CC11',
     fontWeight: 'bold',
     textAlign: 'center',
     margin: 10,
@@ -269,59 +265,66 @@ const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
   },
+  //미리보기 취소
   closeButton: {
-    position: "absolute",
-    top: 35,
-    left: 15,
-    height: closeButtonSize,
-    width: closeButtonSize,
-    borderRadius: Math.floor(closeButtonSize / 2),
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#c4c5c4",
+    backgroundColor: "#c5c5c5",
+    position: "absolute",
+    height: Math.floor(WINDOW_HEIGHT * 0.03),
+    width: Math.floor(WINDOW_HEIGHT * 0.03),
+    borderRadius: Math.floor(Math.floor(WINDOW_HEIGHT * 0.03) / 2),
+    top: 35,
+    left: 15,
     opacity: 0.7,
     zIndex: 2,
   },
   media: {
     ...StyleSheet.absoluteFillObject,
   },
-  closeCross: {
-    width: "68%",
+  //미리보기 x모양
+  closeX: {
+    width: "70%",
     height: 1,
-    backgroundColor: "black",
+    backgroundColor: "white",
   },
-  control: {
-    position: "absolute",
-    flexDirection: "row",
-    bottom: 38,
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  //조작버튼
+  // control: {
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   position: "absolute",
+  //   flexDirection: "row",
+  //   bottom: 40,
+  //   width: "100%",
+  // },
+  //촬영버튼
   capture: {
     backgroundColor: "#000000",
     borderRadius: 5,
-    height: captureSize,
-    width: captureSize,
-    borderRadius: Math.floor(captureSize / 2),
-    marginHorizontal: 31,
+    height: Math.floor(WINDOW_HEIGHT * 0.1),
+    width: Math.floor(WINDOW_HEIGHT * 0.1),
+    borderRadius: Math.floor(Math.floor(WINDOW_HEIGHT * 0.1) / 2),
+    marginHorizontal: 30,
   },
-  recordIndicatorContainer: {
+  //녹화중표시 컨테이너
+  recordingContainer: {
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
     flexDirection: "row",
     position: "absolute",
-    top: 25,
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "transparent",
+    top: 25,
     opacity: 0.7,
   },
-  recordTitle: {
+  //녹화중표시 문구
+  recordingPhrase: {
     fontSize: 14,
     color: "#ffffff",
     textAlign: "center",
   },
-  recordDot: {
+  //녹화중표시 원
+  recordCircle: {
     borderRadius: 3,
     height: 6,
     width: 6,
