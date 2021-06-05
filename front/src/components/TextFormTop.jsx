@@ -3,19 +3,10 @@ import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
 import {StyleSheet,TextInput} from 'react-native';
 
-/*const StyledTextInput = styled.TextInput.attrs(({ theme }) =>({
-    placeholderTextColor: theme.inputPlaceholder,
-}))`
-    background-color: ${({ theme, editable }) =>
-        editable ? theme.background : theme.inputDisabledBackground};
-    color: ${({ theme }) => theme.text};
-    padding: 20px 10px;
-    font-size: 16px;
-    border: 1px solid ${({ theme, isFocused }) => (isFocused ? theme.text : theme.inputBorder)};
-    border-radius: 4px;
-`;*/
+//아래쪽이 뭉뚝한 TextInput
 const Container = styled.View`
 `;
+// 각 요소들을 받아 그에 맞는 입력창 렌더링
 const TextFormTop = (
     ({
         value,

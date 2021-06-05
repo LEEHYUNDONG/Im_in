@@ -6,14 +6,14 @@ import {ListCreation,Class,List} from '../screens'
 
 
 const Stack = createStackNavigator();
-
+//어플의 메인 기능들을 관리한다.
 const MainStack = ({ navigation }) => {
   const theme = useContext(ThemeContext);
 
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitleAlign: "center",
+        headerTitleAlign: "center",  //첫 화면을 메인으로 두고 탭에 쓰일 화면 나열
         headerTintColor: theme.headerTintColor,
         cardStyle: { backgroundColor: theme.backgroundColor },
         headerBackTitleVisible: false

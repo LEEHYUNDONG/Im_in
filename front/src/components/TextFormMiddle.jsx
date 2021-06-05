@@ -3,29 +3,21 @@ import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
 import {StyleSheet,TextInput} from 'react-native';
 
+// border처리를 하지 않은 기본 TextInput
+
 const Label = styled.Text`
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 6px;
     color: ${({ theme, isFocused }) => (isFocused ? theme.text : theme.label)};
 `;
-/*const StyledTextInput = styled.TextInput.attrs(({ theme }) =>({
-    placeholderTextColor: theme.inputPlaceholder,
-}))`
-    background-color: ${({ theme, editable }) =>
-        editable ? theme.background : theme.inputDisabledBackground};
-    color: ${({ theme }) => theme.text};
-    padding: 20px 10px;
-    font-size: 16px;
-    border: 1px solid ${({ theme, isFocused }) => (isFocused ? theme.text : theme.inputBorder)};
-    border-radius: 4px;
-`;*/
+
 const Container = styled.View`
     flex-direction: column;
     width: 100%;
     margin: 10px 0;
 `;
-
+// 각 요소들을 받아 그에 맞는 입력창 렌더링
 const TextFormMiddle = forwardRef(
     ({
         label,

@@ -25,20 +25,20 @@ const Container = styled.View`
     background-color: ${({theme}) => theme.background};
 `;
 
+// 리스트 생성 화면
+
 const ListCreation = ({navigation}) => {
-  const { dispatch } = useContext(UserContext);
   const { spinner } = useContext(ProgressContext);
   const [title, setTitle] = useState('');
   const [snum, setSnum] = useState('');
   const snumRef = useRef();
-  const [errorMessage, setErrorMessage] = useState('');
   const [disabled, setDisabled] = useState(true);
 
-  useEffect(() => {
+  useEffect(() => { // 타이틀과 총원수가 없으면 creation버튼 비활성화
     setDisabled(!(title && snum));
-}, [title, snum, errorMessage]);
+}, [title, snum]);
 
-const _handleCreateButtonPress = async () => {
+const _handleCreateButtonPress = async () => {//파이어베이스에 class 생성
   try {
       spinner.start();
       const id = await createList({ title, snum });
@@ -59,7 +59,7 @@ const _handleCreateButtonPress = async () => {
             
             </View>
             <View style={{flex:2.5}}>
-            <TextFormMiddle
+            <TextFormMiddle 
               label="title"
               value={title}
               onChangeText={text => setTitle(text)}

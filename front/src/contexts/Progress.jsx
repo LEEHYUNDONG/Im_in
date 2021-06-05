@@ -5,6 +5,7 @@ const ProgressContext = createContext({
   spinner: () => {}
 });
 
+// 화면에 로딩 상황을 보여주기 위한 전역 객체 
 const ProgressProvider = ({ children }) => {
   const [inProgress, setInProgress] = useState(false);
   const spinner = {

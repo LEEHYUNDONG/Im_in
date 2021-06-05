@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Login, Signup,Check,FaceRecognition} from "../screens";
 
 const Stack = createStackNavigator();
-
+// 로그인 및 회원가입 화면을 관리하며 얼굴 등록을 진행한다.
 const AuthStack = () => {
   const theme = useContext(ThemeContext);
   return (

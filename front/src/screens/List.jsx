@@ -55,11 +55,13 @@ const ItemTime = styled.Text`
     }
 );
 
+//모든 Class들을 모아둔 목록
+
 const List = ({ navigation }) => {
     const [channels, setChannels] = useState([]);
 
     useEffect(() => {
-        const unsubscribe = DB.collection('channels')
+        const class_ = DB.collection('channels') //class들을 생성일시 내림차순으로 List안에 정렬
             .orderBy('createdAt', 'desc')
             .onSnapshot(snapshot => {
                 const list = [];
@@ -69,10 +71,10 @@ const List = ({ navigation }) => {
                 setChannels(list);
             });
 
-        return () => unsubscribe();
+        return () => class_();
     }, []);
 
-    const _handleItemPress = params => {
+    const _handleItemPress = params => { //아이템 클릭시 class 내부로 이동
         navigation.navigate('Class', params);
     };
 

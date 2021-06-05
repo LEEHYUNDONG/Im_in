@@ -7,9 +7,7 @@ import { theme } from '../theme';
 const Container = styled.View`
     flex-direction: row;
     align-items: center;
-    background-color: ${props =>
-      props.num !== '0' ? '#ffffff' : '#000000'
-    };
+    background-color: ${({theme}) => theme.background};
     border-color: #000000;
     border-width: 3px;
     border-radius: 10px;
@@ -17,20 +15,21 @@ const Container = styled.View`
     margin: 3px 0px;
 `;
 
+// 학생별의 출석 상태를 보여주는 컴포넌트
 
-
-//<Contents>{text}</Contents>
 const Student = ({text}) => {
-    const [num,setNum] = useState('0');
-
+    const _handlePressBotton = () => {
+        
+    } 
 
     return (
-        <Container>
+        <Container> 
             <Text style={{flex:1}}>B811217 강전호</Text>
             <MaterialIcons
-                name="check"
+                name="check"//구성 = 학번,체크버튼,지각버튼,결성버튼
                 size={26}
                 style={{ margin: 10 }}
+                
             />
             <MaterialIcons
                 name="alarm"
