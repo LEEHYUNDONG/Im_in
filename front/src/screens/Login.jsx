@@ -17,12 +17,21 @@ const Container = styled.View`
     align-items: center;
     background-color: ${({theme}) => theme.background};
 `;
-
+const Btn = styled.TouchableOpacity`
+    width: 300px;
+    height: 65px;
+    border-radius: 7px;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+`;
 //로그인 인증 화면
 
 const Login = ({navigation}) => {
   const { dispatch } = useContext(UserContext);
   const { spinner } = useContext(ProgressContext);
+  const [subemail, setSubemail] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const passwordRef = useRef();
@@ -31,14 +40,16 @@ const Login = ({navigation}) => {
   
 
   useEffect(() => { // 학번과 비밀번호 미입력 시 로그인 버튼 비활성화
-    setDisabled(!(email && password && !errorMessage));
-}, [email, password, errorMessage]);
+    setDisabled(!(subemail && password && !errorMessage));
+    setEmail(subemail + '@zz.zz')
+}, [subemail, password, errorMessage]);
 
 const _handleLoginButtonPress = async () => { //로그인 버튼 클릭 함수
     try {
         spinner.start(); // 로그인 진행중에 다른 버튼 못 누르도록 spinner 실행
+        
         const user = await login({ email, password }); //firebase의 login함수로 email password전달
-        Alert.alert('Login Success', user.email); //정상적으로 로그인할 시 알림창
+        Alert.alert('Login Success', subemail); //정상적으로 로그인할 시 알림창
         dispatch(user);
     } catch (e) {
         Alert.alert('Login Error', e.message); //해당 이메일과 패스워드 계정이 없을시에 에러 알림창
@@ -60,8 +71,8 @@ const _handleLoginButtonPress = async () => { //로그인 버튼 클릭 함수
             </View>
             <View style={{flex:1.5}}>
             <TextFormTop
-              value={email}
-              onChangeText={text => setEmail(text)}
+              value={subemail}
+              onChangeText={text => setSubemail(text)}
               onSubmitEditing={() => passwordRef.current.focus()}
               placeholder="Enter your student number"
               returnKeyType="next"
@@ -76,9 +87,11 @@ const _handleLoginButtonPress = async () => { //로그인 버튼 클릭 함수
               isPassword
             />
             <Text>  </Text>
-            <TouchableOpacity style={styles.btn} onPress={_handleLoginButtonPress}>
+            <Btn onPress={_handleLoginButtonPress}
+                 disabled={disabled}
+            >
                 <Text style={(styles.Text, {color: 'white'})}>Sign in</Text>
-              </TouchableOpacity>
+                </Btn>
             <TouchableOpacity style={styles.sign_up_Area} title="Signup" onPress={() => navigation.navigate('Signup')}>
               <Text style={(styles.sign_up, {color: 'grey'})}>Sign up</Text>
             </TouchableOpacity>

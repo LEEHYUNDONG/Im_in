@@ -13,7 +13,7 @@ const Navigation=() => {
   
   return (
     <NavigationContainer>
-      <MainStack />
+      {user?.uid && user?.email ? <MainStack /> : <AuthStack />}
       {inProgress && <Spinner />}
     </NavigationContainer>
   );
