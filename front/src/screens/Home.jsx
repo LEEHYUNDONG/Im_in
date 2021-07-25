@@ -52,8 +52,6 @@ const Home=({navigation}) => {
   const axios = require('axios');
   const cheerio = require('react-native-cheerio');
   const url = `http://www.ce.hongik.ac.kr/dept/index.html`;
-  const [href,setHref] = useState([]);
-  const [title,setTitle] = useState([]);
   const [not,setNot] = useState([]);
 
   const loadItem = async () => {
@@ -66,12 +64,9 @@ const Home=({navigation}) => {
           let obj = [];
           $('div.in>ul>li>a').each((index, item)=>{$href.push(item.attribs.href)});
           $('div.in>ul>li').each((index, item)=>{$title.push($(item).text().trim())});
-          setHref($href)
-          setTitle($title)
           for(var i = 0; i < 3; i++){
             obj[i] = {title: $title[i], ref: $href[i] }
           }
-          console.log(obj)
           setNot(obj);
         })
   };
@@ -100,7 +95,8 @@ const Home=({navigation}) => {
       
 </ImageBackground>
      </View>
-      <View style={{flex:2,alignItems:'center'}}>
+      <View style={{flex:2.5,alignItems:'center'}}>
+        <Text style={{fontSize:50,margin:20}}>Notice</Text>
         {not.map(item => (
           <Btn 
           key={item.ref}

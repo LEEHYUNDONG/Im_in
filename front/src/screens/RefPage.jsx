@@ -1,17 +1,29 @@
-import React from 'react';
-import {Text} from 'react-native';
+import React, {Component} from 'react';
 import styled from 'styled-components';
+import { WebView } from 'react-native-webview';
+
+
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: #fff0fa;
+  background-color: #ffffff;
 `;
 
 const RefPage=({route}) => {
+  const ref = 'http://www.ce.hongik.ac.kr'+route.params.ref;
+  class MyWeb extends Component {  
+    render() {
+      return (
+        <WebView
+          source={{uri: ref}}
+          style={{marginTop: 20}}
+        />
+      );
+    }
+  }
     return (
         <Container>
-    <Text>title: {route.params.title}</Text>
-    <Text>ref: {route.params.ref}</Text>
+          <MyWeb />
     </Container>
     )
 }
