@@ -1,23 +1,16 @@
 import React, { useState,Component, useLayoutEffect, useEffect } from "react";
 import styled from "styled-components/native";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View ,Button} from "react-native";
 import { ImageBackground } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { MaterialIcons } from "@expo/vector-icons";
+import { Modal, ModalContent } from 'react-native-modals';
 
 const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.background};
 `;
 const Btn = styled.TouchableOpacity`
-    width: 300px;
-    height: 65px;
-    border-radius: 7px;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-`;
-const Button = styled.Button`
     width: 300px;
     height: 65px;
     border-radius: 7px;
@@ -53,6 +46,7 @@ const Home=({navigation}) => {
   const cheerio = require('react-native-cheerio');
   const url = `http://www.ce.hongik.ac.kr/dept/index.html`;
   const [not,setNot] = useState([]);
+  const [visible,setVisible] = useState(false);
 
   const loadItem = async () => {
     axios
@@ -79,15 +73,47 @@ const Home=({navigation}) => {
   
   return (
     <Container>
-      <View style={{alignItems:"flex-end",flex:1}}>
+      <View style={{flexDirection:"row-reverse", flex:0.3}}>
         
       <MaterialIcons
-  name="qr-code"
-  size={30}
-  style={{ margin: 20 }}
-  
-  //onpress={{}}
-/>
+        name="qr-code"
+        size={30}
+        style={{ margin: 10 }}
+        
+        //onpress={{}}
+      />
+      <MaterialIcons
+        name="class"
+        size={30}
+        style={{ margin: 10 }}
+        onPress={() => {
+          setVisible(true);
+        }}
+      />
+      </View>
+
+  <Modal
+    visible={visible}
+    onTouchOutside={() => {
+      setVisible(false);
+    }}
+  >
+    <ModalContent>
+      <View style={{width:260,height:500}}>
+      <ImageBackground
+      style={{ width:'100%',height: '100%'}}
+      source={require("../../assets/backgroundIMG/loading.png")}
+      resizeMode="cover">
+      
+</ImageBackground>
+      </View>
+    </ModalContent>
+  </Modal>
+
+
+
+      <View style={{alignItems:"flex-end",flex:0.7}}>
+        
     <ImageBackground
       style={{ width:'100%',height: 120}}
       source={require("../../assets/backgroundIMG/loading.png")}

@@ -5,6 +5,7 @@ import { theme } from "./theme";
 import { ThemeProvider } from "styled-components/native";
 import Navigation from "../src/navigations";
 import {ProgressProvider,UserProvider} from './contexts';
+import { ModalPortal } from 'react-native-modals';
 
 const Container = styled.View`
   flex-direction: row;
@@ -24,6 +25,7 @@ const App = () => {
       <Navigation />
       </ProgressProvider>
       </UserProvider>
+      <ModalPortal />
     </ThemeProvider>
   );
 };
