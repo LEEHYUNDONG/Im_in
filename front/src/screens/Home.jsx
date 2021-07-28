@@ -5,6 +5,7 @@ import { ImageBackground } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { MaterialIcons } from "@expo/vector-icons";
 import { Modal, ModalContent } from 'react-native-modals';
+import {Non_present} from './Timetable';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -47,6 +48,7 @@ const Home=({navigation}) => {
   const url = `http://www.ce.hongik.ac.kr/dept/index.html`;
   const [not,setNot] = useState([]);
   const [visible,setVisible] = useState(false);
+  const [present,setPresent] = useState(false);
 
   const loadItem = async () => {
     axios
@@ -99,13 +101,11 @@ const Home=({navigation}) => {
     }}
   >
     <ModalContent>
-      <View style={{width:260,height:500}}>
-      <ImageBackground
-      style={{ width:'100%',height: '100%'}}
-      source={require("../../assets/backgroundIMG/loading.png")}
-      resizeMode="cover">
-      
-</ImageBackground>
+      <View 
+        style={{width:260,height:500}}
+        //onPress={get(장고 서버)}
+      >
+        {present == true ? <Container /> : <Non_present />}
       </View>
     </ModalContent>
   </Modal>
