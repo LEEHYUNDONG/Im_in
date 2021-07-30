@@ -48,7 +48,7 @@ const Home=({navigation}) => {
   const url = `http://www.ce.hongik.ac.kr/dept/index.html`;
   const [not,setNot] = useState([]);
   const [visible,setVisible] = useState(false);
-  const [present,setPresent] = useState(true);
+  const [present,setPresent] = useState(false);
 
   const loadItem = async () => {
     axios
