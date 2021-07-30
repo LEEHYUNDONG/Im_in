@@ -5,7 +5,7 @@ import { ImageBackground } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { MaterialIcons } from "@expo/vector-icons";
 import { Modal, ModalContent } from 'react-native-modals';
-import {Non_present} from './Timetable';
+import {Non_present,Present} from './Timetable';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -48,7 +48,7 @@ const Home=({navigation}) => {
   const url = `http://www.ce.hongik.ac.kr/dept/index.html`;
   const [not,setNot] = useState([]);
   const [visible,setVisible] = useState(false);
-  const [present,setPresent] = useState(false);
+  const [present,setPresent] = useState(true);
 
   const loadItem = async () => {
     axios
@@ -103,9 +103,18 @@ const Home=({navigation}) => {
     <ModalContent>
       <View 
         style={{width:260,height:500}}
-        //onPress={get(장고 서버)}
       >
-        {present == true ? <Container /> : <Non_present />}
+      <View style={{alignItems:'flex-end',justifyContent:'flex-end'}}>
+        {
+          /*present == true ? <MaterialIcons 
+          name="close"
+          size={30}
+          style={{ margin: 10 }}
+          //onPress={변경,제거 팝업창 띄우기}
+          /> : null*/
+        }
+      </View>
+        {present == true ? <Present /> : <Non_present />}
       </View>
     </ModalContent>
   </Modal>

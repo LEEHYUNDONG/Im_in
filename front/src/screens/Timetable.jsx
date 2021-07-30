@@ -20,14 +20,37 @@ const Btn = styled.TouchableOpacity`
     align-items: center;
     opacity : 0.7;
 `;
+const No_album = () => {
+    console.log(1);
+}
+const Present_album = () => {
+    console.log(2);
+}
 
 export const Non_present = () => {
     return (
         <Container>
-            <Btn>
+            <Btn
+                onPress={No_album}
+            >
             <ImageBackground
                 style={{ width:120,height: 120}}
                 source={require("../../assets/add-album.png")}
+            />
+            </Btn>
+        </Container>
+    )
+}
+
+export const Present = () => {
+    return (
+        <Container>
+            <Btn
+                onPress={Present_album}
+            >
+            <ImageBackground
+                style={{ width:260,height: 500}}
+                source={require("../../assets/backgroundIMG/loading.png")}
             />
             </Btn>
         </Container>
