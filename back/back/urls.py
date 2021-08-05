@@ -22,5 +22,5 @@ from django.conf.urls.static import static
 router = routers.DefaultRouter() # ROUTER를 사용하여 RESTAPI를 찾아가게 했었음. 현재 미사용.
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('data.urls'))
+    path('', include('data.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #MEDIA 값을 SETTINGS에 추가 시켜놨기 때문에 SETTINGS에 있는 URL을 위 PATTERN에 더하게 되면 MEDIA값에 ACCESS 가능.

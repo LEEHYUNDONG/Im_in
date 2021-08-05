@@ -1,11 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Home, Check, Mode, List, Settings, FaceMode} from "../screens/index";
+import {
+  Home,
+  Check,
+  Mode,
+  List,
+  Settings,
+  FaceMode,
+  FaceCheck
+} from "../screens/index";
 import { MaterialIcons } from "@expo/vector-icons";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import { logout } from '../utils/firebase';
-import { UserContext,ProgressContext } from '../contexts';
-
+import { logout } from "../utils/firebase";
+import { UserContext, ProgressContext } from "../contexts";
 
 // Tab 변수에 BOTTOMTAB NAVIGATOR를 불러온다.
 const Tab = createBottomTabNavigator();
@@ -97,7 +104,7 @@ const MainTab = ({ navigation, route }) => {
       />
       <Tab.Screen
         name="Check"
-        component={Check}
+        component={FaceMode}
         options={{
           tabBarLabel: "Check",
           headerTitle: "Check"

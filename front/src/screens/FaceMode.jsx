@@ -6,7 +6,7 @@ import * as FaceDetector from 'expo-face-detector';
 
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 
-export default function FaceRegistration() {
+export default function FaceMode() {
   const [hasVideoPermission, setHasVideoPermission] = useState(null);
   const [hasAudioPermission, setHasAudioPermission] = useState(null);
   //facedetector
@@ -25,30 +25,31 @@ export default function FaceRegistration() {
   const [videoSource, setVideoSource] = useState(null);
   const cameraRef = useRef();
   const [detectFace, setDetectFace] = useState(true);
+  const [singleFile, setSingleFile] = useState(null);
 
   //얼굴인식하면 정보 저장
   const faceDetected = ({ faces }) => {
-    if(faces.length > 0){
-      if(detectFace){
+    if (faces.length > 0) {
+      if (detectFace) {
         setDetectFace(false);
       }
-      setFaces({faces});
+      setFaces({ faces });
       setLen(faces.length);
       // setB(faces[0].bounds);
       // setF(faces[0].faceID);
       // setR(faces[0].rollAngle);
       // setY(faces[0].yawAngle);
-      console.log({faces});
-    }else{
-      setFaces({faces});
+      console.log({ faces });
+    } else {
+      setFaces({ faces });
       setLen(faces.length);
-      console.log({faces});
+      console.log({ faces });
     }
   };
 
   //첫얼굴 인식시 자동동영상촬영시작
   useEffect(() => {
-    if(!detectFace){
+    if (!detectFace) {
       videotimer();
     }
   }, [detectFace]);
@@ -56,8 +57,8 @@ export default function FaceRegistration() {
   //카메라권한
   useEffect(() => {
     (async () => {
-      const { status } = await Camera.requestPermissionsAsync();     
-      setHasVideoPermission(status === 'granted');
+      const { status } = await Camera.requestPermissionsAsync();
+      setHasVideoPermission(status === "granted");
     })();
   }, []);
 
@@ -65,7 +66,7 @@ export default function FaceRegistration() {
   useEffect(() => {
     (async () => {
       const { status } = await Audio.requestPermissionsAsync();
-      setHasAudioPermission(status === 'granted');
+      setHasAudioPermission(status === "granted");
     })();
   }, []);
 
@@ -90,46 +91,53 @@ export default function FaceRegistration() {
   //사진찍기
   const takePicture = async () => {
     if (cameraRef.current) {
-      const options = { quality: 0.5, base64: true, skipProcessing: true };
+      const options = { quality: 0.5, base64: false, skipProcessing: true };
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
       if (source) {
         await cameraRef.current.pausePreview();
-        setPreview(true);
+        //setPreview(true);
+
         console.log("picture source :", source);
         setCameraSource(source);
       }
-    }
-  };
-  //비디오녹화
-  const recordVideo = async () => {
-    if (cameraRef.current) {
-      try {
-        const videoPromise = cameraRef.current.recordAsync();
-        if (videoPromise) {
-          setVideoRecording(true);
-          const data = await videoPromise;
-          const source = data.uri;
-          if (source) {
-            setPreview(true);
-            console.log("video source :", source);
-            setVideoSource(source);
+      if (source != null) {
+        // If file selected then create FormData
+        //const fileToUpload=singleFile.uri;
+        //setSingleFile(source);
+        //console.log("hhhh", singleFile);
+        const name = "B811226.jpg";
+        const data = new FormData();
+        data.append("title", "!!!!!");
+        data.append("image", {
+          name: name,
+          type: "image/jpg",
+          uri: source
+        });
+        console.log(data);
+        // Please change file upload URL
+        let res = await fetch("http://18.219.85.27:8000/images/", {
+          method: "post",
+          body: data,
+          headers: {
+            "Content-Type": "multipart/form-data"
           }
+        });
+
+        //console.log(res);
+        let responseJson = await res.json();
+        console.log(responseJson);
+        if (responseJson.status == 1) {
+          console.log("Upload Successful");
         }
-      } catch (error) {
-        console.warn(error);
+      } else {
+        // If no file selected the show alert
+        console.log("Please Select File first");
       }
+      await cameraRef.current.resumePreview();
     }
   };
-  //비디오녹화중지
-  const stopVideoRecording = () => {
-    if (cameraRef.current) {
-      setPreview(false);
-      setVideoRecording(false);
-      cameraRef.current.stopRecording();
-    }
-  };
-  
+
   //사진 또는 비디오 미리보기 취소
   const cancelPreview = async () => {
     await cameraRef.current.resumePreview();
@@ -152,6 +160,7 @@ export default function FaceRegistration() {
       style={styles.media}
     />
   );
+
   //녹화중표시
   const videoRecordingDisplay = () => (
     <View style={styles.recordingContainer}>
@@ -159,32 +168,6 @@ export default function FaceRegistration() {
       <Text style={styles.recordingPhrase}>{"Recording.."}</Text>
     </View>
   );
-  //카메라 변경
-  // const switchCamera = () => {
-  //   if (preview) {
-  //     return;
-  //   }
-  //   setCameraType((type) =>
-  //     type === Camera.Constants.Type.back ? Camera.Constants.Type.front : Camera.Constants.Type.back
-  //   );
-  // };
-  //카메라 전후면전환버튼, 촬영버튼
-  // const captureControl = () => (
-  //   <View style={styles.control}>
-  //     <TouchableOpacity disabled={!cameraReady} onPress={switchCamera}>
-  //       <Text style={styles.text}>{"Flip"}</Text>
-  //     </TouchableOpacity>
-  //     <TouchableOpacity
-  //       activeOpacity={0.7}
-  //       disabled={!cameraReady}
-  //       onLongPress={recordVideo}
-  //       onPressOut={stopVideoRecording}
-  //       onPress={takePicture}
-  //       //onPress={videotimer}
-  //       style={styles.capture}
-  //     />
-  //   </View>
-  // );
 
   //자동 녹화시작,중지
   const videotimer = async () => {
@@ -195,7 +178,7 @@ export default function FaceRegistration() {
       stopVideoRecording();
     }, 6000);
   };
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <Camera
@@ -204,19 +187,19 @@ export default function FaceRegistration() {
         type={cameraType}
         flashMode={Camera.Constants.FlashMode.on}
         onCameraReady={CameraReady}
-        onMountError={(error) => {
+        onMountError={error => {
           console.log("cammera error", error);
         }}
-        onFacesDetected={faceDetected}
+        //onFacesDetected={faceDetected}
         faceDetectorSettings={{
           mode: FaceDetector.Constants.Mode.fast,
           detectLandmarks: FaceDetector.Constants.Landmarks.none,
           runClassifications: FaceDetector.Constants.Classifications.none,
           minDetectionInterval: 500,
-          tracking: true,
+          tracking: true
         }}
       />
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         {videoRecording && videoRecordingDisplay()}
         {videoSource && playVideo()}
         {preview && cancelPreviewButton()}
@@ -228,7 +211,8 @@ export default function FaceRegistration() {
         <View style={styles.container}>
           <Text style={styles.faceText}>얼굴이 인식되지 않았습니다.</Text>
         </View>
-      }
+          } */}
+      <TouchableOpacity style={styles.capture} onPress={takePicture} />
     </SafeAreaView>
   );
 }
@@ -237,12 +221,12 @@ export default function FaceRegistration() {
 const styles = StyleSheet.create({
   //카메라 컨테이너
   cameracontainer: {
-    flex: 1.0,
+    flex: 1.0
   },
   //단순 텍스트
   text: {
     fontSize: 15,
-    color: 'black',
+    color: "black"
   },
   // face: {
   //   justifyContent: 'center',
@@ -251,19 +235,19 @@ const styles = StyleSheet.create({
   //   borderColor: '#808000',
   //   padding: 10,
   //   borderWidth: 1,
-  //   borderRadius: 1, 
+  //   borderRadius: 1,
   // },
   //얼굴인식유무 텍스트
   faceText: {
-    color: '#11CC11',
-    fontWeight: 'bold',
-    textAlign: 'center',
+    color: "#11CC11",
+    fontWeight: "bold",
+    textAlign: "center",
     margin: 10,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent"
   },
   //video style
   container: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFillObject
   },
   //미리보기 취소
   closeButton: {
@@ -277,16 +261,16 @@ const styles = StyleSheet.create({
     top: 35,
     left: 15,
     opacity: 0.7,
-    zIndex: 2,
+    zIndex: 2
   },
   media: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFillObject
   },
   //미리보기 x모양
   closeX: {
     width: "70%",
     height: 1,
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
   //조작버튼
   // control: {
@@ -299,12 +283,13 @@ const styles = StyleSheet.create({
   // },
   //촬영버튼
   capture: {
-    backgroundColor: "#000000",
-    borderRadius: 5,
+    backgroundColor: "#cfcfcf",
+    borderRadius: 2,
     height: Math.floor(WINDOW_HEIGHT * 0.1),
     width: Math.floor(WINDOW_HEIGHT * 0.1),
     borderRadius: Math.floor(Math.floor(WINDOW_HEIGHT * 0.1) / 2),
-    marginHorizontal: 30,
+    marginHorizontal: 150,
+    marginBottom: 5
   },
   //녹화중표시 컨테이너
   recordingContainer: {
@@ -315,13 +300,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: "transparent",
     top: 25,
-    opacity: 0.7,
+    opacity: 0.7
   },
   //녹화중표시 문구
   recordingPhrase: {
     fontSize: 14,
     color: "#ffffff",
-    textAlign: "center",
+    textAlign: "center"
   },
   //녹화중표시 원
   recordCircle: {
@@ -329,6 +314,6 @@ const styles = StyleSheet.create({
     height: 6,
     width: 6,
     backgroundColor: "#ff0000",
-    marginHorizontal: 5,
-  },
+    marginHorizontal: 5
+  }
 });
