@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ImageBackground, SafeAreaView, StatusBar } from "react-native";
 import styled from "styled-components/native";
-import { theme } from "./theme";
+import { dark_theme, theme } from "./theme";
 import { ThemeProvider } from "styled-components/native";
 import Navigation from "../src/navigations";
-import {ProgressProvider,UserProvider} from './contexts';
+import {ProgressProvider,UserProvider,DarkModeProvider, DarkModeContext} from './contexts';
+import { ModalPortal } from 'react-native-modals';
 
 const Container = styled.View`
   flex-direction: row;
@@ -16,15 +17,20 @@ const Container = styled.View`
 
 
 const App = () => {
+  const {isDark} = useContext(DarkModeContext);
+  console.log(isDark);
   return (
-    <ThemeProvider theme={theme}>
+    <DarkModeProvider>
+    <ThemeProvider theme={isDark ? dark_theme: theme}>
       <UserProvider>
       <ProgressProvider>
       <StatusBar barStyle="dark-content" />
       <Navigation />
       </ProgressProvider>
       </UserProvider>
+      <ModalPortal />
     </ThemeProvider>
+    </DarkModeProvider>
   );
 };
 export default App;

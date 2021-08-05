@@ -1,9 +1,12 @@
 import React ,{useState,useRef,useEffect,useContext} from 'react';
 import styled from 'styled-components/native';
-import {Image,Text,Button,TextInput,TouchableOpacity,View,StyleSheet,TouchableWithoutFeedback} from 'react-native';
+import {Text,TouchableOpacity,View,StyleSheet} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import {TextFormTop,TextFormMiddle} from '../components'
+import {TextFormMiddle} from '../components'
 import { MaterialIcons } from "@expo/vector-icons";
+import {ProgressContext,UserContext} from '../contexts';
+import { Alert } from 'react-native';
+import {signup} from '../utils/firebase'
 
 const ErrorText = styled.Text`
     align-items: flex-start;
@@ -13,7 +16,15 @@ const ErrorText = styled.Text`
     color: red;
     margin-bottom: 6px;
 `;
-
+const Btn = styled.TouchableOpacity`
+    width: 300px;
+    height: 65px;
+    border-radius: 7px;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+`;
 const Container = styled.View`
     flex: 1;
     justify-content: center;
@@ -22,13 +33,15 @@ const Container = styled.View`
 `;
 
 const Signup = ({navigation}) => {
-    
+    const [subemail,setSubemail] = useState('')
+    const { dispatch } = useContext(UserContext);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [disabled, setDisabled] = useState(true);
+    const { spinner } = useContext(ProgressContext);
 
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -40,7 +53,7 @@ const Signup = ({navigation}) => {
           let _errorMessage = '';
           if (!name) {
               _errorMessage = 'Please enter your name.';
-          } else if (!email) {
+          } else if (!subemail) {
               _errorMessage = 'Please verify your student number.';
           } else if (password.length < 6) {
               _errorMessage = 'The password must contain 6 characters at least.';
@@ -53,20 +66,21 @@ const Signup = ({navigation}) => {
       } else {
           didMountRef.current = true;
       }
-    }, [name, email, password, passwordConfirm]);
+    }, [name, subemail, password, passwordConfirm]);
 
     useEffect(() => { //네개의 변수들을 변경할 때마다 조건에 맞게 버튼 활성화
         setDisabled(
-            !(name && email && password && passwordConfirm && !errorMessage)
+            !(name && subemail && password && passwordConfirm && !errorMessage)
         );
-    }, [name, email. password, passwordConfirm, errorMessage]);
-    const _handleSignupButtonPress = async () => { //sign up 시도 미구현
+        setEmail(subemail + '@zz.zz')
+    }, [name, subemail. password, passwordConfirm, errorMessage]);
+    const _handleSignupButtonPress = async () => {
         try {
             spinner.start();
             const user = await signup({ email, password, name });
             dispatch(user);
             console.log(user);
-            Alert.alert('Signup Success', user.email);
+            Alert.alert('Signup Success', subemail);
         } catch (e) {
             Alert.alert('Signup Error', e.message);
         } finally {
@@ -97,8 +111,8 @@ const Signup = ({navigation}) => {
                 <TextFormMiddle
                   ref={emailRef}
                   label="Student Number"
-                  value={email}
-                  onChangeText={text => setEmail(text)}
+                  value={subemail}
+                  onChangeText={text => setSubemail(text)}
                   onSubmitEditing={() => passwordRef.current.focus()}
                   placeholder="Enter your student number"
                   returnKeyType="next"
@@ -107,7 +121,7 @@ const Signup = ({navigation}) => {
                   ref={passwordRef}
                   label="Password"
                   value={password}
-                  onChangeText={text => setPassword(removeWhitespace(text))}
+                  onChangeText={text => setPassword(text)}
                   onSubmitEditing={() => passwordConfirmRef.current.focus()}
                   placeholder="password"
                   returnKeyType="done"
@@ -117,7 +131,7 @@ const Signup = ({navigation}) => {
                   ref={passwordConfirmRef}
                   label="Password Confirm"
                   value={passwordConfirm}
-                  onChangeText={text => setPasswordConfirm(removeWhitespace(text))}
+                  onChangeText={text => setPasswordConfirm(text)}
                   placeholder="Password Confirm"
                   returnKeyType="done"
                   isPassword
@@ -126,7 +140,7 @@ const Signup = ({navigation}) => {
                 <View style={{flex:0.8}}>
                 <TouchableOpacity style={{flex:0.6}}>
                     <Container>
-                    <Label>Pressing image, register your face</Label>
+                    <Label>Press image to register your face</Label>
                     <MaterialIcons
                       style={{flex:1}}
                       name="face"
@@ -137,9 +151,11 @@ const Signup = ({navigation}) => {
                     </Container>
                 </TouchableOpacity>
                 <ErrorText>{errorMessage}</ErrorText>
-                <TouchableOpacity  style={styles.btn}>
+                <Btn disabled={disabled}
+                     onPress={_handleSignupButtonPress}
+                     >
                     <Text style={(styles.Text, {color: 'white'})}>Sign up</Text>
-                </TouchableOpacity>
+                </Btn>
                 
             </View>
             </View>
@@ -159,30 +175,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         alignItems: 'center',
-      },
-    
-      textFormTop: {
-        borderWidth: 2,
-        borderBottomWidth: 1,
-        borderColor: 'black',
-        borderTopLeftRadius: 7,
-        borderTopRightRadius: 7,
-        width: 300,
-        height: 65,
-        paddingLeft: 10,
-        paddingRight: 10,
-        alignItems: 'center'
-      },
-      textFormBottom: {
-        borderWidth: 2,
-        borderTopWidth: 1,
-        borderColor: 'black',
-        borderBottomRightRadius: 7,
-        borderBottomLeftRadius: 7,
-        width: 300,
-        height: 65,
-        paddingLeft: 10,
-        paddingRight: 10,
       },
       textFormMiddle: {
         borderWidth: 2,

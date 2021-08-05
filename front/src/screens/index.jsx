@@ -9,6 +9,7 @@ import FaceRecognition from './FaceRecognition'
 import Class from './Class'
 import ListCreation from './ListCreation'
 import FaceMode from './FaceMode'
+<<<<<<< HEAD
 import FaceCheck from "./FaceCheck";
 export {
   Check,
@@ -24,3 +25,8 @@ export {
   FaceMode,
   FaceCheck
 };
+=======
+import RefPage from './RefPage';
+
+export { Check, Home, List, Mode, Settings, Login, Signup,FaceRecognition,Class,ListCreation, FaceMode, RefPage};
+>>>>>>> 777e2acdec975dbc894144265c244585e75aac93
