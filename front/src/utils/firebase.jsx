@@ -20,14 +20,31 @@ export const logout = async () => { //로그아웃 메소드
 
 export const DB = firebase.firestore(); //변수 DB에 파이어베이스의 파이어스토어를 불러온다.
 
-export const createList = async ({ title, snum }) => { 
-    const newListRef = DB.collection('channels').doc();//파이어스토어에 필드생성
+export const createprof = async ({ title, snum }) => { 
+    const newListRef = DB.collection('professor').doc();//파이어스토어에 필드생성
     const id = newListRef.id; //생성된 문서의 id 사용
+    const stdnt = [];
     const newList = {   //요소들을 넣고 마지막에 정렬하기 위해 생성 일시 저장
         id,
         title,
         snum,
         createdAt: Date.now(),
+        stdnt,
+    };
+    await newListRef.set(newList);
+    return id;
+};
+
+export const createstdn = async ({ title, snum }) => { 
+    const newListRef = DB.collection('professor').doc();//파이어스토어에 필드생성
+    const id = newListRef.id; //생성된 문서의 id 사용
+    const stdnt = [];
+    const newList = {   //요소들을 넣고 마지막에 정렬하기 위해 생성 일시 저장
+        id,
+        title,
+        snum,
+        createdAt: Date.now(),
+        stdnt,
     };
     await newListRef.set(newList);
     return id;
