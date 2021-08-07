@@ -1,10 +1,7 @@
-import React, { useState,Component, useLayoutEffect, useEffect } from "react";
+import React,{useState} from "react";
 import styled from "styled-components/native";
-import { Text, StyleSheet, View ,Button} from "react-native";
-import { ImageBackground } from "react-native";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { MaterialIcons } from "@expo/vector-icons";
-import { Modal, ModalContent } from 'react-native-modals';
+import { ImageBackground,Image } from "react-native";
+import {image} from '../utils/image';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -20,6 +17,7 @@ const Btn = styled.TouchableOpacity`
     align-items: center;
     opacity : 0.7;
 `;
+
 const No_album = () => {
     console.log(1);
 }
@@ -43,6 +41,8 @@ export const Non_present = () => {
 }
 
 export const Present = () => {
+    const [timeTable,setTimeTable] = useState(image.add_album);
+
     return (
         <Container>
             <Btn
@@ -52,6 +52,7 @@ export const Present = () => {
                 style={{ width:260,height: 500}}
                 source={require("../../assets/backgroundIMG/loading.png")}
             />
+            <Image />
             </Btn>
         </Container>
     )

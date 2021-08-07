@@ -13,7 +13,7 @@ const Container = styled.SafeAreaView`
 `;
 const Btn = styled.TouchableOpacity`
     width: 300px;
-    height: 65px;
+    height: 50px;
     border-radius: 7px;
     justify-content: center;
     align-items: center;
@@ -45,8 +45,10 @@ const _handleqrpress = () => {
 const Home=({navigation}) => {
   const axios = require('axios');
   const cheerio = require('react-native-cheerio');
-  const url = `http://www.ce.hongik.ac.kr/dept/index.html`;
-  const [not,setNot] = useState([]);
+  //const url = `http://www.ce.hongik.ac.kr/dept/index.html`;
+  const url = `http://www.hongik.ac.kr/front/boardlist.do?bbsConfigFK=54&siteGubun=1&menuGubun=1`;
+  const [mnot,setMnot] = useState([]);
+  const [rnot,setRnot] = useState([]);
   const [visible,setVisible] = useState(false);
   const [present,setPresent] = useState(false);
 
@@ -56,14 +58,22 @@ const Home=({navigation}) => {
       .then(function(response){
           const $ = cheerio.load(response.data);
           let $href = [];
+          let $href2 = [];
           let $title = [];
           let obj = [];
-          $('div.in>ul>li>a').each((index, item)=>{$href.push(item.attribs.href)});
-          $('div.in>ul>li').each((index, item)=>{$title.push($(item).text().trim())});
-          for(var i = 0; i < 3; i++){
-            obj[i] = {title: $title[i], ref: $href[i] }
+          let obj2 = [];
+          $('div.subject>a').each((index, item)=>{$href.push(item.attribs.href)});
+          $('div.subject').each((index, item)=>{$title.push($(item).text().trim())});
+          for(var i = 0; i < 2; i++){
+            $href2[i] = ('http://www.ce.hongik.ac.kr/dept/0401.html?'+$href[i].substring($href[i].length-11,$href[i].length).toLowerCase())
+            obj[i] = {title: $title[i], ref: $href2[i],id: i }
           }
-          setNot(obj);
+          for (var i = 5; i < 8; i++){
+            $href2[i] = ('http://www.ce.hongik.ac.kr/dept/0401.html?'+$href[i].substring($href[i].length-11,$href[i].length).toLowerCase())
+            obj2[i-5] = {title: $title[i], ref: $href2[i],id: i-3 }
+          }
+          setMnot(obj);
+          setRnot(obj2);
         })
   };
   useEffect(() => {
@@ -104,16 +114,6 @@ const Home=({navigation}) => {
       <View 
         style={{width:260,height:500}}
       >
-      <View style={{alignItems:'flex-end',justifyContent:'flex-end'}}>
-        {
-          /*present == true ? <MaterialIcons 
-          name="close"
-          size={30}
-          style={{ margin: 10 }}
-          //onPress={변경,제거 팝업창 띄우기}
-          /> : null*/
-        }
-      </View>
         {present == true ? <Present /> : <Non_present />}
       </View>
     </ModalContent>
@@ -130,21 +130,43 @@ const Home=({navigation}) => {
       
 </ImageBackground>
      </View>
-      <View style={{flex:2.5,alignItems:'center'}}>
-        <Text style={{fontSize:50,margin:20}}>Notice</Text>
-        {not.map(item => (
-          <Btn 
-          key={item.ref}
+      <View style={{flex:3,alignItems:'center'}}>
+        <Text style={{fontSize:40}}>Notice</Text>
+      <View style={{flex:0.1,flexDirection:'row'}}>
+        <View style={{flex:0.9}}>
+        <Text style={{fontSize:20}}>Main</Text>
+        </View>
+        <View>
+        </View>
+      </View>
+      <View style={{flex:0.5}}>
+        {mnot.map(item => (
+          <Btn
+          key={item.id}
           onPress={() => _onPress(item)}>
             <Text>{item.title}</Text>
           </Btn>
         ))}
-        
+        </View>
+        <View style={{flex:0.1,flexDirection:'row'}}>
+        <View style={{flex:0.9}}>
+        <Text style={{fontSize:20}}>Resent</Text>
+        </View>
+        <View>
+        </View>
+      </View>
+      <View style={{flex:1}}>
+        {rnot.map(item => (
+          <Btn
+          key={item.id}
+          onPress={() => _onPress(item)}>
+            <Text>{item.title}</Text>
+          </Btn>
+        ))}
+        </View>
       </View>
     </Container>
-
     );
-  
 };
 
 export default Home;

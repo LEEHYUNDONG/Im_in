@@ -10,7 +10,7 @@ const Container = styled.SafeAreaView`
 `;
 
 const RefPage=({route}) => {
-  const ref = 'http://www.ce.hongik.ac.kr'+route.params.ref;
+  const ref = route.params.ref;
   class MyWeb extends Component {  
     render() {
       return (
