@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { ThemeContext } from "styled-components/native";
 import MainTab from "./MainTab";
 import {ListCreation,Class,List,RefPage} from '../screens'
+import { FaceMode } from "../screens";
 
 
 const Stack = createStackNavigator();
@@ -22,6 +23,7 @@ const MainStack = ({ navigation }) => {
       <Stack.Screen name="RefPage" component={RefPage} />
       <Stack.Screen name="ListCreation" component={ListCreation} />
       <Stack.Screen name="Class" component={Class} />
+      <Stack.Screen name="FaceMode" component={FaceMode} />
     </Stack.Navigator>
   );
 };
