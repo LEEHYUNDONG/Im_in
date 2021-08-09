@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { FlatList,Text } from 'react-native';
+import { FlatList } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { DB } from '../utils/firebase';
@@ -58,14 +58,13 @@ const ItemTime = styled.Text`
 
 //모든 Class들을 모아둔 목록
 
-const List = ({ navigation }) => {
+const Stn_List_temp = ({ navigation }) => {
     const [channels, setChannels] = useState([]);
     const {user} = useContext(UserContext);
     const [uid,setUid] = useState(user.email.substring(0,7));
 
     useEffect(() => {
-        const class_ = DB.collection('professor') //class들을 생성일시 내림차순으로 List안에 정렬
-            .doc(uid).collection('이산수학')
+        const class_ = DB.collection('student') //class들을 생성일시 내림차순으로 List안에 정렬
             .onSnapshot(snapshot => {
                 const list = [];
                 snapshot.forEach(doc => {
@@ -83,12 +82,6 @@ const List = ({ navigation }) => {
 
     return (
         <Container>
-            <MaterialIcons
-                    name="emoji-people"
-                    size={30}
-                    onPress={()=>navigation.navigate('Stn_List_temp')}
-                />
-                <Text>학생 리스트 버튼</Text>
             <FlatList
                 keyExtractor={item => item['id']}
                 data={channels}
@@ -101,4 +94,4 @@ const List = ({ navigation }) => {
     );
 };
 
-export default List;
+export default Stn_List_temp;
