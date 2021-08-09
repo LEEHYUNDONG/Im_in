@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Dimensions, TouchableOpacity, SafeAreaView } fr
 import { Camera } from 'expo-camera';
 import { Video, Audio } from 'expo-av';
 import * as FaceDetector from 'expo-face-detector';
+import { getCurrentUser } from '../utils/firebase';
 
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 
@@ -26,6 +27,8 @@ export default function FaceMode() {
   const cameraRef = useRef();
   const [detectFace, setDetectFace] = useState(true);
   const [singleFile, setSingleFile] = useState(null);
+
+  const user = getCurrentUser();
 
   //얼굴인식하면 정보 저장
   const faceDetected = ({ faces }) => {
@@ -106,9 +109,13 @@ export default function FaceMode() {
         //const fileToUpload=singleFile.uri;
         //setSingleFile(source);
         //console.log("hhhh", singleFile);
-        const name = "B811226.jpg";
+        const name = user.email.split("@")[0] + ".jpg";
         const data = new FormData();
+<<<<<<< HEAD
         data.append("title", "B811226");
+=======
+        data.append("title", "student iddddd");
+>>>>>>> f2f6ccd3cdb512f6b5e1b60558e9bcca8026e4c9
         data.append("image", {
           name: name,
           type: "image/jpg",

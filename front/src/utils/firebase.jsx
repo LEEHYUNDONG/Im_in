@@ -20,6 +20,11 @@ export const logout = async () => { //로그아웃 메소드
 
 export const DB = firebase.firestore(); //변수 DB에 파이어베이스의 파이어스토어를 불러온다.
 
+export const getCurrentUser = () => {
+    const { email } = Auth.currentUser;
+    return { email };
+};
+
 export const createprof = async ({ title, snum }) => { 
     const newListRef = DB.collection('professor').doc();//파이어스토어에 필드생성
     const id = newListRef.id; //생성된 문서의 id 사용

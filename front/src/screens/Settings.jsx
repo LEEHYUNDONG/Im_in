@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { View,FlatList } from "react-native";
 import { ListItem, Icon } from 'react-native-elements'
 import {DarkModeContext} from '../contexts'
+import { FaceMode } from ".";
 
 
 const list1 = [
@@ -18,15 +19,23 @@ const list2 = [
   
   {
     title: '이용 약관',
-    icon: 'subtitles'
+    icon: 'subtitles',
+    nav: 'FaceMode'
   },
   {
     title: 'Q&A',
-    icon: 'help-outline'
+    icon: 'help-outline',
+    nav: 'FaceMode'
   },
   {
     title: '서비스 안내',
-    icon: 'remove-red-eye'
+    icon: 'remove-red-eye',
+    nav: 'FaceMode'
+  },
+  {
+    title: '얼굴 등록',
+    icon: 'person',
+    nav: 'FaceMode'
   }
 ]
 //#efefef
@@ -70,7 +79,7 @@ const Settings = ({navigation}) => {
   <View style={{margin:15}}></View>
   {
     list2.map((item, i) => (
-      <ListItem key={i} bottomDivider>
+      <ListItem key={i} bottomDivider onPress={() => navigation.navigate(item.nav)}>
         <Icon name={item.icon} 
               color='#d5d5d5'
         />
