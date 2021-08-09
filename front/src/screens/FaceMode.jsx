@@ -108,7 +108,7 @@ export default function FaceMode() {
         //console.log("hhhh", singleFile);
         const name = "B811226.jpg";
         const data = new FormData();
-        data.append("title", "!!!!!");
+        data.append("title", "B811226");
         data.append("image", {
           name: name,
           type: "image/jpg",
