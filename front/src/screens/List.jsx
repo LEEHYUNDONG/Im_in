@@ -64,8 +64,8 @@ const List = ({ navigation }) => {
     const [uid,setUid] = useState(user.email.substring(0,7));
 
     useEffect(() => {
-        const class_ = DB.collection('professor') //class들을 생성일시 내림차순으로 List안에 정렬
-            .doc(uid).collection('이산수학')
+        const class_ = DB.collection('student') //class들을 생성일시 내림차순으로 List안에 정렬
+            .doc(uid).collection('운영체제')
             .onSnapshot(snapshot => {
                 const list = [];
                 snapshot.forEach(doc => {
@@ -73,6 +73,7 @@ const List = ({ navigation }) => {
                 });
                 setChannels(list);
             });
+        
 
         return () => class_();
     }, []);
@@ -83,12 +84,6 @@ const List = ({ navigation }) => {
 
     return (
         <Container>
-            <MaterialIcons
-                    name="emoji-people"
-                    size={30}
-                    onPress={()=>navigation.navigate('Stn_List_temp')}
-                />
-                <Text>학생 리스트 버튼</Text>
             <FlatList
                 keyExtractor={item => item['id']}
                 data={channels}
