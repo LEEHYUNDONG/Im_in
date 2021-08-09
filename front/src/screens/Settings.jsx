@@ -4,8 +4,7 @@ import { Text, Button ,Switch} from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { View,FlatList } from "react-native";
 import { ListItem, Icon } from 'react-native-elements'
-import {DarkModeContext} from '../contexts'
-import { FaceMode } from ".";
+import { DarkModeContext } from "../contexts";
 
 
 const list1 = [
