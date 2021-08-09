@@ -35,17 +35,17 @@ const ItemTime = styled.Text`
 `;
 
  const Item = React.memo(
-    ({ item: { id, title, snum, createdAt }, onPress }) => {
+    ({ item: { id, title, snum,grade, createdAt }, onPress }) => {
         const theme = useContext(ThemeContext);
         console.log(`Item: ${id}`);
 
         return (
-            <ItemContainer onPress={() => onPress({ id, title })}>
+            <ItemContainer onPress={() => onPress({ id, title ,grade})}>
                 <ItemTextContainer>
                     <ItemTitle>{title}</ItemTitle>
                     <ItemDescription>{}</ItemDescription>
                 </ItemTextContainer>
-                <ItemTime>{snum}</ItemTime>
+                <ItemTime>{grade}학점</ItemTime>
                 <MaterialIcons
                     name="keyboard-arrow-right"
                     size={24}
