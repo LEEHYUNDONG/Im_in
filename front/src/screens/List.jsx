@@ -3,7 +3,7 @@ import { FlatList,Text } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { DB } from '../utils/firebase';
-import { UserContext } from '../contexts';
+import { UserContext} from '../contexts';
 
 const Container = styled.View`
     flex: 1;
@@ -65,7 +65,7 @@ const List = ({ navigation }) => {
 
     useEffect(() => {
         const class_ = DB.collection('student') //class들을 생성일시 내림차순으로 List안에 정렬
-            .doc(uid).collection('운영체제')
+            .doc(uid).collection(uid)
             .onSnapshot(snapshot => {
                 const list = [];
                 snapshot.forEach(doc => {
@@ -74,7 +74,6 @@ const List = ({ navigation }) => {
                 setChannels(list);
             });
         
-
         return () => class_();
     }, []);
 
