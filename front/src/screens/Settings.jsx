@@ -2,14 +2,11 @@ import React, {useState,useContext,useEffect} from "react";
 import styled from "styled-components/native";
 import { Text, Button ,Switch} from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { View,FlatList } from "react-native";
-<<<<<<< HEAD
-import { ListItem, Icon } from 'react-native-elements'
+import { View, FlatList } from "react-native";
+import { ListItem, Icon } from "react-native-elements";
 import { DarkModeContext } from "../contexts";
-=======
-import { ListItem, Icon } from 'react-native-elements';
-import {DarkModeContext} from '../contexts';
->>>>>>> fd78c4bf9a71c639ffb14d15320da512ab287d50
+import { ListItem, Icon } from "react-native-elements";
+import { DarkModeContext } from "../contexts";
 
 
 const list1 = [
