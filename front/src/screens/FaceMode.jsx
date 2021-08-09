@@ -111,11 +111,8 @@ export default function FaceMode() {
         //console.log("hhhh", singleFile);
         const name = user.email.split("@")[0] + ".jpg";
         const data = new FormData();
-<<<<<<< HEAD
         data.append("title", "B811226");
-=======
         data.append("title", "student iddddd");
->>>>>>> f2f6ccd3cdb512f6b5e1b60558e9bcca8026e4c9
         data.append("image", {
           name: name,
           type: "image/jpg",
