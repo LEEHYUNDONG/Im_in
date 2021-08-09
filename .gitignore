@@ -14,3 +14,6 @@ web-build/
 
 # firebase
 firebase.json
+
+#front
+./front/.expo/*
