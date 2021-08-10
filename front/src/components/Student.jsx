@@ -17,7 +17,7 @@ const Container = styled.View`
 
 // 학생별의 출석 상태를 보여주는 컴포넌트
 
-const Student = ({text}) => {
+const Student = ({route}) => {
     const _handlePressBotton = () => {
         
     } 

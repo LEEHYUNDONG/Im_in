@@ -61,7 +61,13 @@ const Class = ({route}) => {
                 <ItemTextContainer>
                     <ItemTitle>{id+1} week</ItemTitle>
                     <ItemDescription>{title}</ItemDescription>
-                    {<Student />}
+                    <FlatList 
+                        keyExtractor={item => item['id'].toString()}
+                        data={a_week}
+                        renderItem={({item}) => (
+                            <Student id={item.id} />
+                        )}  
+                    />
                 </ItemTextContainer>
             </ItemContainer>
           )
