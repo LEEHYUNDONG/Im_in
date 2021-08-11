@@ -65,7 +65,7 @@ const Class = ({route}) => {
                         keyExtractor={item => item['id'].toString()}
                         data={a_week}
                         renderItem={({item}) => (
-                            <Student id={item.id} />
+                            <Student id={item.id} createdAt={Date.now()} />
                         )}  
                     />
                 </ItemTextContainer>
