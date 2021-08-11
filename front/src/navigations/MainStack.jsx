@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ThemeContext } from "styled-components/native";
 import MainTab from "./MainTab";
-import {ListCreation,Class,List,RefPage} from '../screens'
-import { FaceMode ,Stn_List_temp} from "../screens";
+import {ListCreation,Class,RefPage,FaceMode ,Stn_List_temp} from '../screens'
 
 
 const Stack = createStackNavigator();
