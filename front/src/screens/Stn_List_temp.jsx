@@ -14,12 +14,21 @@ const Stn_List_temp = ({ route }) => {
     let len = Object.keys(route.params.a_week).length;
     let obj = route.params.a_week;
     const _handlePressBotton = params => {
-        console.log(params)
-        obj[params.id]['attd'] = 'absent';
+        console.log('params:'+params.late,params.check,params.absent)
+        if (params.check == 'attd'){
+            console.log('check!')
+            obj[params.id]['attd'] = 'check';
+        }
+        else if (params.late == 'late'){
+            console.log('late!')
+            obj[params.id]['attd'] = 'late';
+        }
+        else if (params.absent == 'absent'){
+            console.log('absent!')
+            obj[params.id]['attd'] = 'abcent';
+        }
+        
     }
-    useEffect(() => {
-
-    },obj)
 
     return (
         <Container>

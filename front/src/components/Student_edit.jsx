@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import {Text,View} from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
@@ -23,6 +23,7 @@ const Student_edit = ({id,attd ,createdAt, onPress}) => {
     const [check,setCheck] = useState('attd');
     const [late,setLate] = useState('late');
     const [absent,setAbsent] = useState('absent');
+    const [tmp,setTmp] = useState('')
     
     const getDateOrTime = ts => {
         const now = moment().startOf('day');
@@ -34,7 +35,7 @@ const Student_edit = ({id,attd ,createdAt, onPress}) => {
             flexDirection: 'row',
             alignItems: 'center',
             backgroundColor: 
-            attd == 'default' ? '#ffffff' : (attd == 'attd' ? '#00ff00' : (attd == 'late' ? '#ffaf00' : '#ff0000')),
+            attd == 'default' ? '#ffffff' : (attd == 'check' ? '#00ff00' : (attd == 'late' ? '#ffaf00' : '#ff0000')),
             borderColor: '#000000',
             borderWidth: 3,
             borderRadius: 10,
@@ -48,17 +49,19 @@ const Student_edit = ({id,attd ,createdAt, onPress}) => {
                 name="check"//구성 = 학번,체크버튼,지각버튼,결성버튼
                 size={26}
                 style={{ margin: 10 }}
-                onPress={() => onPress({id,attd})}
+                onPress={() => onPress({id,check})}
             />
             <MaterialIcons
                 name="alarm"
                 size={26}
                 style={{ margin: 10 }}
+                onPress={() => onPress({id,late})}
             />
             <MaterialIcons
                 name="clear"
                 size={26}
                 style={{ margin: 10 }}
+                onPress={() => onPress({id,absent})}
             />
         </View>
     )
