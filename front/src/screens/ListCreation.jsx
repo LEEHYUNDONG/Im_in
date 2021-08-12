@@ -6,7 +6,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Alert } from 'react-native';
 import { login } from '../utils/firebase';
 import {ProgressContext,UserContext} from '../contexts';
-import {createList} from '../utils/firebase';
+import {createprof,createstdn} from '../utils/firebase';
 
 const Btn = styled.TouchableOpacity`
     width: 300px;
@@ -30,9 +30,11 @@ const Container = styled.View`
 const ListCreation = ({navigation}) => {
   const { spinner } = useContext(ProgressContext);
   const [title, setTitle] = useState('');
-  const [snum, setSnum] = useState('');
   const snumRef = useRef();
   const [disabled, setDisabled] = useState(true);
+  const {user} = useContext(UserContext);
+  const [snum,setSnum] = useState(user.email.substring(0,7));
+  const [grade,setGrade] = useState('');
 
   useEffect(() => { // 타이틀과 총원수가 없으면 creation버튼 비활성화
     setDisabled(!(title && snum));
@@ -41,7 +43,7 @@ const ListCreation = ({navigation}) => {
 const _handleCreateButtonPress = async () => {//파이어베이스에 class 생성
   try {
       spinner.start();
-      const id = await createList({ title, snum });
+      const id = await createstdn({ title, snum,grade});
       navigation.replace('Class', { id, title });
   } catch (e) {
       Alert.alert('Creation Error', e.message);
@@ -60,21 +62,20 @@ const _handleCreateButtonPress = async () => {//파이어베이스에 class 생�
             </View>
             <View style={{flex:2.5}}>
             <TextFormMiddle 
-              label="title"
+              label="subject"
               value={title}
               onChangeText={text => setTitle(text)}
               onSubmitEditing={() => snumRef.current.focus()}
-              placeholder="Enter title"
+              placeholder="Enter subject"
               returnKeyType="next"
             />
-            <TextFormMiddle
-              label="total number of student"
+            <TextFormMiddle 
               ref={snumRef}
-              value={snum}
-              onChangeText={text => setSnum(text)}
-              onSubmitEditing={() => {}}
-              placeholder="total number of student"
-              returnKeyType="done"
+              label="grade"
+              value={grade}
+              onChangeText={text => setGrade(text)}
+              placeholder="Enter subject"
+              returnKeyType="next"
             />
             <Text>  </Text>
             <Btn 

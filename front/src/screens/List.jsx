@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList,Text } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { DB } from '../utils/firebase';
+import { UserContext} from '../contexts';
 
 const Container = styled.View`
     flex: 1;
@@ -34,17 +35,17 @@ const ItemTime = styled.Text`
 `;
 
  const Item = React.memo(
-    ({ item: { id, title, snum, createdAt }, onPress }) => {
+    ({ item: { id, title, snum,grade, createdAt }, onPress }) => {
         const theme = useContext(ThemeContext);
         console.log(`Item: ${id}`);
 
         return (
-            <ItemContainer onPress={() => onPress({ id, title })}>
+            <ItemContainer onPress={() => onPress({ id, title ,grade})}>
                 <ItemTextContainer>
                     <ItemTitle>{title}</ItemTitle>
                     <ItemDescription>{}</ItemDescription>
                 </ItemTextContainer>
-                <ItemTime>{snum}</ItemTime>
+                <ItemTime>{grade}학점</ItemTime>
                 <MaterialIcons
                     name="keyboard-arrow-right"
                     size={24}
@@ -59,10 +60,12 @@ const ItemTime = styled.Text`
 
 const List = ({ navigation }) => {
     const [channels, setChannels] = useState([]);
+    const {user} = useContext(UserContext);
+    const [uid,setUid] = useState(user.email.substring(0,7));
 
     useEffect(() => {
-        const class_ = DB.collection('channels') //class들을 생성일시 내림차순으로 List안에 정렬
-            .orderBy('createdAt', 'desc')
+        const class_ = DB.collection('student') //class들을 생성일시 내림차순으로 List안에 정렬
+            .doc(uid).collection(uid)
             .onSnapshot(snapshot => {
                 const list = [];
                 snapshot.forEach(doc => {
@@ -70,7 +73,7 @@ const List = ({ navigation }) => {
                 });
                 setChannels(list);
             });
-
+        
         return () => class_();
     }, []);
 

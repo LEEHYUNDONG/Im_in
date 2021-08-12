@@ -5,7 +5,8 @@ import TextFormBottom from './TextFormBottom';
 import TextFormTop from './TextFormTop';
 import TextFormMiddle from './TextFormMiddle';
 import Student from './Student';
+import Student_edit from './Student_edit';
 
 export { Spinner, IconButton, Button ,
-        TextFormBottom,TextFormTop,TextFormMiddle,Student,
+        TextFormBottom,TextFormTop,TextFormMiddle,Student,Student_edit
 };
