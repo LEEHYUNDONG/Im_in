@@ -1,14 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  Home,
-  Check,
-  Mode,
-  List,
-  Settings,
-  FaceMode,
-  FaceCheck
-} from "../screens/index";
+import { Home, Check, Mode, List, Settings, FaceCheck } from "../screens/index";
 import { MaterialIcons } from "@expo/vector-icons";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { logout } from "../utils/firebase";
@@ -87,7 +79,6 @@ const MainTab = ({ navigation, route }) => {
           let name = "";
           if (route.name === "Home") name = "home-filled";
           else if (route.name === "Check") name = "account-circle";
-          else if (route.name === "Mode") name = "supervisor-account";
           else if (route.name === "List") name = "list";
           else name = "settings";
 
@@ -104,18 +95,10 @@ const MainTab = ({ navigation, route }) => {
       />
       <Tab.Screen
         name="Check"
-        component={FaceMode}
+        component={FaceCheck}
         options={{
           tabBarLabel: "Check",
           headerTitle: "Check"
-        }}
-      />
-      <Tab.Screen
-        name="Mode"
-        component={FaceMode}
-        options={{
-          tabBarLabel: "Mode",
-          headerTitle: "Mode"
         }}
       />
       <Tab.Screen

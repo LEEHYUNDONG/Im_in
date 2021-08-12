@@ -18,22 +18,22 @@ const list2 = [
   {
     title: '이용 약관',
     icon: 'subtitles',
-    nav: 'FaceMode'
+    nav: 'FaceRecognition'
   },
   {
     title: 'Q&A',
     icon: 'help-outline',
-    nav: 'FaceMode'
+    nav: 'FaceRecognition'
   },
   {
     title: '서비스 안내',
     icon: 'remove-red-eye',
-    nav: 'FaceMode'
+    nav: 'FaceRecognition'
   },
   {
     title: '얼굴 등록',
     icon: 'person',
-    nav: 'FaceMode'
+    nav: 'FaceRecognition'
   }
 ]
 //#efefef
