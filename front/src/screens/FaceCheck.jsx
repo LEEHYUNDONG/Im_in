@@ -111,7 +111,7 @@ export default function FaceCheck() {
         //console.log("hhhh", singleFile);
         const name = user.email.split("@")[0] + ".jpg";
         const data = new FormData();
-        data.append("title", "B811226");
+        data.append("title", "B511234");
         data.append("title", "student iddddd");
         data.append("image", {
           name: name,
