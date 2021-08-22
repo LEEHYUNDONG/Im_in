@@ -4,6 +4,7 @@ import styled, { ThemeContext } from 'styled-components/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { DB } from '../utils/firebase';
 import { UserContext} from '../contexts';
+import moment from 'moment';
 
 const Container = styled.View`
     flex: 1;
@@ -35,12 +36,12 @@ const ItemTime = styled.Text`
 `;
 
  const Item = React.memo(
-    ({ item: { id, title, snum,grade, createdAt }, onPress }) => {
+    ({ item: { id, title, snum,grade, createdAt,day }, onPress }) => {
         const theme = useContext(ThemeContext);
         console.log(`Item: ${id}`);
 
         return (
-            <ItemContainer onPress={() => onPress({ id, title ,grade})}>
+            <ItemContainer onPress={() => onPress({ id, title ,grade,day})}>
                 <ItemTextContainer>
                     <ItemTitle>{title}</ItemTitle>
                     <ItemDescription>{}</ItemDescription>
@@ -59,7 +60,7 @@ const ItemTime = styled.Text`
 //모든 Class들을 모아둔 목록
 
 const List = ({ navigation }) => {
-    const [channels, setChannels] = useState([]);
+    const [classes, setClasses] = useState([]);
     const {user} = useContext(UserContext);
     const [uid,setUid] = useState(user.email.substring(0,7));
 
@@ -71,7 +72,7 @@ const List = ({ navigation }) => {
                 snapshot.forEach(doc => {
                     list.push(doc.data());
                 });
-                setChannels(list);
+                setClasses(list);
             });
         
         return () => class_();
@@ -85,7 +86,7 @@ const List = ({ navigation }) => {
         <Container>
             <FlatList
                 keyExtractor={item => item['id']}
-                data={channels}
+                data={classes}
                 renderItem={({ item }) => (
                     <Item item={item} onPress={_handleItemPress} />
                 )}

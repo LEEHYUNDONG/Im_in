@@ -31,10 +31,12 @@ const ListCreation = ({navigation}) => {
   const { spinner } = useContext(ProgressContext);
   const [title, setTitle] = useState('');
   const snumRef = useRef();
+  const gradeRef = useRef();
   const [disabled, setDisabled] = useState(true);
   const {user} = useContext(UserContext);
   const [snum,setSnum] = useState(user.email.substring(0,7));
   const [grade,setGrade] = useState('');
+  const [days,setDays] = useState('');
 
   useEffect(() => { // 타이틀과 총원수가 없으면 creation버튼 비활성화
     setDisabled(!(title && snum));
@@ -43,8 +45,9 @@ const ListCreation = ({navigation}) => {
 const _handleCreateButtonPress = async () => {//파이어베이스에 class 생성
   try {
       spinner.start();
-      const id = await createstdn({ title, snum,grade});
-      navigation.replace('Class', { id, title });
+      const day = days.split(',');
+      const id = await createstdn({ title, snum, grade,day});
+      navigation.goBack();
   } catch (e) {
       Alert.alert('Creation Error', e.message);
   } finally {
@@ -57,7 +60,7 @@ const _handleCreateButtonPress = async () => {//파이어베이스에 class 생�
             extraScrollHeight={20}
         >
         <Container>
-            <View style={{flex:1}}>
+            <View style={{flex:0.5}}>
             
             </View>
             <View style={{flex:2.5}}>
@@ -74,6 +77,15 @@ const _handleCreateButtonPress = async () => {//파이어베이스에 class 생�
               label="grade"
               value={grade}
               onChangeText={text => setGrade(text)}
+              onSubmitEditing={() => gradeRef.current.focus()}
+              placeholder="Enter subject"
+              returnKeyType="next"
+            />
+            <TextFormMiddle 
+              ref={gradeRef}
+              label="day(ex:월34,수5)"
+              value={days}
+              onChangeText={text => setDays(text)}
               placeholder="Enter subject"
               returnKeyType="next"
             />

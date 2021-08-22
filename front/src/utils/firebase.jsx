@@ -41,22 +41,8 @@ export const createprof = async ({ title, snum, uid}) => {
     return subject;
 };
 
-/*export const createstdn = async ({ title, snum, uid}) => {
-    const newListRef = DB.collection('student').doc(uid).collection(title).doc();//파이어스토어에 필드생성
-    const subject = title;
-    const id = newListRef.id
-    const attd = null
-    const newList = {   //요소들을 넣고 마지막에 정렬하기 위해 생성 일시 저장
-        id,
-        subject,
-        snum,
-        attd,
-        createdAt: Date.now(),
-    };
-    await newListRef.set(newList);
-    return subject;
-};*/
-export const createstdn = async ({ title, snum,grade}) => { 
+
+export const createstdn = async ({ title, snum,grade,day}) => { 
     const newListRef = DB.collection('student').doc(snum).collection(snum).doc(title);//파이어스토어에 필드생성
     const id = newListRef.id; //생성된 문서의 id 사용
     const newList = {   //요소들을 넣고 마지막에 정렬하기 위해 생성 일시 저장
@@ -64,6 +50,7 @@ export const createstdn = async ({ title, snum,grade}) => {
         title,
         grade,
         snum,
+        day,
         createdAt: Date.now(),
     };
     await newListRef.set(newList);
