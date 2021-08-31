@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { ImageBackground, SafeAreaView, StatusBar } from "react-native";
 import styled from "styled-components/native";
 import { dark_theme, theme } from "./theme";
@@ -17,15 +17,17 @@ const Container = styled.View`
 
 
 const App = () => {
-  const {isDark} = useContext(DarkModeContext);
-  console.log(isDark);
+  const [isDark,setisDark] = useState(false);
+  const _handleIsDark = () => {
+    setisDark(!isDark);
+  }
   return (
     <DarkModeProvider>
     <ThemeProvider theme={isDark ? dark_theme: theme}>
       <UserProvider>
       <ProgressProvider>
       <StatusBar barStyle="dark-content" />
-      <Navigation />
+      <Navigation handledark={_handleIsDark} />
       </ProgressProvider>
       </UserProvider>
       <ModalPortal />

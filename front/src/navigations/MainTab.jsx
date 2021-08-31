@@ -15,7 +15,7 @@ const TabIcon = ({ name, size, color }) => {
 };
 
 // 하단의 MAINTAB 함수
-const MainTab = ({ navigation, route }) => {
+const MainTab = ({ navigation, route, handledark}) => {
   const { dispatch } = useContext(UserContext); //CONTEXT를 통해 전역적으로 DISPATCH 시킨다
   const { spinner } = useContext(ProgressContext); // 로딩시 SPINNER 이용하기 위해 CONTEXT
 
@@ -110,13 +110,14 @@ const MainTab = ({ navigation, route }) => {
         }}
       />
       <Tab.Screen
-        name="Settings"
-        component={Settings}
+        name="Setting"
         options={{
           tabBarLabel: "Settings",
           headerTitle: "Settings"
         }}
-      />
+       children={()=><Settings handledark={handledark}/>}
+    />
+      
     </Tab.Navigator>
   );
 };

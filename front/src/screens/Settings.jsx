@@ -43,13 +43,13 @@ const Container = styled.SafeAreaView`
 `;
 
 
-const Settings = ({navigation}) => {
+const Settings = ({navigation,handledark}) => {
   const {isDark} = useContext(DarkModeContext);
   const { dark_state } = useContext(DarkModeContext);
   const _toggleSwitch = () => {
     isDark ? dark_state.off():dark_state.on()
+    handledark();
   }
-  console.log(isDark);
 
   return (
     <Container>

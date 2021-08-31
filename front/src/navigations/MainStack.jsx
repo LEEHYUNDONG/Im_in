@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext ,useEffect} from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ThemeContext } from "styled-components/native";
 import MainTab from "./MainTab";
@@ -7,7 +7,7 @@ import { ListCreation, Class, RefPage, Stn_List_temp, FaceCheck, FaceRecognition
 
 const Stack = createStackNavigator();
 //어플의 메인 기능들을 관리한다.
-const MainStack = ({ navigation }) => {
+const MainStack = ({ navigation,handledark }) => {
   const theme = useContext(ThemeContext);
 
   return (
@@ -18,7 +18,9 @@ const MainStack = ({ navigation }) => {
         cardStyle: { backgroundColor: theme.backgroundColor },
         headerBackTitleVisible: false
       }}>
-      <Stack.Screen name="Home" component={MainTab} />
+      <Stack.Screen name='Home' options={{ title: 'Home' }}>
+        {(props) => <MainTab {...props} handledark={handledark} />}
+      </Stack.Screen>
       <Stack.Screen name="RefPage" component={RefPage} />
       <Stack.Screen name="ListCreation" component={ListCreation} />
       <Stack.Screen name="Class" component={Class} />
