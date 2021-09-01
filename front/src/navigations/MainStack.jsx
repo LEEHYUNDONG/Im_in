@@ -16,7 +16,10 @@ const MainStack = ({ navigation,handledark }) => {
         headerTitleAlign: "center",  //첫 화면을 메인으로 두고 탭에 쓰일 화면 나열
         headerTintColor: theme.headerTintColor,
         cardStyle: { backgroundColor: theme.backgroundColor },
-        headerBackTitleVisible: false
+        headerBackTitleVisible: false,
+        headerStyle: {
+          backgroundColor: theme.background
+        }
       }}>
       <Stack.Screen name='Home' options={{ title: 'Home' }}>
         {(props) => <MainTab {...props} handledark={handledark} />}

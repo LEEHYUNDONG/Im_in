@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import styled from 'styled-components/native';
+import styled ,{ThemeContext}from 'styled-components/native';
 import {Text,TouchableOpacity,View,StyleSheet,TouchableWithoutFeedback} from 'react-native';
 import {TextFormBottom,TextFormTop} from '../components'
 import { Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Alert } from 'react-native';
 import { login } from '../utils/firebase';
-import {Spinner} from '../contexts/Progress'
 import {ProgressContext,UserContext} from '../contexts';
 
 
@@ -23,12 +22,13 @@ const Btn = styled.TouchableOpacity`
     border-radius: 7px;
     justify-content: center;
     align-items: center;
-    background-color: #000000;
+    background-color: ${({theme}) => theme.text};
     opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 `;
 //로그인 인증 화면
 
 const Login = ({navigation}) => {
+  const theme = useContext(ThemeContext);
   const { dispatch } = useContext(UserContext);
   const { spinner } = useContext(ProgressContext);
   const [subemail, setSubemail] = useState('');
@@ -66,7 +66,7 @@ const _handleLoginButtonPress = async () => { //로그인 버튼 클릭 함수
         <Container>
             <View style={{flex:1}}>
                 <View style={{flex:2}}></View>
-                <View style={{flex:1,alignItems: 'center'}}><Text style={{fontSize:30}}>Sign in</Text></View>
+                <View style={{flex:1,alignItems: 'center'}}><Text style={{fontSize:30,color:theme.text}}>Sign in</Text></View>
             
             </View>
             <View style={{flex:1.5}}>
@@ -90,7 +90,7 @@ const _handleLoginButtonPress = async () => { //로그인 버튼 클릭 함수
             <Btn onPress={_handleLoginButtonPress}
                  disabled={disabled}
             >
-                <Text style={(styles.Text, {color: 'white'})}>Sign in</Text>
+                <Text style={(styles.Text, {color: theme.real_black})}>Sign in</Text>
                 </Btn>
             <TouchableOpacity style={styles.sign_up_Area} title="Signup" onPress={() => navigation.navigate('Signup')}>
               <Text style={(styles.sign_up, {color: 'grey'})}>Sign up</Text>
@@ -103,35 +103,6 @@ const _handleLoginButtonPress = async () => { //로그인 버튼 클릭 함수
 
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: 'white',
-      alignItems: 'center',
-    },
-  
-    textFormTop: {
-      borderWidth: 2,
-      borderBottomWidth: 1,
-      borderColor: 'black',
-      borderTopLeftRadius: 7,
-      borderTopRightRadius: 7,
-      width: 300,
-      height: 65,
-      paddingLeft: 10,
-      paddingRight: 10,
-      alignItems: 'center'
-    },
-    textFormBottom: {
-      borderWidth: 2,
-      borderTopWidth: 1,
-      borderColor: 'black',
-      borderBottomRightRadius: 7,
-      borderBottomLeftRadius: 7,
-      width: 300,
-      height: 65,
-      paddingLeft: 10,
-      paddingRight: 10,
-    },
     btn: {
       width: 300,
       height: 65,

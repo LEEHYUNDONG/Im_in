@@ -22,6 +22,7 @@ const ItemTextContainer = styled.View`
     flex-direction: column;
 `;
 const ItemTitle = styled.Text`
+    color: ${({ theme }) => theme.text};
     font-size: 20px;
     font-weight: 600;
 `;
