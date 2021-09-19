@@ -7,13 +7,13 @@ import AuthStack from "./AuthStack";
 import { ProgressContext,UserContext}  from "../contexts";
 
 // 최상위 APP.JSX에서 사용될 값들, 모든 스택들을 여기서 관리해준다. 
-const Navigation=() => {
+const Navigation=({handledark}) => {
   const {inProgress}=useContext(ProgressContext);
-  const { user } = useContext(UserContext); 
+  const { user } = useContext(UserContext);
   
   return (
     <NavigationContainer>
-      {user.uid&&user.email ? <MainStack /> : <AuthStack />}
+      {user.uid&&user.email ? <MainStack handledark={handledark} /> : <AuthStack />}
       {inProgress && <Spinner />}
     </NavigationContainer>
   );

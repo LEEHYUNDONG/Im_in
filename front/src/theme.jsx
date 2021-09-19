@@ -9,7 +9,7 @@ const colors = {
 
 const dark_colors = {
   white: "#34495e",
-  black: "#000000",
+  black: "#ffffff",
   grey_0: "#d5d5d5",
   grey_1: "#a6a6a6",
   red: "#e84118",
@@ -32,6 +32,7 @@ export const theme = {
   listTime: colors.grey_1,
   listDescription: colors.grey_1,
   listIcon: colors.black,
+  real_black: colors.white,
 
   check: colors.green,
   late: colors.orange,
@@ -53,6 +54,7 @@ export const dark_theme = {
   listTime: dark_colors.grey_1,
   listDescription: dark_colors.grey_1,
   listIcon: dark_colors.black,
+  real_black: colors.black,
 
   check: dark_colors.green,
   late: dark_colors.orange,

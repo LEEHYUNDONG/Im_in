@@ -1,5 +1,5 @@
-import React, { useState, forwardRef } from 'react';
-import styled from 'styled-components/native';
+import React, { useState, forwardRef,useContext } from 'react';
+import styled,{ ThemeContext } from 'styled-components/native';
 import PropTypes from 'prop-types';
 import {StyleSheet,TextInput} from 'react-native';
 
@@ -34,7 +34,30 @@ const TextFormMiddle = forwardRef(
     ref
     ) => {
     const [isFocused, setIsFocused] = useState(false);
-
+    const theme = useContext(ThemeContext);
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: 'white',
+            alignItems: 'center',
+          },
+          textFormMiddle: {
+            color:theme.text,
+            borderWidth: 2,
+            borderTopWidth: 2,
+            borderColor: theme.text,
+            width: 300,
+            height: 65,
+            borderBottomRightRadius: 7,
+            borderBottomLeftRadius: 7,
+            borderTopLeftRadius: 7,
+            borderTopRightRadius: 7,
+            paddingLeft: 10,
+            paddingRight: 10,
+          },
+          /*added*/
+    
+    })
     return (
         <Container>
             
@@ -83,27 +106,6 @@ TextFormMiddle.propTypes = {
     disabled: PropTypes.bool,
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        alignItems: 'center',
-      },
-      textFormMiddle: {
-        borderWidth: 2,
-        borderTopWidth: 2,
-        borderColor: 'black',
-        width: 300,
-        height: 65,
-        borderBottomRightRadius: 7,
-        borderBottomLeftRadius: 7,
-        borderTopLeftRadius: 7,
-        borderTopRightRadius: 7,
-        paddingLeft: 10,
-        paddingRight: 10,
-      },
-      /*added*/
 
-})
 
 export default TextFormMiddle;

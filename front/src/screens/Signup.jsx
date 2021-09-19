@@ -27,9 +27,8 @@ const Btn = styled.TouchableOpacity`
 `;
 const Container = styled.View`
     flex: 1;
-    justify-content: center;
-    align-items: center;
     background-color: ${({theme}) => theme.background};
+    align-items: center;
 `;
 
 const Signup = ({navigation}) => {
@@ -89,10 +88,7 @@ const Signup = ({navigation}) => {
     };
 
     return(
-        <KeyboardAwareScrollView
-          extraHeight={20}
-        >
-            <View style={styles.container}>
+            <Container>
                 
             <View style={{flex:2}}>
                 <View style={{}}>
@@ -124,7 +120,7 @@ const Signup = ({navigation}) => {
                   onChangeText={text => setPassword(text)}
                   onSubmitEditing={() => passwordConfirmRef.current.focus()}
                   placeholder="password"
-                  returnKeyType="done"
+                  returnKeyType="next"
                   isPassword
                 />
                 <TextFormMiddle
@@ -137,7 +133,7 @@ const Signup = ({navigation}) => {
                   isPassword
                 />
                 </View>
-                <View style={{flex:0.8}}>
+                <View style={{flex:1}}>
                 <TouchableOpacity style={{flex:0.6}}>
                     <Container>
                     <Label>Press image to register your face</Label>
@@ -159,8 +155,7 @@ const Signup = ({navigation}) => {
                 
             </View>
             </View>
-        </View>
-        </KeyboardAwareScrollView>
+        </Container>
     );
 
 };

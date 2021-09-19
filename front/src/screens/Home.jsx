@@ -1,5 +1,5 @@
-import React, { useState,Component, useLayoutEffect, useEffect } from "react";
-import styled from "styled-components/native";
+import React, { useState,useContext, useEffect } from "react";
+import styled,{ ThemeContext } from "styled-components/native";
 import { Text, StyleSheet, View ,Button} from "react-native";
 import { ImageBackground } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -17,7 +17,7 @@ const Btn = styled.TouchableOpacity`
     border-radius: 7px;
     justify-content: center;
     align-items: center;
-    background-color: #ffffff;
+    color: ${({theme}) => theme.text};
 `;
 
 const styles = StyleSheet.create({
@@ -43,6 +43,7 @@ const _handleqrpress = () => {
 
 //<Text style={{ fontSize: 24 }}>Home</Text>
 const Home=({navigation}) => {
+  const theme = useContext(ThemeContext);
   const axios = require('axios');
   const cheerio = require('react-native-cheerio');
   //const url = `http://www.ce.hongik.ac.kr/dept/index.html`;
@@ -90,14 +91,13 @@ const Home=({navigation}) => {
       <MaterialIcons
         name="qr-code"
         size={30}
-        style={{ margin: 10 }}
-        
+        style={{ margin: 10 ,color:theme.text}}
         //onpress={{}}
       />
       <MaterialIcons
         name="class"
         size={30}
-        style={{ margin: 10 }}
+        style={{ margin: 10 ,color:theme.text}}
         onPress={() => {
           setVisible(true);
         }}
@@ -131,10 +131,10 @@ const Home=({navigation}) => {
 </ImageBackground>
      </View>
       <View style={{flex:3,alignItems:'center'}}>
-        <Text style={{fontSize:40}}>Notice</Text>
+        <Text style={{fontSize:40,color:theme.text}}>Notice</Text>
       <View style={{flex:0.1,flexDirection:'row'}}>
         <View style={{flex:0.9}}>
-        <Text style={{fontSize:20}}>Main</Text>
+        <Text style={{fontSize:20, color:theme.text}}>Main</Text>
         </View>
         <View>
         </View>
@@ -144,13 +144,13 @@ const Home=({navigation}) => {
           <Btn
           key={item.id}
           onPress={() => _onPress(item)}>
-            <Text>{item.title}</Text>
+            <Text style={{color:theme.text}}>{item.title}</Text>
           </Btn>
         ))}
         </View>
         <View style={{flex:0.1,flexDirection:'row'}}>
         <View style={{flex:0.9}}>
-        <Text style={{fontSize:20}}>Resent</Text>
+        <Text style={{fontSize:20,color:theme.text}}>Resent</Text>
         </View>
         <View>
         </View>
@@ -160,7 +160,7 @@ const Home=({navigation}) => {
           <Btn
           key={item.id}
           onPress={() => _onPress(item)}>
-            <Text>{item.title}</Text>
+            <Text style={{color:theme.text}}>{item.title}</Text>
           </Btn>
         ))}
         </View>

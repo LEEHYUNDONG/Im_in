@@ -1,5 +1,5 @@
-import React, { useState, forwardRef } from 'react';
-import styled from 'styled-components/native';
+import React, { useState, forwardRef,useContext } from 'react';
+import styled ,{ ThemeContext }from 'styled-components/native';
 import PropTypes from 'prop-types';
 import {StyleSheet,TextInput} from 'react-native';
 
@@ -18,12 +18,34 @@ const TextFormTop = (
         returnKeyType,
         maxLength,
     }) => {
+        
     const [isFocused, setIsFocused] = useState(false);
-
+    const theme = useContext(ThemeContext);
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: 'white',
+            alignItems: 'center',
+          },
+          textFormTop: {
+            color:theme.text,
+            borderWidth: 2,
+            borderBottomWidth: 1,
+            borderColor: theme.text,
+            borderTopLeftRadius: 7,
+            borderTopRightRadius: 7,
+            width: 300,
+            height: 65,
+            paddingLeft: 10,
+            paddingRight: 10,
+            alignItems: 'center'
+          },
+          /*added*/
+    
+    })
     return (
         <Container>
             <TextInput style={styles.textFormTop}
-                
                 isFocused={isFocused}
                 value={value}
                 onChangeText={onChangeText}
@@ -55,26 +77,6 @@ TextFormTop.defaultProps = {
 TextFormTop.propTypes = {
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        alignItems: 'center',
-      },
-      textFormTop: {
-        borderWidth: 2,
-        borderBottomWidth: 1,
-        borderColor: 'black',
-        borderTopLeftRadius: 7,
-        borderTopRightRadius: 7,
-        width: 300,
-        height: 65,
-        paddingLeft: 10,
-        paddingRight: 10,
-        alignItems: 'center'
-      },
-      /*added*/
 
-})
 
 export default TextFormTop;

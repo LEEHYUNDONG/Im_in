@@ -177,3 +177,7 @@ rn w/ django rest framework
 ## 0522/Kang Jeon Ho
 - class 내 student 출결 상태 생성
 - class header 전체 현황 버튼 및 스크린 구현
+
+## 0914/Kang Jeon Ho
+- 메인 화면 시간표, qr코드 아이콘 구현
+- 메인 화면 Notice 크롤링 구현

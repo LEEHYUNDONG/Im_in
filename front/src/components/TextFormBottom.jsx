@@ -1,5 +1,5 @@
-import React, { useState, forwardRef } from 'react';
-import styled from 'styled-components/native';
+import React, { useState, forwardRef ,useContext} from 'react';
+import styled,{ ThemeContext } from 'styled-components/native';
 import PropTypes from 'prop-types';
 import {StyleSheet,TextInput} from 'react-native';
 
@@ -23,7 +23,28 @@ const TextFormBottom = forwardRef(
     ref
     ) => {
     const [isFocused, setIsFocused] = useState(false);
-
+    const theme = useContext(ThemeContext);
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: 'white',
+            alignItems: 'center',
+          },
+          textFormBottom: {
+            color:theme.text,
+            borderWidth: 2,
+            borderTopWidth: 1,
+            borderColor: theme.text,
+            borderBottomRightRadius: 7,
+            borderBottomLeftRadius: 7,
+            width: 300,
+            height: 65,
+            paddingLeft: 10,
+            paddingRight: 10,
+          },
+          /*added*/
+    
+    })
     return (
         <Container>
             
@@ -70,25 +91,6 @@ TextFormBottom.propTypes = {
     disabled: PropTypes.bool,
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        alignItems: 'center',
-      },
-      textFormBottom: {
-        borderWidth: 2,
-        borderTopWidth: 1,
-        borderColor: 'black',
-        borderBottomRightRadius: 7,
-        borderBottomLeftRadius: 7,
-        width: 300,
-        height: 65,
-        paddingLeft: 10,
-        paddingRight: 10,
-      },
-      /*added*/
 
-})
 
 export default TextFormBottom;

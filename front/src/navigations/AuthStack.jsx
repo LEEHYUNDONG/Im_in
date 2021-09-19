@@ -14,6 +14,9 @@ const AuthStack = () => {
         headerTitleAlign: "center",
         cardStyle: { backgroundColor: theme.backgroundColor },
         headerTintColor: theme.headerTintColor,
+        headerStyle: {
+          backgroundColor: theme.background
+        }
       }}>
       <Stack.Screen
         name="Login"
@@ -23,7 +26,6 @@ const AuthStack = () => {
           headerBackTitleVisible: false,
           headerBackTitle: "Login",
           headerTitleStyle: { fontSize: 16 },
-          headerTintColor: "#000000",
           headerBackImage: ({ tintColor }) => {
             const style = {
               marginRight: 5,

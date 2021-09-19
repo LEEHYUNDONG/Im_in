@@ -1,5 +1,5 @@
 import React, {useState,useContext,useEffect} from "react";
-import styled from "styled-components/native";
+import styled,{ ThemeContext }from "styled-components/native";
 import { Text, Button ,Switch} from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { View, FlatList } from "react-native";
@@ -43,19 +43,20 @@ const Container = styled.SafeAreaView`
 `;
 
 
-const Settings = ({navigation}) => {
+const Settings = ({navigation,handledark}) => {
+  const theme = useContext(ThemeContext);
   const {isDark} = useContext(DarkModeContext);
   const { dark_state } = useContext(DarkModeContext);
   const _toggleSwitch = () => {
     isDark ? dark_state.off():dark_state.on()
+    handledark();
   }
-  console.log(isDark);
 
   return (
     <Container>
-      <View style={{backgroundColor:'#ffffff'}}>
+      <View style={{backgroundColor:theme.background}}>
       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',margin:20, marginTop:20}}>
-        <Text style={{fontSize:20}}>DarkMode</Text>
+        <Text style={{fontSize:20,color:theme.text}}>DarkMode</Text>
         <Switch value={isDark} onValueChange={_toggleSwitch}/>
       </View>
       </View>
@@ -63,7 +64,7 @@ const Settings = ({navigation}) => {
       <View>
   {
     list1.map((item, i) => (
-      <ListItem key={i} bottomDivider>
+      <ListItem key={i} bottomDivider style={{backgroundColor:'#123123'}}>
         <Icon name={item.icon} 
               color='#d5d5d5'
         />
@@ -77,11 +78,11 @@ const Settings = ({navigation}) => {
   <View style={{margin:15}}></View>
   {
     list2.map((item, i) => (
-      <ListItem key={i} bottomDivider onPress={() => navigation.navigate(item.nav)}>
+      <ListItem key={i} bottomDivider onPress={() => navigation.navigate(item.nav)} >
         <Icon name={item.icon} 
               color='#d5d5d5'
         />
-        <ListItem.Content>
+        <ListItem.Content >
           <ListItem.Title>{item.title}</ListItem.Title>
         </ListItem.Content>
         <ListItem.Chevron />

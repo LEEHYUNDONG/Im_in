@@ -5,6 +5,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { logout } from "../utils/firebase";
 import { UserContext, ProgressContext } from "../contexts";
+import { ThemeContext } from "styled-components/native";
 
 // Tab 변수에 BOTTOMTAB NAVIGATOR를 불러온다.
 const Tab = createBottomTabNavigator();
@@ -15,9 +16,10 @@ const TabIcon = ({ name, size, color }) => {
 };
 
 // 하단의 MAINTAB 함수
-const MainTab = ({ navigation, route }) => {
+const MainTab = ({ navigation, route, handledark}) => {
   const { dispatch } = useContext(UserContext); //CONTEXT를 통해 전역적으로 DISPATCH 시킨다
   const { spinner } = useContext(ProgressContext); // 로딩시 SPINNER 이용하기 위해 CONTEXT
+  const theme = useContext(ThemeContext);
 
   const _handleLogoutButtonPress = async () => {
     try {
@@ -46,19 +48,19 @@ const MainTab = ({ navigation, route }) => {
           <MaterialIcons
             name="add"
             size={26}
-            style={{ margin: 10 }}
+            style={{ margin: 10 ,color:theme.text}}
             onPress={() => navigation.navigate("ListCreation")}
           />
         )) || (
           <MaterialIcons
             name="login"
             size={26}
-            style={{ margin: 10 }}
+            style={{ margin: 10 ,color:theme.text}}
             onPress={_handleLogoutButtonPress}
           />
         )
     });
-  }, [route]);
+  }, [route,theme]);
 
   // 리턴 값으로  화면에 RENDERING 해준다.
   return (
@@ -67,7 +69,7 @@ const MainTab = ({ navigation, route }) => {
       tabBarOptions={{
         labelPosition: "below-icon",
         style: {
-          backgroundColor: "#ffffff",
+          backgroundColor: theme.background,
           borderTopColor: "#cfcfcf",
           borderTopWidth: 0.3
         },
@@ -110,13 +112,14 @@ const MainTab = ({ navigation, route }) => {
         }}
       />
       <Tab.Screen
-        name="Settings"
-        component={Settings}
+        name="Setting"
         options={{
           tabBarLabel: "Settings",
           headerTitle: "Settings"
         }}
-      />
+       children={()=><Settings handledark={handledark}/>}
+    />
+      
     </Tab.Navigator>
   );
 };

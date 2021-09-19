@@ -41,29 +41,77 @@ export const createprof = async ({ title, snum, uid}) => {
     return subject;
 };
 
-/*export const createstdn = async ({ title, snum, uid}) => {
-    const newListRef = DB.collection('student').doc(uid).collection(title).doc();//파이어스토어에 필드생성
-    const subject = title;
-    const id = newListRef.id
-    const attd = null
-    const newList = {   //요소들을 넣고 마지막에 정렬하기 위해 생성 일시 저장
-        id,
-        subject,
-        snum,
-        attd,
-        createdAt: Date.now(),
-    };
-    await newListRef.set(newList);
-    return subject;
-};*/
-export const createstdn = async ({ title, snum,grade}) => { 
+
+export const createstdn = async ({ title, snum,grade,day}) => { 
     const newListRef = DB.collection('student').doc(snum).collection(snum).doc(title);//파이어스토어에 필드생성
     const id = newListRef.id; //생성된 문서의 id 사용
+    const days = [];
+    
+
+    for(let i = 0 ; i < day.length; i++ ) {
+        var yoil = day[i][0];
+        var time = day[i].substring(1,day[i].length)
+        if(day.length == 3){
+            days.push(yoil+time);
+        }
+        else if(day.length == 2){
+            if (time.length == 1){
+                days.push(yoil+time);
+            }
+            else if (time.length == 2){
+                if(time[0] == time[1] || time[1] == '0'){
+                    days.push(yoil+time);
+                }
+                else{
+                    days.push(yoil+time[0]);
+                    days.push(yoil+time[1]);
+                }
+            }
+            else if (time.length == 3){
+                days.push(yoil+time[0]);
+                days.push(yoil+time.substring(1,3));
+            }
+            else{
+                days.push(yoil+time.substring(0,2));
+                days.push(yoil+time.substring(2,4));
+            }
+        }
+        else{
+            if (time.length == 2){
+                days.push(yoil+time[0]);
+                days.push(yoil+time[1]);
+            }
+            else if (time.length == 3){
+                days.push(yoil+time[0]);
+                days.push(yoil+time[1]);
+                days.push(yoil+time[2]);
+            }
+            else if (time.length == 4){
+                days.push(yoil+time[0]);
+                days.push(yoil+time[1]);
+                days.push(yoil+time.substring(2,4));
+            }
+            else{
+                days.push(yoil+time[0]);
+                days.push(yoil+time.substring(1,3));
+                days.push(yoil+time.substring(3,5));
+            }
+        }
+    }
+    const weeks = [];
+    for (let i = 0; i < 15; i++) {
+
+        for(var j = 0 ; j < days.length; j++){
+            weeks.push('default')
+        }
+    }
     const newList = {   //요소들을 넣고 마지막에 정렬하기 위해 생성 일시 저장
         id,
         title,
         grade,
         snum,
+        days,
+        weeks,
         createdAt: Date.now(),
     };
     await newListRef.set(newList);

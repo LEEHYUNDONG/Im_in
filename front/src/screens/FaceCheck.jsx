@@ -120,7 +120,7 @@ export default function FaceCheck() {
         });
         console.log(data);
         // Please change file upload URL
-        let res = await fetch("http://13.125.58.50:8000/images/", {
+        let res = await fetch("http://18.219.85.27:8000/check/", {
           method: "post",
           body: data,
           headers: {
