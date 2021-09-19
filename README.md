@@ -178,6 +178,18 @@ rn w/ django rest framework
 - class 내 student 출결 상태 생성
 - class header 전체 현황 버튼 및 스크린 구현
 
+***
+# 09월 3주차
+
+## ~0911/Lee Do Kyung, Lee Hyun Dong
+ - 사진파일 전처리
+ - cnn 구조 생성
+ - 얼굴인식 테스트
+
 ## 0914/Kang Jeon Ho
 - 메인 화면 시간표, qr코드 아이콘 구현
 - 메인 화면 Notice 크롤링 구현
+
+## 0915/Lee Do Kyung
+ - 서버로 보낼 사진파일에 정보(학번, 이름 등) 추가
+ - ec2 서버 실행환경 변경(swap 메모리 추가 등)
