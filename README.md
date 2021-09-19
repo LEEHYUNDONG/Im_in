@@ -193,3 +193,7 @@ rn w/ django rest framework
 ## 0915/Lee Do Kyung
  - 서버로 보낼 사진파일에 정보(학번, 이름 등) 추가
  - ec2 서버 실행환경 변경(swap 메모리 추가 등)
+
+## 0915/Lee Hyun Dong
+- django restAPI form data형식으로 받을 수 있게 model 변경
+- mobile front에서 사진 촬영하는 hooks 수정 하여 사진 촬영 시 서버로 전달하게 json형식 수정
