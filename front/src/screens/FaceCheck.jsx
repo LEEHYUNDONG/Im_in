@@ -111,8 +111,8 @@ export default function FaceCheck() {
         //console.log("hhhh", singleFile);
         const name = user.email.split("@")[0] + ".jpg";
         const data = new FormData();
-        data.append("title", "B811226");
-        data.append("title", "student iddddd");
+        data.append("title", user.email.split("@")[0]);
+        //data.append("title", "student iddddd");
         data.append("image", {
           name: name,
           type: "image/jpg",
@@ -120,7 +120,7 @@ export default function FaceCheck() {
         });
         console.log(data);
         // Please change file upload URL
-        let res = await fetch("http://18.219.85.27:8000/images/", {
+        let res = await fetch("http://13.125.58.50:8000/images/", {
           method: "post",
           body: data,
           headers: {
