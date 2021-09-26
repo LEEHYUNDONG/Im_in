@@ -41,6 +41,12 @@ export const createprof = async ({ title, snum, uid}) => {
     return subject;
 };
 
+export const Checkattd = async ({ title, snum, uid}) => {
+    const newListRef = DB.collection('professor').doc(uid).collection(title).doc();//파이어스토어에 필드생성
+    const subject = title;
+    const id = newListRef.id
+    
+};
 
 export const createstdn = async ({ title, snum,grade,day}) => { 
     const newListRef = DB.collection('student').doc(snum).collection(snum).doc(title);//파이어스토어에 필드생성

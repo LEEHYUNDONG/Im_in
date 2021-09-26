@@ -5,6 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { DB } from '../utils/firebase';
 import { UserContext} from '../contexts';
 import moment from 'moment';
+import Sending from './Sending';
 
 const Container = styled.View`
     flex: 1;
@@ -22,7 +23,6 @@ const ItemTextContainer = styled.View`
     flex-direction: column;
 `;
 const ItemTitle = styled.Text`
-    color: ${({ theme }) => theme.text};
     font-size: 20px;
     font-weight: 600;
 `;
@@ -34,6 +34,16 @@ const ItemDescription = styled.Text`
 const ItemTime = styled.Text`
     font-size: 12px;
     color: ${({ theme }) => theme.listTime};
+`;
+
+const Btn = styled.TouchableOpacity`
+    width: 300px;
+    height: 65px;
+    border-radius: 7px;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 `;
 
  const Item = React.memo(
@@ -93,6 +103,7 @@ const List = ({ navigation }) => {
                 )}
                 windowSize={3}
             />
+            <Btn onPress={() => navigation.navigate('Sending')}><Text style={{color:'white'}}>출첵 임시 본부</Text></Btn>
         </Container>
     );
 };
