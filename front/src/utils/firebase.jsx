@@ -41,13 +41,20 @@ export const createprof = async ({ title, snum, uid}) => {
     return subject;
 };
 
-export const Checkattd = async ({ title, snum, uid}) => {
-    const newListRef = DB.collection('professor').doc(uid).collection(title).doc();//파이어스토어에 필드생성
-    const subject = title;
-    const id = newListRef.id
+export const Checkattd = async ({ title, snum, week,period}) => {
+    DB.collection("student").doc(snum).collection(snum).doc(title).get().then(result =>{
+        let tmp_attd = []
+        for (var i = 0; i < result.data().weeks.length; i++){
+            tmp_attd.push(result.data().weeks[i])
+        }
+        tmp_attd[3*(week-1)+(period-1)] = 'check'
+        console.log(tmp_attd)
+        DB.collection("student").doc(snum).collection(snum).doc(title).update({
+            "weeks": tmp_attd
+        });
+    });
     
 };
-
 export const createstdn = async ({ title, snum,grade,day}) => { 
     const newListRef = DB.collection('student').doc(snum).collection(snum).doc(title);//파이어스토어에 필드생성
     const id = newListRef.id; //생성된 문서의 id 사용

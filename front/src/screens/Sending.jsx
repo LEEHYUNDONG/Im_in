@@ -29,14 +29,14 @@ const Container = styled.View`
 
 const Sending = ({navigation}) => {
   const { spinner } = useContext(ProgressContext);
-  const [title, setTitle] = useState('선형대수학');
+  const [title, setTitle] = useState('');
   const snumRef = useRef();
   const gradeRef = useRef();
   const [disabled, setDisabled] = useState(true);
   const {user} = useContext(UserContext);
   const [snum,setSnum] = useState(user.email.substring(0,7));
-  const [week,setWeek] = useState('3');
-  const [period,setPeriod] = useState('1');
+  const [week,setWeek] = useState('');
+  const [period,setPeriod] = useState('');
 
   useEffect(() => { // 타이틀과 총원수가 없으면 creation버튼 비활성화
     setDisabled(!(title && snum && week && period));
@@ -46,6 +46,7 @@ const _handleCreateButtonPress = async () => {//파이어베이스에 class 생�
   try {
       spinner.start();
       const id = await Checkattd({ title, snum, week,period});
+      navigation.goBack();
   } catch (e) {
       Alert.alert('Creation Error', e.message);
   } finally {
@@ -92,7 +93,7 @@ const _handleCreateButtonPress = async () => {//파이어베이스에 class 생�
               disabled={disabled}
               onPress={_handleCreateButtonPress}
             >
-                <Text style={(styles.Text, {color: 'white'})} >creation</Text>
+                <Text style={(styles.Text, {color: 'white'})} >출 첵</Text>
             </Btn>
             </View>
         </Container>

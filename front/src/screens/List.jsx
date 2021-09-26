@@ -5,7 +5,6 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { DB } from '../utils/firebase';
 import { UserContext} from '../contexts';
 import moment from 'moment';
-import Sending from './Sending';
 
 const Container = styled.View`
     flex: 1;
@@ -85,7 +84,7 @@ const List = ({ navigation }) => {
                 });
                 setClasses(list);
             });
-        
+        console.log(classes)
         return () => class_();
     }, []);
 
