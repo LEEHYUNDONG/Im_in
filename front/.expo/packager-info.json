@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
+  "expoServerPort": null,
   "packagerPort": 19000,
-  "expoServerNgrokUrl": "https://dz-i4r.easttwave.front.exp.direct",
-  "packagerNgrokUrl": "https://packager.dz-i4r.easttwave.front.exp.direct",
-  "ngrokPid": 2983,
+  "expoServerNgrokUrl": "https://dz-i4r.anonymous.front.exp.direct",
+  "packagerNgrokUrl": "https://packager.dz-i4r.anonymous.front.exp.direct",
+  "ngrokPid": 2711,
   "packagerPid": null,
   "webpackServerPort": null
 }
