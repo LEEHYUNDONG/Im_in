@@ -11,5 +11,6 @@ import ListCreation from './ListCreation'
 import FaceCheck from "./FaceCheck";
 import RefPage from './RefPage';
 import Stn_List_temp from './Stn_List_temp'
+import Sending from './Sending'
 
-export { Check, Home, List, Mode, Settings, Login, Signup, FaceRecognition, Class, ListCreation, RefPage, FaceCheck, Stn_List_temp };
+export { Sending,Check, Home, List, Mode, Settings, Login, Signup, FaceRecognition, Class, ListCreation, RefPage, FaceCheck, Stn_List_temp };
