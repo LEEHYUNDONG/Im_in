@@ -197,3 +197,18 @@ rn w/ django rest framework
 ## 0915/Lee Hyun Dong
 - django restAPI form data형식으로 받을 수 있게 model 변경
 - mobile front에서 사진 촬영하는 hooks 수정 하여 사진 촬영 시 서버로 전달하게 json형식 수정
+
+***
+# 09월 4주차
+
+## 0922/Kang Jeon Ho
+ - firebase 학생 출결 상태 생성
+ - react native 학생 ui 컴포넌트 생성
+
+## 0923/Lee Do Kyung
+ - react native camera 코드 리팩토링
+ - react native 메인 탭바 수정
+
+## 0923/Lee Hyun Dong
+ - front에서 서버로 사진 연속 촬영 전송
+ - BE에서 사진 각 계정별로 폴더 생성시켜 사진파일 정리
