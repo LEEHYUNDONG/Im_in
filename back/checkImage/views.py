@@ -1,14 +1,10 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-#from snippets.models import Snippet
-#from snippets.serializers import SnippetSerializer
 from getImage.models import Image
-from getImage.serializers import ImageSerializer
+from checkImage.serializers import CheckSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
-
-##
 from django.http import JsonResponse
 from facenet_pytorch import MTCNN, InceptionResnetV1
 import torch
@@ -28,11 +24,11 @@ def image_list(request, format=None):
     """
     if request.method == 'GET':
         images = Image.objects.all()
-        serializer = ImageSerializer(images, many=True)
+        serializer = CheckSerializer(images, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = ImageSerializer(data=request.data)
+        serializer = CheckSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
 
