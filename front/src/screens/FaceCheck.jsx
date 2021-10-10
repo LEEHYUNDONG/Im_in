@@ -142,6 +142,8 @@ export default function FaceCheck() {
         var gap = end.getTime() - start.getTime();
         console.log(responseJson.check_list[0].check);
         console.log(gap/1000);
+        //출결 함수 호출
+        attendence(responseJson);
       } else {
         // If no file selected the show alert
         console.log("Please Select File first");
@@ -149,6 +151,10 @@ export default function FaceCheck() {
       await cameraRef.current.resumePreview();
     }
   };
+  //파이어베이스 풀결 갱신
+  const attendence = (attd) => {
+    console.log()
+  }
 
   //사진 또는 비디오 미리보기 취소
   const cancelPreview = async () => {

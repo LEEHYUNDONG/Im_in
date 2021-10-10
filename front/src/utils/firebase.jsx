@@ -48,7 +48,6 @@ export const Checkattd = async ({ title, snum, week,period}) => {
             tmp_attd.push(result.data().weeks[i])
         }
         tmp_attd[3*(week-1)+(period-1)] = 'check'
-        console.log(tmp_attd)
         DB.collection("student").doc(snum).collection(snum).doc(title).update({
             "weeks": tmp_attd
         });

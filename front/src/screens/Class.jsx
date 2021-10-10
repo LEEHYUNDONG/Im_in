@@ -49,7 +49,7 @@ const Class = ({navigation,route}) => {
     const week_ = {'Monday':'월','Tuesday':'화','Wednesday':'수','Thursday':'목','Friday':'금','Saturday':'토','Sunday':'일'}
     const moment = require('moment');
     const today = moment('20210901','YYYYMMDD');
-    const semester = 34; //2학기
+    const semester = parseInt(today.format('WW')) - 1; //2학기
     let semester_week = parseInt(today.format('WW')) - semester
 
     const weeks = [];
