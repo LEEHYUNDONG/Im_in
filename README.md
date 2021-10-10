@@ -219,3 +219,11 @@ rn w/ django rest framework
 ## 1006/Kang Jeon Ho
  - 수업 리스트 내 학생 출결 컴포넌트 구현
  - 수업 리스트의 수업시간대 별 날짜와 시간대 구현
+
+## 1007/Lee Do Kyung
+ - django -> react native 출석체크 결과 db에 반영
+ - 논문 수정 및 추가 작성
+
+## 1008/Lee Hyun Dong
+ - 전송 이미지 얼굴 인식을 위한 사이즈 조정
+ - 논문 수정 및 추가 작성
