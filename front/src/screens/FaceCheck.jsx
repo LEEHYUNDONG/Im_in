@@ -94,7 +94,7 @@ export default function FaceCheck() {
   //사진찍기
   const takePicture = async () => {
     if (cameraRef.current) {
-      const options = { quality: 0.5, base64: false, skipProcessing: true };
+      const options = { quality: 0.2, base64: false, skipProcessing: false };
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
       if (source) {
@@ -119,8 +119,10 @@ export default function FaceCheck() {
           uri: source
         });
         console.log(data);
+
+        var start = new Date();
         // Please change file upload URL
-        let res = await fetch("http://18.219.85.27:8000/check/", {
+        let res = await fetch("http://13.125.58.50:8000/check/", {
           method: "post",
           body: data,
           headers: {
@@ -130,10 +132,16 @@ export default function FaceCheck() {
 
         //console.log(res);
         let responseJson = await res.json();
+
         console.log(responseJson);
         if (responseJson.status == 1) {
           console.log("Upload Successful");
         }
+
+        var end = new Date();
+        var gap = end.getTime() - start.getTime();
+        console.log(responseJson.check_list[0].check);
+        console.log(gap/1000);
       } else {
         // If no file selected the show alert
         console.log("Please Select File first");
