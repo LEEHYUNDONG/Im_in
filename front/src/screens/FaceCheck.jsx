@@ -1,9 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Camera } from 'expo-camera';
 import { Video, Audio } from 'expo-av';
 import * as FaceDetector from 'expo-face-detector';
 import { getCurrentUser } from '../utils/firebase';
+
+import { DB } from '../utils/firebase';
+import {ProgressContext} from '../contexts';
+import { Alert } from 'react-native';
+import {Checkattd} from '../utils/firebase';
+import { UserContext} from '../contexts';
 
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 
@@ -29,6 +35,9 @@ export default function FaceCheck() {
   const [singleFile, setSingleFile] = useState(null);
 
   const user = getCurrentUser();
+  const [uid,setUid] = useState(user.email.substring(0,7));
+
+  const { spinner } = useContext(ProgressContext);
 
   //얼굴인식하면 정보 저장
   const faceDetected = ({ faces }) => {
@@ -143,7 +152,12 @@ export default function FaceCheck() {
         console.log(responseJson.check_list[0].check);
         console.log(gap/1000);
         //출결 함수 호출
-        attendence(responseJson);
+        //console.log(typeof(responseJson.check_list[0].check));
+        if (responseJson.check_list[0].check == true){
+          attendence();
+        }
+        //responseJson.check_list[0].check ? () => attendence() : null;
+
       } else {
         // If no file selected the show alert
         console.log("Please Select File first");
@@ -153,7 +167,44 @@ export default function FaceCheck() {
   };
   //파이어베이스 풀결 갱신
   const attendence = (attd) => {
-    console.log()
+        // 현재로 하려면 const date = moment(new Date()).format(); 하고 넣기
+        //현재 시간 - 8 = 현재 교시 ~ 09:00 1교시
+        //아래는 임시 9월 2일 10시 2분으로 가정
+        console.log("ll");
+        //const now = Date.now()
+        const moment = require('moment');
+        const days = ['일','월','화','수','목','금','토']
+        const date = moment('2021-09-01 09:02:00','YYYYMMDD HH:mm:ss');
+        const class_ = days[date.day()]+(date.hour()-8);
+        
+        let week;
+        parseInt(date.format('WW'))> 30 ? week = parseInt(date.format('WW')) - 34 : week = parseInt(today.format('WW'));
+        console.log(week)
+        DB.collection('student')
+            .doc(uid).collection(uid)
+            .get().then(result => {
+                result.forEach(doc=>{
+                    const data = doc.data();
+                    for(let i = 0; i < data.days.length; i++){
+                        if(data.days[i] == class_){
+                            _handleAttendenceTrue(data.title,uid,week,i+1);
+                            break;
+                        }
+                    }
+                })
+            })
+
+        const _handleAttendenceTrue = async (title,snum,week,period) => {//파이어베이스에 class 생성
+            
+            try {
+                spinner.start();
+                const id = await Checkattd({ title, snum, week,period});
+            } catch (e) {
+                Alert.alert('Error', e.message);
+            } finally {
+                spinner.stop();
+            }
+          };
   }
 
   //사진 또는 비디오 미리보기 취소
