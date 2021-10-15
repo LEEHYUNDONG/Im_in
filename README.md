@@ -231,7 +231,7 @@ rn w/ django rest framework
 ***
 # 10월 2주차
 ## ~1015/Kang Jeon Ho Lee Do Kyung, Lee Hyun Dong
-## 101/Kang Jeon Ho
+## 1014/Kang Jeon Ho
  - Object 형태의 데이터를 활용해 firebase 출석List 갱신 코드 구현
  - Attendance list 갱신시 현재 시간을 기준으로 한 자동 출석 기능 구현
 
