@@ -227,3 +227,17 @@ rn w/ django rest framework
 ## 1008/Lee Hyun Dong
  - 전송 이미지 얼굴 인식을 위한 사이즈 조정
  - 논문 수정 및 추가 작성
+
+***
+## ~1015/Kang Jeon Ho Lee Do Kyung, Lee Hyun Dong
+## 101/Kang Jeon Ho
+ - Object 형태의 데이터를 활용해 firebase 출석List 갱신 코드 구현
+ - Attendance list 갱신시 현재 시간을 기준으로 한 자동 출석 기능 구현
+
+## 1014/Lee Do Kyung
+ - react native 카메라 사진 설정 변경
+ - 성능 테스트
+
+## 1015/Lee Hyun Dong
+ - BE 출석용 SERIALIZER와 얼굴등록용 serializer 구성
+ - django model 출석용, 얼굴등록용 만듬
