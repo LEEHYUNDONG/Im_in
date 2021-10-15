@@ -229,6 +229,7 @@ rn w/ django rest framework
  - 논문 수정 및 추가 작성
 
 ***
+# 10월 2주차
 ## ~1015/Kang Jeon Ho Lee Do Kyung, Lee Hyun Dong
 ## 101/Kang Jeon Ho
  - Object 형태의 데이터를 활용해 firebase 출석List 갱신 코드 구현
