@@ -1,8 +1,7 @@
-import React, {useState,useContext,useEffect} from "react";
+import React, {useContext} from "react";
 import styled,{ ThemeContext }from "styled-components/native";
-import { Text, Button ,Switch} from "react-native";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { View, FlatList } from "react-native";
+import { Text,Switch} from "react-native";
+import { View } from "react-native";
 import { ListItem, Icon } from "react-native-elements";
 import { DarkModeContext } from "../contexts";
 

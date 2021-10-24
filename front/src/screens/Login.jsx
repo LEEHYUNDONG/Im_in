@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import styled ,{ThemeContext}from 'styled-components/native';
-import {Text,TouchableOpacity,View,StyleSheet,TouchableWithoutFeedback} from 'react-native';
+import {Text,TouchableOpacity,View,StyleSheet} from 'react-native';
 import {TextFormBottom,TextFormTop} from '../components'
-import { Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Alert } from 'react-native';
 import { login } from '../utils/firebase';

@@ -76,6 +76,12 @@ const Home=({navigation}) => {
           setMnot(obj);
           setRnot(obj2);
         })
+        .catch((error) => {
+          obj[0] = "서버에서 문제가 발생하였습니다.";
+          obj2[0] = "서버에서 문제가 발생하였습니다.";
+          setMnot(obj);
+          setRnot(obj2);
+      });
   };
   useEffect(() => {
     loadItem();

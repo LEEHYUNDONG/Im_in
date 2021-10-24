@@ -1,12 +1,11 @@
 import React ,{useState,useRef,useEffect,useContext} from 'react';
 import styled from 'styled-components/native';
-import {Text,TouchableOpacity,View,StyleSheet} from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {Text,View,StyleSheet} from 'react-native';
 import {TextFormMiddle} from '../components'
-import { MaterialIcons } from "@expo/vector-icons";
 import {ProgressContext,UserContext} from '../contexts';
 import { Alert } from 'react-native';
 import {signup} from '../utils/firebase'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const ErrorText = styled.Text`
     align-items: flex-start;
@@ -88,10 +87,14 @@ const Signup = ({navigation}) => {
     };
 
     return(
+        <KeyboardAwareScrollView
+            contentContainerStyle={{ flex: 1 }}
+            extraScrollHeight={20}
+        >
             <Container>
                 
-            <View style={{flex:2}}>
-                <View style={{}}>
+            <View >
+                <View>
                 <TextFormMiddle
                   label="Name"
                   value={name}
@@ -134,18 +137,7 @@ const Signup = ({navigation}) => {
                 />
                 </View>
                 <View style={{flex:1}}>
-                <TouchableOpacity style={{flex:0.6}}>
-                    <Container>
-                    <Label>Press image to register your face</Label>
-                    <MaterialIcons
-                      style={{flex:1}}
-                      name="face"
-                      size={100}
-                      style={{ margin: 10 }}
-                      onPress={() => navigation.navigate('FaceRecognition')}
-                    />
-                    </Container>
-                </TouchableOpacity>
+                
                 <ErrorText>{errorMessage}</ErrorText>
                 <Btn disabled={disabled}
                      onPress={_handleSignupButtonPress}
@@ -156,15 +148,10 @@ const Signup = ({navigation}) => {
             </View>
             </View>
         </Container>
+        </KeyboardAwareScrollView>
     );
 
 };
-const Label = styled.Text`
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: ${({ theme, isFocused }) => (isFocused ? theme.text : theme.label)};
-`;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
