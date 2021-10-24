@@ -10,52 +10,14 @@ const WINDOW_HEIGHT = Dimensions.get("window").height;
 export default function FaceRecognition() {
   const [hasVideoPermission, setHasVideoPermission] = useState(null);
   const [hasAudioPermission, setHasAudioPermission] = useState(null);
-  //facedetector
-  const [faces, setFaces] = useState([]);
-  const [len, setLen] = useState(0);
-  // const [b, setB] = useState(null);
-  // const [f, setF] = useState(null);
-  // const [r, setR] = useState(null);
-  // const [y, setY] = useState(null);
+
   //video
   const [cameraType, setCameraType] = useState(Camera.Constants.Type.front);
-  const [preview, setPreview] = useState(false);
   const [cameraReady, setCameraReady] = useState(false);
-  const [videoRecording, setVideoRecording] = useState(false);
   const [cameraSource, setCameraSource] = useState(null);
-  const [videoSource, setVideoSource] = useState(null);
   const cameraRef = useRef();
-  const [detectFace, setDetectFace] = useState(true);
-  const [singleFile, setSingleFile] = useState(null);
 
   const user = getCurrentUser();
-
-  //얼굴인식하면 정보 저장
-  const faceDetected = ({ faces }) => {
-    if (faces.length > 0) {
-      if (detectFace) {
-        setDetectFace(false);
-      }
-      setFaces({ faces });
-      setLen(faces.length);
-      // setB(faces[0].bounds);
-      // setF(faces[0].faceID);
-      // setR(faces[0].rollAngle);
-      // setY(faces[0].yawAngle);
-      console.log({ faces });
-    } else {
-      setFaces({ faces });
-      setLen(faces.length);
-      console.log({ faces });
-    }
-  };
-
-  //첫얼굴 인식시 자동동영상촬영시작
-  useEffect(() => {
-    if (!detectFace) {
-      videotimer();
-    }
-  }, [detectFace]);
 
   //카메라권한
   useEffect(() => {
@@ -91,6 +53,7 @@ export default function FaceRecognition() {
   const CameraReady = () => {
     setCameraReady(true);
   };
+
   //사진찍기
   const takePicture = async () => {
     if (cameraRef.current) {
@@ -142,47 +105,6 @@ export default function FaceRecognition() {
     }
   };
 
-  //사진 또는 비디오 미리보기 취소
-  const cancelPreview = async () => {
-    await cameraRef.current.resumePreview();
-    setPreview(false);
-    setCameraSource(null);
-    setVideoSource(null);
-  };
-  //미리보기 취소버튼
-  const cancelPreviewButton = () => (
-    <TouchableOpacity onPress={cancelPreview} style={styles.closeButton}>
-      <View style={[styles.closeX, { transform: [{ rotate: "50deg" }] }]} />
-      <View style={[styles.closeX, { transform: [{ rotate: "-50deg" }] }]} />
-    </TouchableOpacity>
-  );
-  //녹화된비디오재생
-  const playVideo = () => (
-    <Video
-      source={{ uri: videoSource }}
-      shouldPlay={true}
-      style={styles.media}
-    />
-  );
-
-  //녹화중표시
-  const videoRecordingDisplay = () => (
-    <View style={styles.recordingContainer}>
-      <View style={styles.recordCircle} />
-      <Text style={styles.recordingPhrase}>{"Recording.."}</Text>
-    </View>
-  );
-
-  //자동 녹화시작,중지
-  const videotimer = async () => {
-    setTimeout(() => {
-      recordVideo();
-    }, 500);
-    setTimeout(() => {
-      stopVideoRecording();
-    }, 6000);
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <Camera
@@ -194,28 +116,7 @@ export default function FaceRecognition() {
         onMountError={error => {
           console.log("cammera error", error);
         }}
-        //onFacesDetected={faceDetected}
-        faceDetectorSettings={{
-          mode: FaceDetector.Constants.Mode.fast,
-          detectLandmarks: FaceDetector.Constants.Landmarks.none,
-          runClassifications: FaceDetector.Constants.Classifications.none,
-          minDetectionInterval: 500,
-          tracking: true
-        }}
       />
-      {/* <View style={styles.container}>
-        {videoRecording && videoRecordingDisplay()}
-        {videoSource && playVideo()}
-        {preview && cancelPreviewButton()}
-      </View>
-      {len > 0
-        ?
-        <View></View>    
-        :
-        <View style={styles.container}>
-          <Text style={styles.faceText}>얼굴이 인식되지 않았습니다.</Text>
-        </View>
-          } */}
       <TouchableOpacity style={styles.capture} onPress={takePicture} />
     </SafeAreaView>
   );
