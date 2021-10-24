@@ -2,7 +2,7 @@ import React, { useContext ,useEffect} from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ThemeContext } from "styled-components/native";
 import MainTab from "./MainTab";
-import { ListCreation, Class, RefPage, Stn_List_temp, FaceCheck, FaceRecognition,Sending } from '../screens'
+import { ListCreation, Class, RefPage, Stn_List_temp, FaceCheck, FaceRecognition} from '../screens'
 
 
 const Stack = createStackNavigator();
@@ -30,7 +30,6 @@ const MainStack = ({ navigation,handledark }) => {
       <Stack.Screen name="FaceCheck" component={FaceCheck} />
       <Stack.Screen name="FaceRecognition" component={FaceRecognition} />
       <Stack.Screen name="Stn_List_temp" component={Stn_List_temp} />
-      <Stack.Screen name="Sending" component={Sending} />
     </Stack.Navigator>
   );
 };
