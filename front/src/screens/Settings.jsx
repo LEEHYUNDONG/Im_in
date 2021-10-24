@@ -64,26 +64,27 @@ const Settings = ({navigation,handledark}) => {
       <View>
   {
     list1.map((item, i) => (
-      <ListItem key={i} bottomDivider style={{backgroundColor:'#123123'}}>
+      <ListItem key={i} bottomDivider containerStyle={{backgroundColor:theme.background}}>
         <Icon name={item.icon} 
               color='#d5d5d5'
         />
         <ListItem.Content>
-          <ListItem.Title>{item.title}</ListItem.Title>
+          <ListItem.Title style={{color:theme.text}}>{item.title}</ListItem.Title>
         </ListItem.Content>
         <ListItem.Chevron />
       </ListItem>
+      
     ))
   }
   <View style={{margin:15}}></View>
   {
     list2.map((item, i) => (
-      <ListItem key={i} bottomDivider onPress={() => navigation.navigate(item.nav)} >
+      <ListItem key={i} bottomDivider onPress={() => navigation.navigate(item.nav)}containerStyle={{backgroundColor:theme.background}} >
         <Icon name={item.icon} 
               color='#d5d5d5'
         />
         <ListItem.Content >
-          <ListItem.Title>{item.title}</ListItem.Title>
+          <ListItem.Title style={{color:theme.text}}>{item.title}</ListItem.Title>
         </ListItem.Content>
         <ListItem.Chevron />
       </ListItem>
