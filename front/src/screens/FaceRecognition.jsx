@@ -83,7 +83,7 @@ export default function FaceRecognition() {
         });
         console.log(data);
         // Please change file upload URL
-        let res = await fetch("http://18.219.85.27:8000/images/", {
+        let res=await fetch("http://18.219.85.27:8000/images/", {
           method: "post",
           body: data,
           headers: {
