@@ -56,7 +56,7 @@ export default function FaceRegistration({navigation}) {
   //사진찍기
   const takePicture = async () => {
     if (cameraRef.current) {
-      const options = { quality: 0.5, base64: false, skipProcessing: true };
+      const options = { quality: 0.05, base64: false, skipProcessing: false };
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
       if (source) {
@@ -73,8 +73,8 @@ export default function FaceRegistration({navigation}) {
         //console.log("hhhh", singleFile);
         const name = user.email.split("@")[0] + ".jpg";
         const data = new FormData();
-        data.append("title", "B811226");
-        data.append("title", "student iddddd");
+        data.append("title", user.email.split("@")[0]);
+        //data.append("title", "student iddddd");
         data.append("image", {
           name: name,
           type: "image/jpg",

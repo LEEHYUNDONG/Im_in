@@ -9,6 +9,7 @@ import {ProgressContext} from '../contexts';
 import { Alert } from 'react-native';
 import {Checkattd} from '../utils/firebase';
 import { UserContext} from '../contexts';
+import { Attendance } from '../utils/Attendance'
 
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 
@@ -65,7 +66,7 @@ export default function FaceCheck() {
   //사진찍기
   const takePicture = async () => {
     if (cameraRef.current) {
-      const options = { quality: 0.01, base64: false, skipProcessing: false };
+      const options = { quality: 0.3, base64: false, skipProcessing: false };
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
       if (source) {
@@ -119,7 +120,7 @@ export default function FaceCheck() {
         //   attendence();
         // }
         //responseJson.check_list[0].check ? () => attendence() : null;
-
+        Attendance(responseJson);
       } else {
         // If no file selected the show alert
         console.log("Please Select File first");
