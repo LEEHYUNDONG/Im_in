@@ -236,21 +236,6 @@ const styles = StyleSheet.create({
   media: {
     ...StyleSheet.absoluteFillObject
   },
-  //미리보기 x모양
-  closeX: {
-    width: "70%",
-    height: 1,
-    backgroundColor: "white"
-  },
-  //조작버튼
-  // control: {
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   position: "absolute",
-  //   flexDirection: "row",
-  //   bottom: 40,
-  //   width: "100%",
-  // },
   //촬영버튼
   capture: {
     backgroundColor: "#cfcfcf",
@@ -261,29 +246,4 @@ const styles = StyleSheet.create({
     marginHorizontal: 150,
     marginBottom: 5
   },
-  //녹화중표시 컨테이너
-  recordingContainer: {
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    position: "absolute",
-    backgroundColor: "transparent",
-    top: 25,
-    opacity: 0.7
-  },
-  //녹화중표시 문구
-  recordingPhrase: {
-    fontSize: 14,
-    color: "#ffffff",
-    textAlign: "center"
-  },
-  //녹화중표시 원
-  recordCircle: {
-    borderRadius: 3,
-    height: 6,
-    width: 6,
-    backgroundColor: "#ff0000",
-    marginHorizontal: 5
-  }
 });
