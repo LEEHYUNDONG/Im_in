@@ -1,12 +1,7 @@
-import React, { useContext, useState } from 'react';
-import styled,{ThemeProvider} from 'styled-components/native';
-import {Text,View,FlatList} from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import React from 'react';
+import styled from 'styled-components/native';
+import {FlatList} from 'react-native';
 import {Student} from '../components'
-import { ThemeContext } from 'styled-components';
-import { MaterialIcons } from "@expo/vector-icons";
-
-
 
 //분반의 학생들을 모아놓는 screen
 
@@ -85,7 +80,7 @@ const Item = React.memo(
         
         console.log(`Item: ${id}`);
         return (
-            <ItemContainer onPress={() => onPress({ a_week})}>
+            <ItemContainer >
                 <ItemTextContainer>
                     <ItemTitle>{id+1} week</ItemTitle>
                     <ItemDescription>{title}</ItemDescription>
@@ -102,16 +97,13 @@ const Item = React.memo(
     }
 );
 
-    const _handleItemPress = params => {
-        navigation.navigate('Stn_List_temp', params);
-    };
     return (
       <Container>
           <FlatList 
             keyExtractor={item => item['id'].toString()}
             data={weeks}
             renderItem={({item}) => (
-                <Item item={item} onPress={_handleItemPress} />
+                <Item item={item} />
             )}
             
           />

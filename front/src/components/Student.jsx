@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components/native';
+import styled,{ ThemeContext } from "styled-components/native";
 import {Text,View} from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
 import { theme } from '../theme';
@@ -26,7 +26,7 @@ const Student = ({id,attd ,day,week}) => {
             padding: 14,
             margin: 3,
         }}>  
-            <Text style={{fontFamily:'Trebuchet MS',fontSize:14}}>{id + 1} </Text>
+            <Text style={{fontSize:14,fontWeight:'bold'}}>{id + 1} </Text>
             <Text style={{flex:1}}>{week[day[0]]}</Text>
             <Text>{day}</Text>
         </View>
