@@ -17,3 +17,5 @@ firebase.json
 
 #front
 ./front/.expo/*
+
+./front/.expo/*.json
