@@ -2,14 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Camera } from 'expo-camera';
 import { Video, Audio } from 'expo-av';
-import * as FaceDetector from 'expo-face-detector';
 import { getCurrentUser } from '../utils/firebase';
 
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 
 export default function FaceRecognition() {
   const [hasVideoPermission, setHasVideoPermission] = useState(null);
-  const [hasAudioPermission, setHasAudioPermission] = useState(null);
+  //const [hasAudioPermission, setHasAudioPermission] = useState(null);
 
   //video
   const [cameraType, setCameraType] = useState(Camera.Constants.Type.front);
@@ -28,12 +27,12 @@ export default function FaceRecognition() {
   }, []);
 
   //오디오권한
-  useEffect(() => {
-    (async () => {
-      const { status } = await Audio.requestPermissionsAsync();
-      setHasAudioPermission(status === "granted");
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const { status } = await Audio.requestPermissionsAsync();
+  //     setHasAudioPermission(status === "granted");
+  //   })();
+  // }, []);
 
   if (hasVideoPermission === null) {
     return <View />;
@@ -41,12 +40,12 @@ export default function FaceRecognition() {
   if (hasVideoPermission === false) {
     return <Text>No access to camera</Text>;
   }
-  if (hasAudioPermission === null) {
-    return <View />;
-  }
-  if (hasAudioPermission === false) {
-    return <Text>No access to audio</Text>;
-  }
+  // if (hasAudioPermission === null) {
+  //   return <View />;
+  // }
+  // if (hasAudioPermission === false) {
+  //   return <Text>No access to audio</Text>;
+  // }
 
   //viedo
   //카메라가 사진이나 비디오를 캡쳐할 준비가되었는지 구분
@@ -133,16 +132,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "black"
   },
-  // face: {
-  //   justifyContent: 'center',
-  //   backgroundColor: 'transparent',
-  //   position: 'absolute',
-  //   borderColor: '#808000',
-  //   padding: 10,
-  //   borderWidth: 1,
-  //   borderRadius: 1,
-  // },
-  //얼굴인식유무 텍스트
+  //얼굴인식유무 텍스트 -> 출석체크 확인 텍스트?
   faceText: {
     color: "#11CC11",
     fontWeight: "bold",
@@ -154,38 +144,9 @@ const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject
   },
-  //미리보기 취소
-  closeButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#c5c5c5",
-    position: "absolute",
-    height: Math.floor(WINDOW_HEIGHT * 0.03),
-    width: Math.floor(WINDOW_HEIGHT * 0.03),
-    borderRadius: Math.floor(Math.floor(WINDOW_HEIGHT * 0.03) / 2),
-    top: 35,
-    left: 15,
-    opacity: 0.7,
-    zIndex: 2
-  },
   media: {
     ...StyleSheet.absoluteFillObject
   },
-  //미리보기 x모양
-  closeX: {
-    width: "70%",
-    height: 1,
-    backgroundColor: "white"
-  },
-  //조작버튼
-  // control: {
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   position: "absolute",
-  //   flexDirection: "row",
-  //   bottom: 40,
-  //   width: "100%",
-  // },
   //촬영버튼
   capture: {
     backgroundColor: "#cfcfcf",
@@ -196,29 +157,4 @@ const styles = StyleSheet.create({
     marginHorizontal: 150,
     marginBottom: 5
   },
-  //녹화중표시 컨테이너
-  recordingContainer: {
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    position: "absolute",
-    backgroundColor: "transparent",
-    top: 25,
-    opacity: 0.7
-  },
-  //녹화중표시 문구
-  recordingPhrase: {
-    fontSize: 14,
-    color: "#ffffff",
-    textAlign: "center"
-  },
-  //녹화중표시 원
-  recordCircle: {
-    borderRadius: 3,
-    height: 6,
-    width: 6,
-    backgroundColor: "#ff0000",
-    marginHorizontal: 5
-  }
 });
