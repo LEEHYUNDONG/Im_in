@@ -93,7 +93,7 @@ export default function FaceCheck() {
 
         var start = new Date();
         // Please change file upload URL
-        let res=await fetch("http://18.219.85.27:8000/images/", {
+        let res=await fetch("http://18.219.85.27:8000/images/attendance/", {
           method: "post",
           body: data,
           headers: {
