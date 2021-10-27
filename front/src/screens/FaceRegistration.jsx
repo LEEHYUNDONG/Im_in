@@ -6,7 +6,7 @@ import { getCurrentUser } from '../utils/firebase';
 
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 
-export default function FaceRegistration() {
+export default function FaceRegistration({navigation}) {
   const [hasVideoPermission, setHasVideoPermission] = useState(null);
   //const [hasAudioPermission, setHasAudioPermission] = useState(null);
 

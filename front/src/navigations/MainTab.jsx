@@ -117,7 +117,7 @@ const MainTab = ({ navigation, route, handledark}) => {
           tabBarLabel: "Settings",
           headerTitle: "Settings"
         }}
-       children={()=><Settings handledark={handledark}/>}
+       children={()=><Settings handledark={handledark} navigation={navigation}/>}
     />
       
     </Tab.Navigator>

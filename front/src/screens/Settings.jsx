@@ -17,17 +17,17 @@ const list2 = [
   {
     title: '이용 약관',
     icon: 'subtitles',
-    nav: 'FaceRegistration'
+    nav: 'FaceRecognition'
   },
   {
     title: 'Q&A',
     icon: 'help-outline',
-    nav: 'FaceRegistration'
+    nav: 'FaceRecognition'
   },
   {
     title: '서비스 안내',
     icon: 'remove-red-eye',
-    nav: 'FaceRegistration'
+    nav: 'FaceRecognition'
   },
   {
     title: '얼굴 등록',
@@ -78,7 +78,7 @@ const Settings = ({navigation,handledark}) => {
   <View style={{margin:15}}></View>
   {
     list2.map((item, i) => (
-      <ListItem key={i} bottomDivider onPress={() => navigation.navigate(item.nav)}containerStyle={{backgroundColor:theme.background}} >
+      <ListItem key={i} bottomDivider onPress={() => navigation.navigate(item.nav)} containerStyle={{backgroundColor:theme.background}} >
         <Icon name={item.icon} 
               color='#d5d5d5'
         />

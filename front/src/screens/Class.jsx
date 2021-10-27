@@ -76,7 +76,7 @@ const Class = ({navigation,route}) => {
     }
     console.log(days)
 const Item = React.memo(
-    ({ item: { id,a_week }, onPress }) => {
+    ({ item: { id,a_week } }) => {
         
         console.log(`Item: ${id}`);
         return (

@@ -4,6 +4,7 @@ import styled, { ThemeContext } from 'styled-components/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { DB } from '../utils/firebase';
 import { UserContext} from '../contexts';
+import {Attendance} from '../utils/Attendance';
 const Container = styled.View`
     flex: 1;
     background-color: ${({ theme }) => theme.background};
@@ -71,6 +72,16 @@ const List = ({ navigation }) => {
     const [classes, setClasses] = useState([]);
     const {user} = useContext(UserContext);
     const [uid,setUid] = useState(user.email.substring(0,7));
+    const data = {
+        "check_list": [
+            {
+                "check": true,
+                "id": "dokyung",
+            },
+        ],
+        "description": "dd",
+        "title": "student check",
+    }
     // 오브젝트 형태의 임시 출결 토큰
 
     useEffect(() => {
@@ -89,7 +100,6 @@ const List = ({ navigation }) => {
     const _handleItemPress = params => { //아이템 클릭시 class 내부로 이동
         navigation.navigate('Class', params);
     };
-
     return (
         <Container>
             <FlatList
@@ -100,6 +110,7 @@ const List = ({ navigation }) => {
                 )}
                 windowSize={3}
             />
+            <Btn onPress={() => navigation.navigate("FaceRegistration")}></Btn>
         </Container>
     );
 };
