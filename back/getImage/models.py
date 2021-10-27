@@ -1,3 +1,28 @@
 from django.db import models
+import os
 
-# Create your models here.
+
+def image_upload_path1(instance, filename):
+    return 'face/'+os.path.join(instance.title, filename)
+
+
+def image_upload_path2(instance, filename):
+    return 'check/'+os.path.join(instance.title, filename)
+
+
+class Images(models.Model):
+    title = models.CharField(max_length=200, default='None')
+    image = models.ImageField(
+        upload_to=image_upload_path1, default='../media/james.jpg')
+
+    def __str__(self):
+        return self.title
+
+
+class Check(models.Model):
+    title = models.CharField(max_length=200, default='None')
+    image = models.ImageField(
+        upload_to=image_upload_path2, default='../media/james.jpg')
+
+    def __str__(self):
+        return self.title
