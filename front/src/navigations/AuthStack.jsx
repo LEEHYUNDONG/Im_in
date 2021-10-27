@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "styled-components/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Login, Signup,Check,FaceRecognition} from "../screens";
+import { Login, Signup,Check,FaceRegistration} from "../screens";
 
 const Stack = createStackNavigator();
 // 로그인 및 회원가입 화면을 관리하며 얼굴 등록을 진행한다.
@@ -44,7 +44,7 @@ const AuthStack = () => {
       />
       <Stack.Screen name="Signup" component={Signup} options={{headerBackTitleVisible: false}} />
       <Stack.Screen name="Check" component={Check} options={{headerBackTitleVisible: false}} />
-      <Stack.Screen name="FaceRecognition" component={FaceRecognition} options={{headerBackTitleVisible: false}} />
+      <Stack.Screen name="FaceRegistration" component={FaceRegistration} options={{headerBackTitleVisible: false}} />
     </Stack.Navigator>
   );
 };
