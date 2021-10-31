@@ -6,6 +6,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { MaterialIcons } from "@expo/vector-icons";
 import { Modal, ModalContent } from 'react-native-modals';
 import {Non_present,Present} from './Timetable';
+import { ListItem, Icon } from "react-native-elements";
+
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -16,7 +18,7 @@ const Btn = styled.TouchableOpacity`
     height: 50px;
     border-radius: 7px;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     color: ${({theme}) => theme.text};
 `;
 
@@ -52,6 +54,23 @@ const Home=({navigation}) => {
   const [rnot,setRnot] = useState([]);
   const [visible,setVisible] = useState(false);
   const [present,setPresent] = useState(false);
+  const HeaderList = [
+    {
+      title: 'NOTICE',
+      icon1: 'event-note',
+      icon2: 'qr-code',
+    },
+  ]
+  const NoticeList = [
+    {
+      title: 'MAIN',
+      content: mnot,
+    },
+    {
+      title: 'RECENT',
+      content: rnot,
+    },
+  ]
 
   const loadItem = async () => {
     axios
@@ -65,11 +84,11 @@ const Home=({navigation}) => {
           let obj2 = [];
           $('div.subject>a').each((index, item)=>{$href.push(item.attribs.href)});
           $('div.subject').each((index, item)=>{$title.push($(item).text().trim())});
-          for(var i = 0; i < 2; i++){
+          for(var i = 0; i < 3; i++){
             $href2[i] = ('http://www.ce.hongik.ac.kr/dept/0401.html?'+$href[i].substring($href[i].length-11,$href[i].length).toLowerCase())
             obj[i] = {title: $title[i], ref: $href2[i],id: i }
           }
-          for (var i = 5; i < 8; i++){
+          for (var i = 5; i < 10; i++){
             $href2[i] = ('http://www.ce.hongik.ac.kr/dept/0401.html?'+$href[i].substring($href[i].length-11,$href[i].length).toLowerCase())
             obj2[i-5] = {title: $title[i], ref: $href2[i],id: i-3 }
           }
@@ -92,22 +111,41 @@ const Home=({navigation}) => {
   
   return (
     <Container>
-      <View style={{flexDirection:"row-reverse", flex:0.3}}>
-        
-      <MaterialIcons
-        name="qr-code"
-        size={30}
-        style={{ margin: 10 ,color:theme.text}}
-        //onpress={{}}
-      />
-      <MaterialIcons
-        name="class"
-        size={30}
-        style={{ margin: 10 ,color:theme.text}}
-        onPress={() => {
+      <View >
+      {
+    HeaderList.map((item, i) => (
+      <ListItem key={i} bottomDivider containerStyle={{backgroundColor:theme.background}}>
+        <ListItem.Content>
+          <ListItem.Title style={{color:theme.text,fontSize:25}}>{item.title}</ListItem.Title>
+        </ListItem.Content>
+        <Icon size={30} name={item.icon1} onPress={() => {
           setVisible(true);
-        }}
-      />
+        }}/>
+        <Icon size={30} name={item.icon2} />
+      </ListItem>
+      
+    ))
+  }
+  {
+    NoticeList.map((item, i) => (
+      <ListItem key={i}  containerStyle={{backgroundColor:theme.background}}>
+        <ListItem.Content>
+          <ListItem.Title style={{color:theme.text,fontSize:25}}>{item.title}</ListItem.Title>
+          {item.content.map(item => (
+          <Btn
+          key={item.id}
+          onPress={() => _onPress(item)}
+          >
+            <Text style={{color:theme.text}}>{item.title}</Text>
+          </Btn>
+        ))}
+        <ListItem.Title style={{color:theme.text}}></ListItem.Title>
+        <ListItem.Title style={{color:theme.text}}></ListItem.Title>
+        </ListItem.Content>
+      </ListItem>
+      
+    ))
+  }
       </View>
 
   <Modal
@@ -124,53 +162,6 @@ const Home=({navigation}) => {
       </View>
     </ModalContent>
   </Modal>
-
-
-
-      <View style={{alignItems:"flex-end",flex:0.7}}>
-        
-    <ImageBackground
-      style={{ width:'100%',height: 120}}
-      source={require("../../assets/backgroundIMG/loading.png")}
-      resizeMode="cover">
-      
-</ImageBackground>
-     </View>
-      <View style={{flex:3,alignItems:'center'}}>
-        <Text style={{fontSize:40,color:theme.text}}>Notice</Text>
-      <View style={{flex:0.1,flexDirection:'row'}}>
-        <View style={{flex:0.9}}>
-        <Text style={{fontSize:20, color:theme.text}}>Main</Text>
-        </View>
-        <View>
-        </View>
-      </View>
-      <View style={{flex:0.5}}>
-        {mnot.map(item => (
-          <Btn
-          key={item.id}
-          onPress={() => _onPress(item)}>
-            <Text style={{color:theme.text}}>{item.title}</Text>
-          </Btn>
-        ))}
-        </View>
-        <View style={{flex:0.1,flexDirection:'row'}}>
-        <View style={{flex:0.9}}>
-        <Text style={{fontSize:20,color:theme.text}}>Recent</Text>
-        </View>
-        <View>
-        </View>
-      </View>
-      <View style={{flex:1}}>
-        {rnot.map(item => (
-          <Btn
-          key={item.id}
-          onPress={() => _onPress(item)}>
-            <Text style={{color:theme.text}}>{item.title}</Text>
-          </Btn>
-        ))}
-        </View>
-      </View>
     </Container>
     );
 };
