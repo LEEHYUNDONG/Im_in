@@ -156,7 +156,7 @@ const Home=({navigation}) => {
         </View>
         <View style={{flex:0.1,flexDirection:'row'}}>
         <View style={{flex:0.9}}>
-        <Text style={{fontSize:20,color:theme.text}}>Resent</Text>
+        <Text style={{fontSize:20,color:theme.text}}>Recent</Text>
         </View>
         <View>
         </View>
