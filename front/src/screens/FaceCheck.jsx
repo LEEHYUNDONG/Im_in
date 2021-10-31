@@ -121,6 +121,23 @@ export default function FaceCheck() {
         // }
         //responseJson.check_list[0].check ? () => attendence() : null;
         Attendance(responseJson);
+
+        let res2=await fetch("http://18.219.85.27:8000/images/attendance/", {
+          method: "delete",
+          body: data,
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        });
+
+        let responseJson2 = await res2.json();
+
+        console.log(responseJson2.description);
+
+        console.log(responseJson2);
+        if (responseJson2.status == "OK") {
+          console.log("Delete Successful");
+        }
       } else {
         // If no file selected the show alert
         console.log("Please Select File first");

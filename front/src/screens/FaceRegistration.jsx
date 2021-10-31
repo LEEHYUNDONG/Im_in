@@ -6,7 +6,7 @@ import { getCurrentUser } from '../utils/firebase';
 
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 
-export default function FaceRegistration({navigation}) {
+export default function FaceRegistration() {
   const [hasVideoPermission, setHasVideoPermission] = useState(null);
   //const [hasAudioPermission, setHasAudioPermission] = useState(null);
 
@@ -17,6 +17,8 @@ export default function FaceRegistration({navigation}) {
   const cameraRef = useRef();
 
   const user = getCurrentUser();
+
+  const [regFaceNum, setRegFaceNum] = useState(1);
 
   //카메라권한
   useEffect(() => {
@@ -82,19 +84,32 @@ export default function FaceRegistration({navigation}) {
         });
         console.log(data);
         // Please change file upload URL
-        let res=await fetch("http://18.219.85.27:8000/images/", {
+
+        let res;
+        try{
+          res=await fetch("http://18.219.85.27:8000/images/", {
           method: "post",
           body: data,
           headers: {
             "Content-Type": "multipart/form-data"
           }
         });
+        } catch {
+          console.log("error");
+        }
+        
+
+  
 
         //console.log(res);
         let responseJson = await res.json();
-        console.log(responseJson);
-        if (responseJson.status == 1) {
+        
+        console.log(responseJson.status);
+      
+        if (responseJson.status == 201) {
+          setRegFaceNum(regFaceNum + 1);
           console.log("Upload Successful");
+          console.log("등록 얼굴 수 : " + regFaceNum);
         }
       } else {
         // If no file selected the show alert
