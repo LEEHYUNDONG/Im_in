@@ -244,3 +244,15 @@ rn w/ django rest framework
 ## 1015/Lee Hyun Dong
  - BE 출석용 SERIALIZER와 얼굴등록용 serializer 구성
  - django model 출석용, 얼굴등록용 만듬
+
+# 10월 5주차
+## 1027/Kang Jeon Ho
+ - Main 스크린 컴포넌트 리디자인
+
+## 1028/Lee Do Kyung
+ - React Native 카메라 기능 업데이트
+ - Delete 기능 구현
+
+## 1028/Lee Hyun Dong
+ - GET, POST, DELETE Json 형식 통일
+ - Delete 기능 구현
