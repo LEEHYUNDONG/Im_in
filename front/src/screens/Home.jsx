@@ -16,9 +16,12 @@ const Container = styled.SafeAreaView`
 const Btn = styled.TouchableOpacity`
     width: 300px;
     height: 50px;
-    border-radius: 7px;
+    border-radius: 5px;
+    margin: 2px;
     justify-content: center;
     align-items: flex-start;
+    border-width: 1px;
+    border-color: ${({theme}) => theme.imageBackground};
     color: ${({theme}) => theme.text};
 `;
 
