@@ -257,7 +257,12 @@ rn w/ django rest framework
  - GET, POST, DELETE Json 형식 통일
  - Delete 기능 구현
 
- # 11월 1주차
- ## 1103/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
+# 11월 1주차
+## 1103/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
  - React Native, Django 총괄 refactoring
  - 데모 영상 촬영
+
+# 11월 2주차
+## 1114/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
+ - React Native, Django 총괄 refactoring
+ - report, slide 작성 및 영상 제작
