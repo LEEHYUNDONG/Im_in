@@ -30,9 +30,9 @@ const Login = ({navigation}) => {
   const theme = useContext(ThemeContext);
   const { dispatch } = useContext(UserContext);
   const { spinner } = useContext(ProgressContext);
-  const [subemail, setSubemail] = useState('dokyung');
+  const [subemail, setSubemail] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('123456');
+  const [password, setPassword] = useState('');
   const passwordRef = useRef();
   const [errorMessage, setErrorMessage] = useState('');
   const [disabled, setDisabled] = useState(true);
