@@ -77,14 +77,9 @@ export default function FaceCheck() {
         setCameraSource(source);
       }
       if (source != null) {
-        // If file selected then create FormData
-        //const fileToUpload=singleFile.uri;
-        //setSingleFile(source);
-        //console.log("hhhh", singleFile);
         const name = user.email.split("@")[0] + ".jpg";
         const data = new FormData();
         data.append("title", user.email.split("@")[0]);
-        //data.append("title", "student iddddd");
         data.append("image", {
           name: name,
           type: "image/jpg",
@@ -93,7 +88,6 @@ export default function FaceCheck() {
         console.log(data);
 
         var start = new Date();
-        // Please change file upload URL
         let res=await fetch("http://18.219.85.27:8000/images/attendance/", {
           method: "post",
           body: data,
@@ -102,7 +96,6 @@ export default function FaceCheck() {
           }
         });
 
-        //console.log(res);
         let responseJson = await res.json();
 
         console.log(responseJson);
@@ -114,12 +107,7 @@ export default function FaceCheck() {
         var gap = end.getTime() - start.getTime();
         console.log(responseJson.check_list[0].check);
         console.log(gap/1000);
-        //출결 함수 호출
-        //console.log(typeof(responseJson.check_list[0].check));
-        // if (responseJson.check_list[0].check == true){
-        //   attendence();
-        // }
-        //responseJson.check_list[0].check ? () => attendence() : null;
+
         Attendance(responseJson);
 
         let res2=await fetch("http://18.219.85.27:8000/images/attendance/", {
@@ -139,7 +127,6 @@ export default function FaceCheck() {
           console.log("Delete Successful");
         }
       } else {
-        // If no file selected the show alert
         console.log("Please Select File first");
       }
       await cameraRef.current.resumePreview();
@@ -205,7 +192,6 @@ export default function FaceCheck() {
   );
 }
 
-//style
 const styles = StyleSheet.create({
   //카메라 컨테이너
   cameracontainer: {
@@ -216,42 +202,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "black"
   },
-  // face: {
-  //   justifyContent: 'center',
-  //   backgroundColor: 'transparent',
-  //   position: 'absolute',
-  //   borderColor: '#808000',
-  //   padding: 10,
-  //   borderWidth: 1,
-  //   borderRadius: 1,
-  // },
-  //얼굴인식유무 텍스트
-  faceText: {
-    color: "#11CC11",
-    fontWeight: "bold",
-    textAlign: "center",
-    margin: 10,
-    backgroundColor: "transparent"
-  },
   //video style
   container: {
-    ...StyleSheet.absoluteFillObject
-  },
-  //미리보기 취소
-  closeButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#c5c5c5",
-    position: "absolute",
-    height: Math.floor(WINDOW_HEIGHT * 0.03),
-    width: Math.floor(WINDOW_HEIGHT * 0.03),
-    borderRadius: Math.floor(Math.floor(WINDOW_HEIGHT * 0.03) / 2),
-    top: 35,
-    left: 15,
-    opacity: 0.7,
-    zIndex: 2
-  },
-  media: {
     ...StyleSheet.absoluteFillObject
   },
   //촬영버튼

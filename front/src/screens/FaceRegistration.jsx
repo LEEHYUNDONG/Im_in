@@ -69,21 +69,15 @@ export default function FaceRegistration() {
         setCameraSource(source);
       }
       if (source != null) {
-        // If file selected then create FormData
-        //const fileToUpload=singleFile.uri;
-        //setSingleFile(source);
-        //console.log("hhhh", singleFile);
         const name = user.email.split("@")[0] + ".jpg";
         const data = new FormData();
         data.append("title", user.email.split("@")[0]);
-        //data.append("title", "student iddddd");
         data.append("image", {
           name: name,
           type: "image/jpg",
           uri: source
         });
         console.log(data);
-        // Please change file upload URL
 
         let res;
         try{
@@ -97,9 +91,6 @@ export default function FaceRegistration() {
         } catch {
           console.log("error");
         }
-        
-
-  
 
         //console.log(res);
         let responseJson = await res.json();
@@ -112,7 +103,6 @@ export default function FaceRegistration() {
           console.log("등록 얼굴 수 : " + regFaceNum);
         }
       } else {
-        // If no file selected the show alert
         console.log("Please Select File first");
       }
       await cameraRef.current.resumePreview();
@@ -136,7 +126,6 @@ export default function FaceRegistration() {
   );
 }
 
-//style
 const styles = StyleSheet.create({
   //카메라 컨테이너
   cameracontainer: {
@@ -147,19 +136,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "black"
   },
-  //얼굴인식유무 텍스트 -> 출석체크 확인 텍스트?
-  faceText: {
-    color: "#11CC11",
-    fontWeight: "bold",
-    textAlign: "center",
-    margin: 10,
-    backgroundColor: "transparent"
-  },
   //video style
   container: {
-    ...StyleSheet.absoluteFillObject
-  },
-  media: {
     ...StyleSheet.absoluteFillObject
   },
   //촬영버튼
