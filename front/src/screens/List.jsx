@@ -37,7 +37,6 @@ const ItemTime = styled.Text`
  const Item = React.memo(
     ({ item: { id, title, snum,grade, createdAt,days,weeks }, onPress }) => {
         const theme = useContext(ThemeContext);
-        console.log(`Item: ${id}`);
 
         return (
             <ItemContainer onPress={() => onPress({ id, title ,grade,days,weeks})}>
