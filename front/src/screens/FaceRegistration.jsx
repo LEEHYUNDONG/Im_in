@@ -58,7 +58,7 @@ export default function FaceRegistration() {
   //사진찍기
   const takePicture = async () => {
     if (cameraRef.current) {
-      const options = { quality: 0.05, base64: false, skipProcessing: false };
+      const options = { quality: 0.3, base64: false, skipProcessing: false };
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
       if (source) {
@@ -81,7 +81,7 @@ export default function FaceRegistration() {
 
         let res;
         try{
-          res=await fetch("http://18.219.85.27:8000/images/", {
+          res=await fetch("http://3.144.173.100:8000/images/", {
           method: "post",
           body: data,
           headers: {

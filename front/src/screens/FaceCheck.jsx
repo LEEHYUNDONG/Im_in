@@ -88,7 +88,7 @@ export default function FaceCheck() {
         console.log(data);
 
         var start = new Date();
-        let res=await fetch("http://18.219.85.27:8000/images/attendance/", {
+        let res=await fetch("http://3.144.173.100:8000/images/attendance/", {
           method: "post",
           body: data,
           headers: {
@@ -110,7 +110,7 @@ export default function FaceCheck() {
 
         Attendance(responseJson);
 
-        let res2=await fetch("http://18.219.85.27:8000/images/attendance/", {
+        let res2=await fetch("http://3.144.173.100:8000/images/attendance/", {
           method: "delete",
           body: data,
           headers: {
