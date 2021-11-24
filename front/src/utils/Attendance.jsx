@@ -9,7 +9,7 @@ export const Attendance = (attd) => {
     //const now = Date.now()
     const moment = require('moment');
     const days = ['일','월','화','수','목','금','토']
-    const date = moment('2021-09-01 09:02:00','YYYYMMDD HH:mm:ss');
+    const date = moment();
     const class_ = days[date.day()]+(date.hour()-8);
     
     let week;
