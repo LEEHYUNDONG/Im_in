@@ -78,7 +78,6 @@ const Class = ({navigation,route}) => {
 const Item = React.memo(
     ({ item: { id,a_week } }) => {
         
-        console.log(`Item: ${id}`);
         return (
             <ItemContainer >
                 <ItemTextContainer>
