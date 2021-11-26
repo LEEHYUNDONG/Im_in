@@ -81,7 +81,7 @@ export default function FaceRegistration() {
 
         let res;
         try{
-          res=await fetch("http://3.144.173.100:8000/images/", {
+          res=await fetch("http://3.144.136.225:8000/images/", {
           method: "post",
           body: data,
           headers: {

@@ -88,7 +88,7 @@ export default function FaceCheck() {
         console.log(data);
 
         var start = new Date();
-        let res=await fetch("http://3.144.173.100:8000/images/attendance/", {
+        let res=await fetch("http://3.144.136.225:8000/images/attendance/", {
           method: "post",
           body: data,
           headers: {
@@ -110,14 +110,16 @@ export default function FaceCheck() {
 
         Attendance(responseJson);
 
-        let res2=await fetch("http://3.144.173.100:8000/images/attendance/", {
+        
+        let res2=await fetch("http://3.144.136.225:8000/images/attendance/", {
           method: "delete",
           body: data,
           headers: {
             "Content-Type": "multipart/form-data"
           }
         });
-
+      
+      
         let responseJson2 = await res2.json();
 
         console.log(responseJson2.description);
