@@ -1,6 +1,6 @@
-# Im_In-
+# Im_In/Role and Schedule
 
-<!-- img[../docs/img_src/Logo.png] -->
+![image]<https://github.com/Hongik-Im-in/Im_in/blob/master/docs/img_src/Logo.png>
 
 # 04월 2주차 까지
 
@@ -262,3 +262,4 @@
  ## 1103/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
  - React Native, Django 총괄 refactoring
  - 데모 영상 촬영
+
