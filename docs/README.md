@@ -1,5 +1,6 @@
 # Im_In-
-rn w/ django rest framework
+
+<!-- img[../docs/img_src/Logo.png] -->
 
 # 04월 2주차 까지
 
