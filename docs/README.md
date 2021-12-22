@@ -2,7 +2,14 @@
 
 ![Logo](https://user-images.githubusercontent.com/32635799/147057319-7f92503e-c79b-4036-ac07-8e9c18e95ba4.png)
 
-# 04월 2주차 까지
+## shorter Version of the below
+
+#### Front-end
+<img width="1159" alt="FERole" src="https://user-images.githubusercontent.com/32635799/147057806-4ef0b475-5ed5-4ff7-83a9-d925358120bc.png">
+
+#### Back-end
+<img width="1160" alt="BERole" src="https://user-images.githubusercontent.com/32635799/147057796-ea942dc8-4b88-4c15-88b9-f3fd7c4dfd90.png">
+
 
 ## 0313/second_commit/LeeHyunDong
  - navigator
@@ -38,7 +45,6 @@
 - 메인 화면 연결 x
 
 ***
-# 04월 3주차
 
 ## 0412/4th_commit/LeeHyunDong
 - edit header title 탭 아이콘이 눌렸을 때 헤더 타이틀보이기
@@ -75,7 +81,6 @@
 - navigation/index.jsx AuthStack으로 잠시 변경(수정가능)
 
 ***
-# 04월 4주차
 
 ## 0420/Lee Hyun Dong
 - Django에서 React native로 데이터 송수신 관련 자료조사
@@ -99,7 +104,6 @@
 - React native -> Django 데이터 송수신 테스트 환경 세팅
 
 ***
-# 04월 5주차 & 05월 1주차
 
 ## 0428/Lee Do Kyung
 - 얼굴등록 화면 스크린 에러 수정
@@ -119,8 +123,6 @@
 - 분반 생성 화면 구현
 - 셋 다 미완성 및 파이어베이스 연동x
 
-***
-# 05월 2주차
 
 ## 0503/Lee Hyun Dong
 - Django RestApi를 내보내는 Code
@@ -139,8 +141,6 @@
 - 파이어베이스 리스트만 연동
 - 분반 생성 x
 
-***
-# 05월 3주차
 
 ## 0513/Lee Hyun Dong
 - django restAPI 이용하여 serializer로 이미지 get
@@ -161,8 +161,6 @@
 - 리스트 생성 구현
 - 학생 출석 처리 구현 완성x
 
-***
-# 05월 4주차
 
 ## 0517/Lee Hyun Dong
 - djangoRestful API back 폴더에 구성 
@@ -180,7 +178,6 @@
 - class header 전체 현황 버튼 및 스크린 구현
 
 ***
-# 09월 3주차
 
 ## ~0911/Lee Do Kyung, Lee Hyun Dong
  - 사진파일 전처리
@@ -199,8 +196,6 @@
 - django restAPI form data형식으로 받을 수 있게 model 변경
 - mobile front에서 사진 촬영하는 hooks 수정 하여 사진 촬영 시 서버로 전달하게 json형식 수정
 
-***
-# 09월 4주차
 
 ## 0922/Kang Jeon Ho
  - firebase 학생 출결 상태 생성
@@ -215,7 +210,6 @@
  - BE에서 사진 각 계정별로 폴더 생성시켜 사진파일 정리
 
 ***
-# 10월 1주차
 
 ## 1006/Kang Jeon Ho
  - 수업 리스트 내 학생 출결 컴포넌트 구현
@@ -229,8 +223,7 @@
  - 전송 이미지 얼굴 인식을 위한 사이즈 조정
  - 논문 수정 및 추가 작성
 
-***
-# 10월 2주차
+
 ## ~1015/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
  - 논문 작성
 
@@ -246,7 +239,7 @@
  - BE 출석용 SERIALIZER와 얼굴등록용 serializer 구성
  - django model 출석용, 얼굴등록용 만듬
 
-# 10월 5주차
+
 ## 1027/Kang Jeon Ho
  - Main 스크린 컴포넌트 리디자인
 
@@ -258,8 +251,8 @@
  - GET, POST, DELETE Json 형식 통일
  - Delete 기능 구현
 
- # 11월 1주차
+ *** 
+
  ## 1103/Kang Jeon Ho, Lee Do Kyung, Lee Hyun Dong
  - React Native, Django 총괄 refactoring
  - 데모 영상 촬영
-
