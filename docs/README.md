@@ -1,6 +1,6 @@
 # Im_In/Role and Schedule
 
-![Logo]<https://github.com/Hongik-Im-in/Im_in/blob/master/docs/img_src/Logo.png>
+![Logo](https://user-images.githubusercontent.com/32635799/147057319-7f92503e-c79b-4036-ac07-8e9c18e95ba4.png)
 
 # 04월 2주차 까지
 
