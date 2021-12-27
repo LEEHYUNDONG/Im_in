@@ -20,7 +20,7 @@
 ![I'm in architecture drawio](https://user-images.githubusercontent.com/32635799/147058410-3bea4da5-e941-4dd0-b7a5-a708cae4b6b7.png)
 
 ## 🌳 Object Tree
-![Object tree](https://github.com/Hongik-Im-in/Im_in/issues/6#issue-1089085588)
+![Object tree](https://user-images.githubusercontent.com/32635799/147455084-8d9f899e-1b0f-4aa2-b9fd-7ff5ec728bf9.png)
 
 ## 🌳 Algorithm
 ![Training Seq1](https://user-images.githubusercontent.com/32635799/147454217-71ac7c5b-b11b-4d69-8ced-09b5567e26f2.png)
