@@ -22,7 +22,7 @@
 
 ## Algorithm
 
-![Training Sequence](https://github.com/Hongik-Im-in/Im_in/issues/4#issue-1089079687)
+![Training Seq1](https://github.com/Hongik-Im-in/Im_in/issues/4#issue-1089079687)
 > 학습을 하기 위해서 설정에서 얼굴 등록을 해야 하는데, 사용자는 얼굴 등록 시 모바일 카메라를 통하여 10장의 본인 사진을 촬영한다. 촬영 시 AWS EC2의 로컬 media/face 폴더로 계정(학번).jpg 파일이 저장된다. 매일 자정에 수동으로 media 폴더 내에 들어온 학생들의 사진은 일괄적으로 학습을 진행한다. 학습을 한 모델은 Im_in.pt 파일로 생성시킨다. 
 
 ![Checking Attendance Sequence](https://user-images.githubusercontent.com/32635799/147454232-e61673a7-6755-46a4-95db-ee8532eadc80.png)
