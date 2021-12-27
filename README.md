@@ -1,8 +1,7 @@
 ## Im in
-<p align="center">
-![Logo](https://user-images.githubusercontent.com/32635799/147057319-7f92503e-c79b-4036-ac07-8e9c18e95ba4.png)
-</p>
+<p align="center"><img src = "https://user-images.githubusercontent.com/32635799/147057319-7f92503e-c79b-4036-ac07-8e9c18e95ba4.png"></p>
 
+<!-- ![Logo](https://user-images.githubusercontent.com/32635799/147057319-7f92503e-c79b-4036-ac07-8e9c18e95ba4.png) -->
 ## 🚵‍♀️ Motivation/개발 동기
 코로나 여파로 인하여 전면 원격강의 실시로 출결 방식에서 많은 변화 요구
 기존의 출결 방식의 문제점
