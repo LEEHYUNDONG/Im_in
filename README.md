@@ -15,7 +15,7 @@
 > 이를 해결하기 위해서 오늘날 사람들 사이에서 꾸준히 회자되고 있는 Deep Learning 기술 중 안면 인식을 이용한다. 안면 인식을 도입한 모바일 출석 애플리케이션을 이용할 시 대리 출석의 문제점을 해결하고 출석 코드 생성 및 학생 호명 등 수업 시간 외 불필요한 시간을 최소화할 수 있다.
 
 ## 🛠 We used
-<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"><img src="https://img.shields.io/archlinux/v/core/x86_64/pacman"><img src = "https://img.shields.io/pypi/djversions/djangorestframework?style=plastic">
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Django</title><path d="M11.146 0h3.924v18.166c-2.013.382-3.491.535-5.096.535-4.791 0-7.288-2.166-7.288-6.32 0-4.002 2.65-6.6 6.753-6.6.637 0 1.121.05 1.707.203zm0 9.143a3.894 3.894 0 00-1.325-.204c-1.988 0-3.134 1.223-3.134 3.365 0 2.09 1.096 3.236 3.109 3.236.433 0 .79-.025 1.35-.102V9.142zM21.314 6.06v9.098c0 3.134-.229 4.638-.917 5.937-.637 1.249-1.478 2.039-3.211 2.905l-3.644-1.733c1.733-.815 2.574-1.53 3.109-2.625.561-1.121.739-2.421.739-5.835V6.059h3.924zM17.39.021h3.924v4.026H17.39z"/></svg>
 
 ### 📚 Mobile App Architecture/모바일 앱 구조
 ![I'm in architecture drawio](https://user-images.githubusercontent.com/32635799/147058410-3bea4da5-e941-4dd0-b7a5-a708cae4b6b7.png)
