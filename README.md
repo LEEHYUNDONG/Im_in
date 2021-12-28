@@ -37,7 +37,6 @@
 |-------------|-------------|-------------|-------------|
 |![SignIn](img/SignIn.PNG)|![SignUp](img/SignUp.PNG)|![Login](img/LoginSucc.PNG)|![List](img/List.PNG)|
 |___Settings___|___List Creation___|___Before check___|___checked___|
-|-------------|-------------|-------------|-------------|
 |![Setting](img/Setting.PNG)|![ListCreation](img/ListCreation.PNG)|![Before](img/BeforeCheck.PNG)|![Checked](img/Checked.PNG)|
 <!-- |___After check___|___Check___|___Main___|___List___|
 |-------------|-------------|-------------|-------------| -->
