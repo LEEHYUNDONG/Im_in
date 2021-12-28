@@ -1,6 +1,7 @@
 ## Im in
 <p align="center"><img src = "https://user-images.githubusercontent.com/32635799/147057319-7f92503e-c79b-4036-ac07-8e9c18e95ba4.png"></p>
 
+*** 
 
 ## 🚵‍♀️ Motivation/개발 동기
 코로나 여파로 인하여 전면 원격강의 실시로 출결 방식에서 많은 변화 요구
@@ -29,12 +30,17 @@
 ![Checking Attendance Sequence](https://user-images.githubusercontent.com/32635799/147454232-e61673a7-6755-46a4-95db-ee8532eadc80.png)
 > 출석 check를 할 시에는 모바일 애플리케이션의 카메라에서 한 장의 본인 사진을 필요로 한다. 사진들은 media의 check/ 폴더로 학번.jpg 형태로 저장된다. Request method가 POST방식으로 사진이 들어올 때마다 사진을 예측하여 얼굴이 들어온 학번과 예측 결과를 mobile로 출결 처리를 하도록 [‘학번’, ‘True or False’] 를 반환한다. 전달받은 값을 이용해서 firebase에 저장된 일자와 출결 현황을 갱신한다. 
 
-## 📱 Demo/앱 화면
+***
+
+### 📱 Demo/앱 화면
 
 ## 🥅 what we achieved/성과
 - 한국정보과학회 논문 accept
+- Made youtube app promotional video
 
-## 🎥 Youtube link
+![정보과학회](.img/paper.png)
+
+### 🎥 Youtube link
 [Youtube](https://www.youtube.com/watch?v=zWzItsJUxJQ&t=254s)
 
 > written by [이현동](https://github.com/LEEHYUNDONG)
