@@ -38,7 +38,7 @@
 - 한국정보과학회 논문 accept
 - Made youtube app promotional video
 
-![정보과학회](.img/paper.png)
+![정보과학회](img/paper.png)
 
 ### 🎥 Youtube link
 [Youtube](https://www.youtube.com/watch?v=zWzItsJUxJQ&t=254s)
