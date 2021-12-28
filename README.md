@@ -34,4 +34,7 @@
 ## 🥅 what we achieved/성과
 - 한국정보과학회 논문 accept
 
+## 🎥 Youtube link
+[Youtube](https://www.youtube.com/watch?v=zWzItsJUxJQ&t=254s)
+
 > written by [이현동](https://github.com/LEEHYUNDONG)
