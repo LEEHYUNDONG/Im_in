@@ -33,8 +33,9 @@
 ***
 
 ### 📱 Demo/앱 화면
-|*******|******|*******|*******|
-|___Loading___|___Loading___|___Loading___|___Loading___|
+|___Sign In___|___Loading___|___Loading___|___Loading___|
+|-------------|-------------|-------------|-------------|
+|<img src="img/SignIn" align="center">|<img src="img/SignIn" align="center">|<img src="img/SignIn" align="center">|<img src="img/SignIn" align="center">|
 
 ## 🥅 what we achieved/성과
 - 한국정보과학회 논문 ___accepted___
