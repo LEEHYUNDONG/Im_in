@@ -14,15 +14,9 @@ class ImageSerializer(serializers.ModelSerializer):
         #fields = ['title']
 
     def create(self, validated_data):
-        """
-        Create and return a new `Snippet` instance, given the validated data.
-        """
         return Images.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        """
-        Update and return an existing `Snippet` instance, given the validated data.
-        """
         instance.title = validated_data.get('title', instance.title)
         instance.image = validated_data.get('image', instance.image)
 
@@ -41,9 +35,6 @@ class CheckSerializer(serializers.ModelSerializer):
         return Check.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        """
-        Update and return an existing `Snippet` instance, given the validated data.
-        """
         instance.title = validated_data.get('title', instance.title)
         instance.image = validated_data.get('image', instance.image)
 
